@@ -5,6 +5,11 @@ class ProjectsController < ApplicationController
     render json: @current_user.projects
   end
 
+  # # GET /projects/:id
+  # def show
+  #   render json: @current_user.projects
+  # end
+
   # POST /projects
   def create
     project = @current_user.projects.create!(project_params)
@@ -36,7 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def find_project
-    Asset.find(params[:id])
+    Project.find(params[:id])
   end
   
 end

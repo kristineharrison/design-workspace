@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_09_05_003533) do
     t.string "title"
     t.string "source"
     t.text "description"
-    t.string "keywords"
+    t.string "tags"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

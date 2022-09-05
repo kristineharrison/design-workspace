@@ -4,7 +4,7 @@ class CreateAssets < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :source
       t.text :description
-      t.string :keywords
+      t.string :tags
 
       t.timestamps
     end
