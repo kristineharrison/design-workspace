@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
   resources :projects
   resources :assets
-  resources :users
-  # route to test configuration
-  get '/hello', to: 'application#hello_world'
+  resources :users, only: [:index, :show, :create, :update]
 
+  # Custom login
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
+  # Custom user
+  post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+
+  # Fallback
   get '*path',
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }
