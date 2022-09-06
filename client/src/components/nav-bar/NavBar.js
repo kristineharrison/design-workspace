@@ -1,4 +1,7 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+// import './nav.css';
+import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../ui";
@@ -18,18 +21,61 @@ export default function NavBar({ user, setUser }) {
         <Link to="/">Workspace</Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/new">
-          New Asset
-        </Button>
-        <Button variant="outline" as={Link} to="/projects">
-          Projects
-        </Button>
-        <Button variant="outline" as={Link} to="/user">
-          Profile
-        </Button>
-        <Button variant="outline" onClick={handleLogoutClick}>
-          Logout
-        </Button>
+        <div style={{ display: 'flex', 
+                    justifyContent: 'flex-end',
+                    width: 700, 
+                    padding: 30,
+                    gap: 10
+                  }}>
+        
+          <Dropdown>
+            <Dropdown.Toggle variant="outline-secondary">
+              Catalog
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/catalog">
+                View All
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+                New Project
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+                New Asset
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          
+          <Dropdown>
+            <Dropdown.Toggle variant="outline-secondary">
+              Toolkit
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#">
+                Colors
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+                Images
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+                Typography
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          
+          <Dropdown>
+            <Dropdown.Toggle variant="success">
+              {user.first_name}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/profile">
+                Profile
+              </Dropdown.Item>
+              <Dropdown.Item onClick={handleLogoutClick}>
+                Logout
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       </Nav>
     </Wrapper>
   );

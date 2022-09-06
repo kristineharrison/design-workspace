@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router-dom"
 import NavBar from "./nav-bar"
 import Login from "./login"
 import User from "./user"
-// import AssetCreateForm from "./asset"
-import Project from "./project"
+import AssetCreateForm from "./catalog/asset"
+import ProjectCreateForm from "./catalog/project"
+import Catalog from "./catalog"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -28,10 +29,16 @@ export default function App() {
           {/* <Route path="/new-asset">
             <AssetCreateForm user={user} />
           </Route> */}
-          <Route path="/projects">
-            <Project />
+          <Route path="/catalog">
+            <Catalog />
           </Route>
-          <Route path="/user">
+          <Route path="/new-asset">
+            <AssetCreateForm />
+          </Route>
+          <Route path="/new-project">
+            <ProjectCreateForm />
+          </Route>
+          <Route path="/profile">
             <User />
           </Route>
           <Route exact path="/">

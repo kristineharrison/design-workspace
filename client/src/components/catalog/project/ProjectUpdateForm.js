@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Button, FormField, Input, Label, Textarea } from "../ui";
+import { Button, FormField, Input, Label, Textarea } from "../../ui"
 
-export default function ProjectUpdateForm({ project, handleUpdate, handleClick })  {
+export default function ProjectUpdateForm({ projectData, handleUpdate, handleClick })  {
   const[name, setName] = useState("");
   const[status, setStatus] = useState("");
   const[summary, setSummary] = useState("");
@@ -11,7 +11,7 @@ export default function ProjectUpdateForm({ project, handleUpdate, handleClick }
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch(`/projects/${project.id}`, {
+    fetch(`/projects/${projectData.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
