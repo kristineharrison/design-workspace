@@ -5,6 +5,12 @@ class AssetsController < ApplicationController
     render json: @current_user.assets
   end
 
+  # GET /assets/:id
+  def show
+    asset = find_asset
+    render json: asset
+  end
+
   # POST /assets
   def create
     asset = @current_user.assets.create!(asset_params)

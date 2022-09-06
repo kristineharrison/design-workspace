@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom"
 import NavBar from "./nav-bar"
 import Login from "./login"
 import User from "./user"
-import AssetCreateForm from "./catalog/asset"
+import Asset from "./catalog/asset/Asset"
+import AssetCreateForm from "./catalog/asset/AssetCreateForm"
 import ProjectCreateForm from "./catalog/project"
 import Catalog from "./catalog"
 
@@ -26,6 +27,9 @@ export default function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
+          <Route path="/assets/:id">
+            <Asset />
+          </Route>
           <Route path="/catalog">
             <Catalog />
           </Route>
