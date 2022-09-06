@@ -26,9 +26,6 @@ export default function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
-          {/* <Route path="/new-asset">
-            <AssetCreateForm user={user} />
-          </Route> */}
           <Route path="/catalog">
             <Catalog />
           </Route>

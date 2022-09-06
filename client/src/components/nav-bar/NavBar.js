@@ -36,10 +36,10 @@ export default function NavBar({ user, setUser }) {
               <Dropdown.Item href="/catalog">
                 View All
               </Dropdown.Item>
-              <Dropdown.Item href="#">
+              <Dropdown.Item href="/new-project">
                 New Project
               </Dropdown.Item>
-              <Dropdown.Item href="#">
+              <Dropdown.Item href="/new-asset">
                 New Asset
               </Dropdown.Item>
             </Dropdown.Menu>

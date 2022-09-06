@@ -5,10 +5,11 @@ class ProjectsController < ApplicationController
     render json: @current_user.projects
   end
 
-  # # GET /projects/:id
-  # def show
-  #   render json: @current_user.projects
-  # end
+  # GET /projects/:id
+  def show
+    project = find_project
+    render json: project
+  end
 
   # POST /projects
   def create
