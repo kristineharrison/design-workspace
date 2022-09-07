@@ -50,13 +50,13 @@ export default function NavBar({ user, setUser }) {
               Toolkit
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#">
+              <Dropdown.Item href="/colors">
                 Colors
               </Dropdown.Item>
-              <Dropdown.Item href="#">
+              <Dropdown.Item href="/images">
                 Images
               </Dropdown.Item>
-              <Dropdown.Item href="#">
+              <Dropdown.Item href="/typography">
                 Typography
               </Dropdown.Item>
             </Dropdown.Menu>

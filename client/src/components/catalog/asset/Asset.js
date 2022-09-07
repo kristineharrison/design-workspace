@@ -8,10 +8,10 @@ export default function Asset({ onDelete, handleUpdate }) {
   const [showForm, setShowForm] = useState(false);
   const [asset, setAsset] = useState([])
 
-  // Get asset data
-  fetch(`/assets/${asset.id}`)
-      .then((r) => r.json())
-      .then(setAsset);
+  // // Get asset data
+  // fetch(`/assets/${asset.id}`)
+  //     .then((r) => r.json())
+  //     .then(setAsset);
 
   function handleDelete(id) {
     fetch(`/assets/${id}`, {

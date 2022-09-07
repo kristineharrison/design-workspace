@@ -7,6 +7,9 @@ import Asset from "./catalog/asset/Asset"
 import AssetCreateForm from "./catalog/asset/AssetCreateForm"
 import ProjectCreateForm from "./catalog/project"
 import Catalog from "./catalog"
+import Images from "./images"
+import Colors from "./colors"
+import Typography from "./typography"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +36,12 @@ export default function App() {
           <Route path="/catalog">
             <Catalog />
           </Route>
+          <Route path="/colors">
+            <Colors />
+          </Route>
+          <Route path="/images">
+            <Images />
+          </Route>
           <Route path="/new-asset">
             <AssetCreateForm />
           </Route>
@@ -41,6 +50,9 @@ export default function App() {
           </Route>
           <Route path="/profile">
             <User />
+          </Route>
+          <Route path="/typography">
+            <Typography />
           </Route>
           <Route exact path="/">
             <User />
