@@ -10,7 +10,7 @@ export default function Login({ onLogin }) {
 
   return (
     <Wrapper>
-      <img src={`./images/rainbow.jpeg`} alt="Rainbow" />
+      {/* <img src={`./images/rainbow.jpeg`} alt="Rainbow" /> */}
       <Logo>Workspace</Logo>
       {showLogin ? (
         <>

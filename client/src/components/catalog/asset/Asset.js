@@ -1,48 +1,59 @@
 import React from "react"
-import { useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Box, Button } from "../../ui"
+import { Button } from "../../ui"
 import AssetUpdateForm from "./AssetUpdateForm"
 
-export default function Asset({ onDelete, handleUpdate }) {
+export default function Asset({ asset, setAsset, onAssetDelete, handleUpdate }) {
   const [showForm, setShowForm] = useState(false);
-  const [asset, setAsset] = useState([])
+  // const [asset, setAsset] = useState([])
+  
+  const history = useHistory();
+  const params = useParams()
 
-  // // Get asset data
-  // fetch(`/assets/${asset.id}`)
-  //     .then((r) => r.json())
-  //     .then(setAsset);
+  // Get asset data
+  useEffect(() => {
+    fetch(`/assets/${params.id}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setAsset(data);
+      });
+  }, [params.id]);
+
+  const { title, source, description, tags, id } = asset
 
   function handleDelete(id) {
-    fetch(`/assets/${id}`, {
+    fetch(`/assets/${params.id}`, {
       method: "DELETE",
     });
-    onDelete(id);
+    onAssetDelete(id);
+    // setAsset([]);
+    history.push("/catalog");
   }
 
   function handleClick() {
     setShowForm((showForm) => !showForm);
   }
   
-  
   return (
-    <Container key={asset.id}>
-      <Box>
-          {/* <img src={asset.image_data} alt={asset.title}/> */}
+    <Container>
+      
+          <img src={asset.image_data} alt={asset.title}/>
           <p>
-            <span>{asset.title}</span><br />
-            <cite>Source: {asset.source}</cite>
+            <span>{title}</span><br />
+            <cite>Source: {source}</cite>
           </p> 
-          <p>{asset.description}</p>
-          <p>{asset.tags}</p>
+          <p>{description}</p>
+          <p>{tags}</p>
           {/* <p>Related projects: {asset.projects.name}</p> */}
       
           <div className="update-button">
-            <Button variant="outline" onClick={() => handleDelete(asset.id)}>Delete</Button>
-            <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button>
+            <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button>
+            <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
           </div>
           {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
-      </Box>
+      
     </Container>
     // <h1>Hello</h1>
   );

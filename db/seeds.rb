@@ -29,42 +29,48 @@ asset1 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user2.id
 )
 
 asset2 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user2.id
 )
 
 asset3 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user2.id
 )
 
 asset4 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user2.id
 )
 
 asset5 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user1.id
 )
 
 asset6 = Asset.create(
   title: Faker::Hipster.word,
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
-  tags: "one two three"
+  tags: "one two three",
+  user_id: user1.id
 )
 
 # CREATE Projects

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 
-const Box = styled.div`
-  width: 300px;
+const AssetBox = styled.div`
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,7 +17,7 @@ const Box = styled.div`
   }
   
   img {
-    max-height: 300px;
+    height: 100px;
   }
 
   div.update-button {
@@ -28,4 +28,4 @@ const Box = styled.div`
   }
 `;
 
-export default Box;
+export default AssetBox;

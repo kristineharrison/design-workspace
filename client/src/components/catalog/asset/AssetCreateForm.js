@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "../../ui";
 
-export default function AssetCreateForm({ user }) {
+export default function AssetCreateForm() {
   const [title, setTitle] = useState("");
   const [source, setSource] = useState("");
   const [description, setDescription] = useState("");
@@ -27,7 +27,7 @@ export default function AssetCreateForm({ user }) {
       body: formData,
       }).then((r) => {
       if (r.ok) {
-        history.goBack();
+        history.push("/catalog");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

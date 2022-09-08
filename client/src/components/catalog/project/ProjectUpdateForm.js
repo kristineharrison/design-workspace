@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button, FormField, Input, Label, Textarea } from "../../ui"
 
-export default function ProjectUpdateForm({ projectData, handleUpdate, handleClick })  {
+export default function ProjectUpdateForm({ project, setProject, handleClick })  {
   const[name, setName] = useState("");
   const[status, setStatus] = useState("");
   const[summary, setSummary] = useState("");
@@ -11,7 +11,7 @@ export default function ProjectUpdateForm({ projectData, handleUpdate, handleCli
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch(`/projects/${projectData.id}`, {
+    fetch(`/projects/${project.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export default function ProjectUpdateForm({ projectData, handleUpdate, handleCli
       }),
     })
     .then((resp) => resp.json())
-    .then(handleUpdate);
+    .then((data) => setProject(data));
     handleClick();
 }
 
@@ -31,7 +31,7 @@ export default function ProjectUpdateForm({ projectData, handleUpdate, handleCli
     <div>
         <form onSubmit={handleSubmit}>
         <FormField>
-            <Label htmlFor="title">Update Name</Label>
+            <Label htmlFor="name">Update Name</Label>
             <Input
               type="text"
               id="name"

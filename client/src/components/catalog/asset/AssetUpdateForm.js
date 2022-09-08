@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { Button, FormField, Input, Label, Textarea } from "../../ui";
 
-export default function AssetUpdateForm({ asset, handleUpdate, handleClick })  {
-  const[caption, setCaption] = useState("");
-  const[source, setSource] = useState("");
-  const[title, setTitle] = useState("");
+export default function AssetUpdateForm({ asset, setAsset, handleClick })  {
+  const [description, setDescription] = useState("");
+  const [source, setSource] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,14 +17,17 @@ export default function AssetUpdateForm({ asset, handleUpdate, handleClick })  {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        caption: caption,
+        description: description,
         source: source,
-        title: title
+        title: title,
+        tags: tags
       }),
     })
     .then((resp) => resp.json())
-    .then(handleUpdate);
+    .then((data) => setAsset(data))
+    
     handleClick();
+
 }
 
   return (
@@ -40,7 +44,7 @@ export default function AssetUpdateForm({ asset, handleUpdate, handleClick })  {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="name">Update Source</Label>
+            <Label htmlFor="source">Update Source</Label>
             <Input
               type="text"
               id="source"
@@ -50,13 +54,23 @@ export default function AssetUpdateForm({ asset, handleUpdate, handleClick })  {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="caption">Update Caption</Label>
+            <Label htmlFor="description">Update Description</Label>
             <Textarea
-              id="caption"
+              id="description"
               rows="3"
               placeholder="Required"
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </FormField>
+          <FormField>
+            <Label htmlFor="source">Update Tags</Label>
+            <Input
+              type="text"
+              id="tags"
+              placeholder="Required"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
             />
           </FormField>
           <FormField>
