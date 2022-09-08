@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Button, FormField, Input, Label, Textarea } from "../../ui"
 
 export default function ProjectUpdateForm({ project, setProject, handleClick })  {
-  const[name, setName] = useState("");
-  const[status, setStatus] = useState("");
+  const[proname, setProName] = useState("");
+  const[prostatus, setProStatus] = useState("");
   const[summary, setSummary] = useState("");
 
   // Update project
@@ -17,8 +17,8 @@ export default function ProjectUpdateForm({ project, setProject, handleClick }) 
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
-        status: status,
+        proname: proname,
+        prostatus: prostatus,
         summary: summary
       }),
     })
@@ -36,8 +36,8 @@ export default function ProjectUpdateForm({ project, setProject, handleClick }) 
               type="text"
               id="name"
               placeholder="Required"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={proname}
+              onChange={(e) => setProName(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -46,8 +46,8 @@ export default function ProjectUpdateForm({ project, setProject, handleClick }) 
               type="text"
               id="status"
               placeholder="Required"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              value={prostatus}
+              onChange={(e) => setProStatus(e.target.value)}
             />
           </FormField>
           <FormField>

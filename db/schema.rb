@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2022_09_05_003533) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
+    t.string "proname"
+    t.string "prostatus"
     t.text "summary"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

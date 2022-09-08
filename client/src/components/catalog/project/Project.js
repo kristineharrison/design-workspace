@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 
 
 export default function Project({ handleUpdate }) {
-  const [project, setProject] = useState([])
+  const [project, setProject] = useState({})
   const [showForm, setShowForm] = useState(false);
   // const [asset, setAsset] = useState([])
   
@@ -25,7 +25,7 @@ export default function Project({ handleUpdate }) {
       });
   }, [params.id]);
 
-  const { name, status, summary, id, assets} = project
+  const { proname, prostatus, summary, id, assets} = project
   
   {console.log("Project assets: ", {assets})}
 
@@ -42,11 +42,14 @@ export default function Project({ handleUpdate }) {
     setShowForm((showForm) => !showForm)
   }
   
+  function assetCollection() {
+    
+  }
   
   return (
     <Container>
-          <h2>{name}</h2>
-          <p>{status}</p>
+          <h2>{proname}</h2>
+          <p>{prostatus}</p>
           <p>{summary}</p>
 
           {/* {assets.map((asset) => (
@@ -57,8 +60,8 @@ export default function Project({ handleUpdate }) {
               <p>{asset.tags}</p>
               
             </AssetBox>
-          ))}
-         */}
+          ))} */}
+        
         
         
         {/* {project.assets.map((asset) => (

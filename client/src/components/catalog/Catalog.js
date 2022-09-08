@@ -33,8 +33,8 @@ export default function Catalog({ assets, setAssets, onAssetDelete}) {
             projects.map((project) => (
               <ProjectCard key={`Project-${project.id}`} >
                 <ProjectBox>
-                  <h2>{project.name}</h2>
-                  <p>{project.status}</p>
+                  <h2>{project.proname}</h2>
+                  <p>{project.prostatus}</p>
                   <p>{project.summary}</p>
                   <Button as={ Link } to= {`/projects/${project.id}`}>View Project</Button>
                 </ProjectBox>

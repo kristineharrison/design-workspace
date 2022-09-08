@@ -8,9 +8,9 @@ export default function ProjectCard({ project }) {
   return (
     <Container>
       <ProjectBox>
-          <img src={project.image_data} alt={project.name}/>
+          <img src={project.image_data} alt={project.proname}/>
           <p>
-            <span>{project.name}</span><br />
+            <span>{project.proname}</span><br />
           </p> 
           <p>{project.summary}</p>
           <div className="update-button">

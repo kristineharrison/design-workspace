@@ -76,36 +76,36 @@ asset6 = Asset.create(
 # CREATE Projects
 puts "Seeding projects..."
 project1 = Project.create(
-  name: Faker::Hipster.word,
-  status: "new",
+  proname: Faker::Hipster.word,
+  prostatus: "new",
   summary: Faker::Hipster.paragraph,
   user_id: user1.id,
 )
 
 project2 = Project.create(
-  name: Faker::Hipster.word,
-  status: "new",
+  proname: Faker::Hipster.word,
+  prostatus: "new",
   summary: Faker::Hipster.paragraph,
   user_id: user2.id,
 )
 
 project3 = Project.create(
-  name: Faker::Hipster.word,
-  status: "new",
+  proname: Faker::Hipster.word,
+  prostatus: "new",
   summary: Faker::Hipster.paragraph,
   user_id: user2.id,
 )
 
 project4 = Project.create(
-  name: Faker::Hipster.word,
-  status: "new",
+  proname: Faker::Hipster.word,
+  prostatus: "new",
   summary: Faker::Hipster.paragraph,
   user_id: user1.id,
 )
 
 project5 = Project.create(
-  name: Faker::Hipster.word,
-  status: "new",
+  proname: Faker::Hipster.word,
+  prostatus: "new",
   summary: Faker::Hipster.paragraph,
   user_id: user2.id,
 )

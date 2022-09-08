@@ -5,18 +5,18 @@ import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "../../ui";
 
 export default function ProjectCreateForm() {
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
+  const [proname, setProName] = useState("");
+  const [prostatus, setProStatus] = useState("");
   const [summary, setSummary] = useState("");
   const [errors, setErrors] = useState([]);
-  const [imageData, setImageData] = useState(null)
+  // const [imageData, setImageData] = useState(null)
   const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData()
-    formData.append('name', name)
-    formData.append('status', status)
+    formData.append('proname', proname)
+    formData.append('prostatus', prostatus)
     formData.append('summary', summary)
     // formData.append('image_data', imageData)
  
@@ -36,23 +36,23 @@ export default function ProjectCreateForm() {
     <Wrapper>
       <WrapperChild>
         <h2>Create Project</h2>
-        <p>Upload an image or logo file.</p>
+        {/* <p>Upload an image or logo file.</p> */}
         <form onSubmit={handleSubmit}>
-          <Upload>
+          {/* <Upload>
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setImageData(e.target.files[0])}
             />
-          </Upload>
+          </Upload> */}
           <FormField>
             <Label htmlFor="name">Name</Label>
             <Input
               type="text"
               id="name"
               placeholder="Required"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={proname}
+              onChange={(e) => setProName(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -61,8 +61,8 @@ export default function ProjectCreateForm() {
               type="text"
               id="status"
               placeholder="Required"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              value={prostatus}
+              onChange={(e) => setProStatus(e.target.value)}
             />
           </FormField>
           <FormField>
