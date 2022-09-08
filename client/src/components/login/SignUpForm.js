@@ -2,28 +2,14 @@ import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label } from "../ui";
 
 export default function SignUpForm({ onLogin }) {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    username: "",
-    password: "",
-    password_confirmation: ""
-  });
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  function handleChange(e) {
-    setFormData({
-      ...formData, [e.target.name]: e.target.value,
-    })
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,13 +21,13 @@ export default function SignUpForm({ onLogin }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // first_name,
-        // last_name,
-        // email,
-        // username,
-        // password,
-        // password_confirmation: passwordConfirmation
-        formData
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        username,
+        password,
+        password_confirmation: passwordConfirmation
+  
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -60,9 +46,10 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="text"
           id="first-name"
+          name="first_name"
           autoComplete="off"
-          value={formData.first_name}
-          onChange={handleChange}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -70,9 +57,10 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="text"
           id="last-name"
+          name="last_name"
           autoComplete="off"
-          value={formData.last_name}
-          onChange={handleChange}
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
           />
       </FormField>
       <FormField>
@@ -80,9 +68,10 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="text"
           id="email"
+          name="email"
           autoComplete="off"
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -90,9 +79,10 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="text"
           id="username"
+          name="username"
           autoComplete="off"
-          value={formData.username}
-          onChange={handleChange}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -100,8 +90,9 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="password"
           id="password"
-          value={formData.password}
-          onChange={handleChange}
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
       </FormField>
@@ -110,8 +101,9 @@ export default function SignUpForm({ onLogin }) {
         <Input
           type="password"
           id="password_confirmation"
-          value={formData.passwordConfirmation}
-          onChange={handleChange}
+          name="password_confirmation"
+          value={passwordConfirmation}
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
         />
       </FormField>

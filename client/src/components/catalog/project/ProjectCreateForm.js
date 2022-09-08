@@ -18,7 +18,7 @@ export default function ProjectCreateForm() {
     formData.append('name', name)
     formData.append('status', status)
     formData.append('summary', summary)
-    formData.append('image_data', imageData)
+    // formData.append('image_data', imageData)
  
     fetch("/projects", {
       method: "POST",

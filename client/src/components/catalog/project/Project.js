@@ -2,7 +2,7 @@ import React from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Button } from "../../ui"
+import { Button, AssetBox } from "../../ui"
 import ProjectUpdateForm from "./ProjectUpdateForm"
 import AssetCard from "../asset/AssetCard"
 import { Link } from "react-router-dom"
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 export default function Project({ handleUpdate }) {
   const [project, setProject] = useState([])
   const [showForm, setShowForm] = useState(false);
-  // const [assets, setAssets] = useState([])
+  // const [asset, setAsset] = useState([])
   
   const history = useHistory();
   const params = useParams()
@@ -27,7 +27,7 @@ export default function Project({ handleUpdate }) {
 
   const { name, status, summary, id, assets} = project
   
-  {console.log({assets})}
+  {console.log("Project assets: ", {assets})}
 
 
   function handleDelete(id) {
@@ -46,17 +46,20 @@ export default function Project({ handleUpdate }) {
   return (
     <Container>
           <h2>{name}</h2>
-          <p>{status}</p> 
+          <p>{status}</p>
           <p>{summary}</p>
 
           {/* {assets.map((asset) => (
-            <div>
-              <h2>hello</h2>
+            <AssetBox>
+              <img src={asset.image_data} alt={asset.title}/>
               <h2>{asset.title}</h2>
-            </div>
-
-            
-          ))} */}
+              <p>{asset.description}</p>
+              <p>{asset.tags}</p>
+              
+            </AssetBox>
+          ))}
+         */}
+        
         
         {/* {project.assets.map((asset) => (
           <AssetCard key={`asset-${asset.id}`} asset={asset} setAssets={setAssets} />
@@ -80,7 +83,7 @@ export default function Project({ handleUpdate }) {
       )}
           </div> */}
           <div className="update-button">
-            <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button>
+            {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
             <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
           </div>
           {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
@@ -93,7 +96,7 @@ const Container = styled.div`
 min-width: 200px;
 margin: 20px auto;
 display: flex;
-flex-flow: row wrap;
+flex-direction: column;
 gap: 40px
 overflow-x: auto;
 `;

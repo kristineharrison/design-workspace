@@ -27,11 +27,11 @@ export default function Profile()  {
             
             <h2>Hello, {profile.first_name}!</h2>
             <h3>What project would you like to work on today?</h3>
-            <p>Hello</p>
+            
             <br />
-              <div className="update-button">
+              {/* <div className="update-button">
                 <Button variant="outline" onClick={handleClick}>Update</Button>
-              </div>
+              </div> */}
               {showForm ? <ProfileUpdateForm profile={profile} setProfile={setProfile} handleClick={handleClick} /> : null}
           </div>
         </>

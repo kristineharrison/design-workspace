@@ -56,9 +56,9 @@ export default function NavBar({ user, setUser }) {
               <Dropdown.Item href="/images">
                 Images
               </Dropdown.Item>
-              <Dropdown.Item href="/typography">
+              {/* <Dropdown.Item href="/typography">
                 Typography
-              </Dropdown.Item>
+              </Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
           

@@ -55,15 +55,14 @@ export default function Asset({ asset, setAsset, onAssetDelete, handleUpdate }) 
           {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
       
     </Container>
-    // <h1>Hello</h1>
   );
 }
 
 const Container = styled.div`
-min-width: 200px;
+max-width: 500px;
 margin: 20px auto;
 display: flex;
-flex-flow: row wrap;
+flex-flow: column;
 gap: 40px
 overflow-x: auto;
 `;

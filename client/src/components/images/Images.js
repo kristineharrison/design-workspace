@@ -29,7 +29,7 @@ const Container = styled.section`
 `;
 
 const Intro = styled.article`
-  max-width: 60%;
+  max-width: 100%;
   margin: 40px auto;
   // display: flex;
   // flex-direction: column;
