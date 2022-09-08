@@ -2,11 +2,12 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Button } from "../ui"
+import { Button, ProjectBox } from "../ui"
 import AssetCard from "./asset/AssetCard"
-import ProjectCard from "./project/ProjectCard"
 
-export default function Catalog({ assets, setAssets, projects, setProjects }) {
+export default function Catalog({ assets, setAssets, onAssetDelete}) {
+  const [projects, setProjects] = useState([])
+  // const [assets, setAssets] = useState([])
 
   // Get project data
   useEffect(() => {
@@ -28,20 +29,25 @@ export default function Catalog({ assets, setAssets, projects, setProjects }) {
           <h1>PROJECTS</h1>
         </div>
         <Container>
-        {projects.length > 0 ? (
-        projects.map((project) => (
-          <ProjectCard key={`project-${project.id}`} project={projects}/>
-        ))
-      ) : (
-        <div className="no-project">
-          <h2>No Projects Found</h2>
-          <br />
-          <Button as={Link} to="/new-project">
-            Start a New Project
-          </Button>
-        </div>
-        
-      )}
+          {projects.length > 0 ? (
+            projects.map((project) => (
+              <ProjectCard key={`Project-${project.id}`} >
+                <ProjectBox>
+                  <h2>{project.name}</h2>
+                  <p>{project.status}</p>
+                  <p>{project.summary}</p>
+                  <Button as={ Link } to= {`/projects/${project.id}`}>View Project</Button>
+                </ProjectBox>
+              </ProjectCard>
+            ))
+            ) : (
+            <>
+              <h2>No Projects Found</h2>
+              <Button as={Link} to="/new-project">
+                Start a New Project
+              </Button>
+            </>
+          )}
         </Container>
         <div>
           <hr />
@@ -50,7 +56,7 @@ export default function Catalog({ assets, setAssets, projects, setProjects }) {
         <Container>
         {assets.length > 0 ? (
         assets.map((asset) => (
-          <AssetCard key={`asset-${asset.id}`} asset={asset}/>
+          <AssetCard key={`asset-${asset.id}`} asset={asset} setAssets={setAssets} onAssetDelete={onAssetDelete}/>
         ))
       ) : (
         <div className="no-asset">
@@ -89,11 +95,11 @@ const Container = styled.div`
   margin-bottom: 24px;
 `;
 
-// const ProjectCard = styled.article`
-//   display: flex;
-//   flex-direction: row;
-//   margin-bottom: 24px;
-// `;
+const ProjectCard = styled.article`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 24px;
+`;
 
 // const AssetCard = styled.article`
 //   display: flex;
