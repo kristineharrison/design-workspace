@@ -42,9 +42,6 @@ export default function Project({ handleUpdate }) {
     setShowForm((showForm) => !showForm)
   }
   
-  function assetCollection() {
-    
-  }
   
   return (
     <Container>
