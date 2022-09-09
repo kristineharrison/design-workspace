@@ -9,25 +9,49 @@ import { Link } from "react-router-dom"
 
 
 export default function Project({ handleUpdate }) {
-  const [project, setProject] = useState({})
+  // const [project, setProject] = useState([])
   const [showForm, setShowForm] = useState(false);
   // const [asset, setAsset] = useState([])
+  const [{ data: project, error, status }, setProject] = useState({
+    data: null,
+    error: null,
+    status: "pending",
+  })
   
   const history = useHistory();
-  const params = useParams()
+  const params = useParams();
 
-  // Get project data
   useEffect(() => {
-    fetch(`/projects/${params.id}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setProject(data);
-      });
+    fetch(`/projects/${params.id}`).then((r) => {
+      if (r.ok) {
+        r.json().then((project) =>
+          setProject({ data: project, error: null, status: "resolved" })
+        );
+      } else {
+        r.json().then((err) =>
+          setProject({ data: null, error: err.error, status: "rejected" })
+        );
+      }
+    });
   }, [params.id]);
 
-  const { proname, prostatus, summary, id, assets} = project
+  if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "rejected") return <h1>Error: {error.error}</h1>;
+ 
+
+//  const { proname, prostatus, summary, id, assets} = project
+  //Get project data
+  // useEffect(() => {
+  //   fetch(`/projects/${params.id}`)
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setProject(data);
+  //     });
+  // }, [params.id]);
+
+ 
   
-  {console.log("Project assets: ", {assets})}
+  {console.log("Project assets: ", {project})}
 
 
   function handleDelete(id) {
@@ -45,11 +69,11 @@ export default function Project({ handleUpdate }) {
   
   return (
     <Container>
-          <h2>{proname}</h2>
-          <p>{prostatus}</p>
-          <p>{summary}</p>
+          <h2>{project.proname}</h2>
+          <p>{project.prostatus}</p>
+          <p>{project.summary}</p>
 
-          {/* {assets.map((asset) => (
+          {/* {project.assets.map((asset) => (
             <AssetBox>
               <img src={asset.image_data} alt={asset.title}/>
               <h2>{asset.title}</h2>
@@ -66,10 +90,10 @@ export default function Project({ handleUpdate }) {
         ))}
         </div> */}
         
-          {/* <div>
+          <div>
           {project.assets.length > 0 ? (
         project.assets.map((asset) => (
-          <AssetCard key={`asset-${asset.id}`} asset={asset} setAssets={setAssets} />
+          <AssetCard key={`asset-${asset.id}`} asset={asset} />
         ))
       ) : (
         <div className="no-asset">
@@ -81,10 +105,10 @@ export default function Project({ handleUpdate }) {
         </div>
         
       )}
-          </div> */}
+          </div>
           <div className="update-button">
             {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
-            <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
+            <Button variant="outline" onClick={() => handleClick(params.id)}>Update</Button>
           </div>
           {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
       
