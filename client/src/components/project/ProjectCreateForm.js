@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Button, Error, FormField, Input, Label, Textarea } from "../../ui";
+import { Button, Error, FormField, Input, Label, Textarea } from "../ui";
 
 export default function ProjectCreateForm() {
   const [proname, setProName] = useState("");

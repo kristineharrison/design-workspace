@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import uuid from "react-uuid"
+
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "../ui";
 
@@ -18,35 +20,36 @@ export default function AssetCreateForm() {
   const [errors, setErrors] = useState([]);
   const [imageData, setImageData] = useState(null)
   const [items, setItems] = useState([])
-  const [value, setValue] = useState("Pick one")
+  const [value, setValue] = useState("")
   const [isLoading, setIsLoading] = useState(true)
 
   const history = useHistory();
 
   useEffect(() => {
-  
     async function getProjects() {
       const response = await fetch("/projects");
       const projectData = await response.json();
-      setItems(projectData.map((project) => ({ label: project.proname, value: project.proname, id: project.id }))
+      setItems(projectData.map((project) => ({ label: project.proname, pro_id: project.id }))
       );
       setIsLoading(false);
       }
     getProjects();
-    console.log(items) 
+   
   }, []);
-
+ console.log("Items after getProjects: ", items) 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData()
-    
+    // Must use append to work with ActiveStorage
     formData.append('title', title)
     formData.append('source', source)
     formData.append('description', description)
     formData.append('tags', tags)
     formData.append('image_data', imageData)
-    formData.append('project_id', value)
-    console.log(formData)
+    formData.append('projects.id', value)
+    
+    console.log("Project.id: ", value)
+
     fetch("/assets", {
       method: "POST",
       body: formData,
@@ -119,11 +122,12 @@ export default function AssetCreateForm() {
               value={value}
               onChange={(e) => setValue(e.currentTarget.value)} >
               
-              {items.map(({ label, value, id }) => (
-                <option key={value} value={id}>
+              {items.map(({ label, pro_id }) => (
+                <option key={uuid()} value={pro_id}>
                   {label}
                 </option>
               ))}
+              {console.log("Select: ", {value})}
             </select>
           </FormField>
   
