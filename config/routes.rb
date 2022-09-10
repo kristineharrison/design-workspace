@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects
   resources :assets
-  resources :users, only: [:index, :show, :create, :update]
+  resources :users
 
   # Custom login
   post "/login", to: "sessions#create"

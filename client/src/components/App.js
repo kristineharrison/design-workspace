@@ -52,7 +52,7 @@ export default function App() {
             <ProjectCreateForm />
           </Route>
           <Route path="/profile">
-            <User />
+            <User user={user}/>
           </Route>
           <Route path="/projects/:id">
             <Project project={projects} setProject={setProjects} />

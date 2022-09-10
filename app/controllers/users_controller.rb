@@ -18,6 +18,18 @@ class UsersController < ApplicationController
     render json: user, status: :created
   end
 
+
+  # PATCH /update/:id
+  def update
+    user = @current_user
+    if user
+      user.update(user_params)
+      render json: user
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
+  end
+
   private
 
   def user_params

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useHistory } from "react-router";
+import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 import uuid from "react-uuid"
 
 import styled from "styled-components";
