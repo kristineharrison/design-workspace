@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Button, ProjectBox } from "../ui"
-import AssetCard from "./asset/AssetCard"
+import AssetCard from "./AssetCard"
 
-export default function Catalog({ assets, setAssets, onAssetDelete}) {
+export default function Catalog() {
   const [projects, setProjects] = useState([])
-  // const [assets, setAssets] = useState([])
+  const [assets, setAssets] = useState([])
 
   // Get project data
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function Catalog({ assets, setAssets, onAssetDelete}) {
         <Container>
         {assets.length > 0 ? (
         assets.map((asset) => (
-          <AssetCard key={`asset-${asset.id}`} asset={asset} setAssets={setAssets} onAssetDelete={onAssetDelete}/>
+          <AssetCard key={`asset-${asset.id}`} asset={asset} setAssets={setAssets}/>
         ))
       ) : (
         <div className="no-asset">

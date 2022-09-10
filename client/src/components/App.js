@@ -3,18 +3,18 @@ import { Switch, Route } from "react-router-dom"
 import NavBar from "./nav-bar"
 import Login from "./login"
 import User from "./user"
-import Asset from "./catalog/asset/"
-import AssetCreateForm from "./catalog/asset/AssetCreateForm"
-import ProjectCreateForm from "./catalog/project/ProjectCreateForm"
+import Asset from "./asset"
+import AssetCreateForm from "./asset/AssetCreateForm"
+import Project from "./project"
+import ProjectCreateForm from "./project"
 import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 import Typography from "./typography"
-import Project from "./catalog/project/"
+
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [assets, setAssets] = useState([])
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
@@ -27,15 +27,6 @@ export default function App() {
   }, []);
 
   if (!user) return <Login onLogin={setUser} />;
-  
-  // convert Object into array so can filter
-  const newArray = Object.values(assets)
-  console.log(newArray)
-
-  function onAssetDelete(id) {
-    const updatedArray = newArray.filter((asset) => asset.id !== id);
-    setAssets(updatedArray);
-  }
 
   return (
     <>
@@ -43,10 +34,10 @@ export default function App() {
       <main>
         <Switch>
           <Route path="/assets/:id">
-            <Asset onAssetDelete={onAssetDelete} asset={assets} setAsset={setAssets}/>
+            <Asset />
           </Route>
           <Route path="/catalog">
-            <Catalog assets={assets} setAssets={setAssets} projects={projects} setProjects={setProjects}/>
+            <Catalog projects={projects} setProjects={setProjects}/>
           </Route>
           <Route path="/colors">
             <Colors />

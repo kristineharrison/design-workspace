@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, FormField, Input, Label, Textarea } from "../../ui";
+import { Button, FormField, Input, Label, Textarea } from "../ui";
 
 export default function AssetUpdateForm({ asset, setAsset, handleClick })  {
   const [description, setDescription] = useState("");

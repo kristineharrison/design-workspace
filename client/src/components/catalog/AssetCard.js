@@ -1,5 +1,5 @@
 import React from "react";
-import { AssetBox, Button } from "../../ui";
+import { AssetBox, Button } from "../ui";
 import styled from "styled-components";
 import { Link } from "react-router-dom"
 

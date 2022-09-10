@@ -1,27 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Button, Error, FormField, Input, Label, Textarea } from "../../ui";
+import { Button, Error, FormField, Input, Label, Textarea } from "../ui";
 
 export default function AssetCreateForm() {
+  // const [data, setData] = useState({
+  //   title: "",
+  //   source: "",
+  //   description: "",
+  //   tags: "",
+  // })
   const [title, setTitle] = useState("");
   const [source, setSource] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [errors, setErrors] = useState([]);
   const [imageData, setImageData] = useState(null)
+  const [items, setItems] = useState([])
+  const [value, setValue] = useState("Pick one")
+  const [isLoading, setIsLoading] = useState(true)
+
   const history = useHistory();
+
+  useEffect(() => {
+  
+    async function getProjects() {
+      const response = await fetch("/projects");
+      const projectData = await response.json();
+      setItems(projectData.map((project) => ({ label: project.proname, value: project.proname, id: project.id }))
+      );
+      setIsLoading(false);
+      }
+    getProjects();
+    console.log(items) 
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData()
+    
     formData.append('title', title)
     formData.append('source', source)
     formData.append('description', description)
     formData.append('tags', tags)
     formData.append('image_data', imageData)
- 
+    formData.append('project_id', value)
+    console.log(formData)
     fetch("/assets", {
       method: "POST",
       body: formData,
@@ -88,12 +113,26 @@ export default function AssetCreateForm() {
             />
           </FormField>
           <FormField>
+            <Label htmlFor="project">Select Project</Label>
+            <select
+              disabled={isLoading}
+              value={value}
+              onChange={(e) => setValue(e.currentTarget.value)} >
+              
+              {items.map(({ label, value, id }) => (
+                <option key={value} value={id}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </FormField>
+  
+          <FormField>
             <div>
               <Button color="primary" type="submit">
               Submit Asset
             </Button>
             </div>
-           
           </FormField>
           <FormField>
             {errors.map((err) => (
