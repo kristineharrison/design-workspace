@@ -6,14 +6,28 @@ import styled from "styled-components"
 import { Button, Input } from "../ui"
 
 export default function ColorSwatch() {
-  const [ hexValue, setHexValue ] = useState("")
+  const [ hexValue, setHexValue ] = useState("A52A2A")
   const [ { data: colorData, error, status }, setColorData ] = useState({
     colorData: null,
     error: null,
     status: "pending",
   })
 
-  
+  // Fetch initial color data and update status
+  useEffect(() => {
+    fetch(`https://www.thecolorapi.com/id?hex=${hexValue}`)
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((colorData) =>
+          setColorData({ data: colorData, error: null, status: "resolved" })
+        );
+      } else {
+        r.json().then((err) =>
+          setColorData({ data: null, error: err.error, status: "rejected" })
+        );
+      }
+    });
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -45,7 +59,7 @@ export default function ColorSwatch() {
 
   
       <form id="input-form" onSubmit={handleSubmit}>
-        <label>Have a HEX value?</label>
+        <label>Enter a Hex Number:</label>
         <Input 
           type="text" 
           name="hex" placeholder="e.g. FFAA88 - no #"
@@ -57,9 +71,10 @@ export default function ColorSwatch() {
       </form>
       
       <div>
-        <h2>Hex Value: {hexValue}</h2>
-        {/* {colorData.name.value}
-        <img src={colorData.image.named} alt={colorData.name.value} /> */}
+        
+        <h2>Hex Value: #{hexValue}</h2>
+        {colorData.name.value}
+        <img src={colorData.image.named} alt={colorData.name.value} />
 
         <ul id="scheme-defs" className="hidden">
           
