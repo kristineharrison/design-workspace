@@ -9,20 +9,21 @@ export default function ProjectCreateForm() {
   const [prostatus, setProStatus] = useState("");
   const [summary, setSummary] = useState("");
   const [errors, setErrors] = useState([]);
-  // const [imageData, setImageData] = useState(null)
   const history = useHistory();
-
+  
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append('proname', proname)
-    formData.append('prostatus', prostatus)
-    formData.append('summary', summary)
-    // formData.append('image_data', imageData)
  
     fetch("/projects", {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        proname: proname,
+        prostatus: prostatus,
+        summary: summary,
+      }),
       }).then((r) => {
       if (r.ok) {
         history.push("/catalog");
@@ -36,15 +37,8 @@ export default function ProjectCreateForm() {
     <Wrapper>
       <WrapperChild>
         <h2>Create Project</h2>
-        {/* <p>Upload an image or logo file.</p> */}
+        
         <form onSubmit={handleSubmit}>
-          {/* <Upload>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageData(e.target.files[0])}
-            />
-          </Upload> */}
           <FormField>
             <Label htmlFor="name">Name</Label>
             <Input
