@@ -1,26 +1,46 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { Button } from "../ui"
-import styled from "styled-components"
+import uuid from "react-uuid"
+
 import AssetUpdateForm from "./AssetUpdateForm"
 
+import styled from "styled-components"
+import { Button } from "../ui"
+
 export default function Asset({ handleUpdate }) {
-  const [showForm, setShowForm] = useState(false);
-  const [asset, setAsset] = useState([])
+  // Set update form state, start with hidden
+  const [showForm, setShowForm] = useState(false)
+  // Set asset state
+  const [{ data: asset, error, status }, setAsset] = useState({
+    data: null,
+    error: null,
+    status: "pending",
+  })
+
   const history = useHistory();
   const params = useParams()
 
-  // Get asset data
+  // Fetch individual asset data and update status
   useEffect(() => {
     fetch(`/assets/${params.id}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setAsset(data);
-      });
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((asset) =>
+          setAsset({ data: asset, error: null, status: "resolved" })
+        );
+      } else {
+        r.json().then((err) =>
+          setAsset({ data: null, error: err.error, status: "rejected" })
+        );
+      }
+    });
   }, [params.id]);
 
-  const { title, source, description, tags, id, projects } = asset
+  // Update status state
+  if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "rejected") return <h1>Error: {error.error}</h1>;
+
 
   // function handleDelete(id) {
   //   fetch(`/assets/${id}`, {
@@ -44,38 +64,34 @@ export default function Asset({ handleUpdate }) {
   //   history.push("/catalog");
   // }
 
+  // Toggle update form on click
   function handleClick() {
     setShowForm((showForm) => !showForm);
   }
   
   return (
     <Container>
-      
-          <img src={asset.image_data} alt={asset.title}/>
-          <p>
-            <span>{title}</span><br />
-            <cite>Source: {source}</cite>
-          </p> 
-          <p>{description}</p>
-          <p>{tags}</p>
+      {/* Display asset data */}
+      <img src={asset.image_data} alt={asset.title}/>
+      <p>
+        <span>{asset.title}</span><br />
+        <cite>Source: {asset.source}</cite>
+      </p> 
+      <p>{asset.description}</p>
+      <p>{asset.tags}</p>
        
-    
+      <div className="update-button">
+        {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
+        <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button>
+      </div>
+      {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
       
-          <div className="update-button">
-            {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
-            <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
-          </div>
-          {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
-      
-
       {/* Map over associated projects */}
-      {console.log({projects})}
       <h3>Projects</h3>
       <ProjectList>
-        {projects.length > 0 ? (
-          projects.map((project) => (
-            
-            <Button variant="outline" as={ Link } to= {`/projects/${project.id}`}>{project.proname}</Button>
+        {asset.projects.length > 0 ? (
+          asset.projects.map((project) => (
+            <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
           ))
         ) : (
         <div className="no-asset">

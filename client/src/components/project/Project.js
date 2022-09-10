@@ -2,6 +2,7 @@ import React from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import uuid from "react-uuid"
 
 import ProjectUpdateForm from "./ProjectUpdateForm"
 import AssetCard from "../catalog/AssetCard"
@@ -10,18 +11,22 @@ import styled from "styled-components"
 import { Button } from "../ui"
 
 export default function Project({ handleUpdate }) {
-  const [showForm, setShowForm] = useState(false);
+  // Set update form state, start with hidden
+  const [showForm, setShowForm] = useState(false)
+  // Set project state
   const [{ data: project, error, status }, setProject] = useState({
     data: null,
     error: null,
     status: "pending",
   })
   
-  const history = useHistory();
-  const params = useParams();
+  const history = useHistory()
+  const params = useParams()
 
+  // Fetch individual project data and update status
   useEffect(() => {
-    fetch(`/projects/${params.id}`).then((r) => {
+    fetch(`/projects/${params.id}`)
+    .then((r) => {
       if (r.ok) {
         r.json().then((project) =>
           setProject({ data: project, error: null, status: "resolved" })
@@ -34,9 +39,11 @@ export default function Project({ handleUpdate }) {
     });
   }, [params.id]);
 
+  // Update status state
   if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
+  // Delete project and return to catalog
   function handleDelete(id) {
     fetch(`/projects/${params.id}`, {
       method: "DELETE",
@@ -45,21 +52,23 @@ export default function Project({ handleUpdate }) {
     history.push("/catalog");
   }
 
+  // Toggle update form on click
   function handleClick() {
     setShowForm((showForm) => !showForm)
   }
   
-  
   return (
     <Container>
+      {/* Display project data */}
       <h2>{project.proname}</h2>
       <p>{project.prostatus}</p>
       <p>{project.summary}</p>
         
       <div>
+        {/* Display list of associated assets or option to add one if none */}
         {project.assets.length > 0 ? (
           project.assets.map((asset) => (
-            <AssetCard key={`asset-${asset.id}`} asset={asset} />
+            <AssetCard key={uuid()} asset={asset} />
           ))
         ) : (
         <div className="no-asset">
@@ -71,6 +80,7 @@ export default function Project({ handleUpdate }) {
         </div>
         )}
       </div>
+
       <div className="update-button">
         {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
         <Button variant="outline" onClick={() => handleClick(params.id)}>Update</Button>
