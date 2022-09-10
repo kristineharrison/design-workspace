@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import ColorSwatch from "./ColorSwatch"
+import ColorSelect from "./ColorSelect"
 
 export default function Colors() {
   
@@ -9,10 +10,9 @@ export default function Colors() {
   
   return (
     <Container>
-      
-        <h1>Using CSS with Colors</h1>
-        <p>Why you want to use CSS to apply color transformations, etc.</p>
-      
+      <h1>Using CSS with Colors</h1>
+      <p>Why you want to use CSS to apply color transformations, etc.</p>
+      <ColorSelect />
       <ColorSwatch />
     </Container>
     
