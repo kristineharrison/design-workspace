@@ -1,17 +1,7 @@
-
-
-img {
-  max-height: 400px;
-}
-
-div {
-  width: 100%;
-}
-
 /*** Image Styles ***/
-.rounded {
-  border-radius: 25px;
-}
+/* .rounded {
+  border-radius: 0;
+} */
 
 .circle {
   border-radius: 50%;
@@ -35,52 +25,4 @@ div {
 
 .dropshadow {
   filter: drop-shadow(8px 8px 10px gray);
-}
-
-/*** Style Examples ***/
-/* .style-container {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  width: 80%;
-} */
-
-/* .style-example {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-} */
-
-.style-menu {
-  margin-top: 50px;
-  width: 50%;
-}
-
-.style-menu ul {
-  list-style: none;
-}
-
-.style-menu li {
-  padding: 5px 0;
-  font-weight: bold;
-  color: rgb(50, 50, 50);
-}
-
-.style-menu li:active {
-  color: rgb(223, 105, 42);
-}
-
-.code-container {
-  background-color: black;
-  width: auto;
-  border-radius: 10px;
-  text-align: center;
-  padding: 20px;
-}
-
-.code {
-  color: rgb(0, 208, 255);
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 900;
 }

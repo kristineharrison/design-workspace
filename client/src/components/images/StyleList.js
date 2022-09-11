@@ -7,7 +7,7 @@ export default function StyleList({ styles }) {
   // List of style links
   const renderStyles = Object.keys(styles).map((styleID) => (
     <li key={styleID}>
-      <Link to={`/images/${styleID}`}>{styles[styleID].title}</Link>
+      <Link to={`/images/${styleID}/${styles[styleID].title.toLowerCase()}`}>{styles[styleID].title}</Link>
     </li>
   ));
 

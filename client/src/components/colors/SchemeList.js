@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link, Route, useRouteMatch } from "react-router-dom"
 import uuid from "react-uuid"
-import ColorScheme from "./ColorScheme"
+import SchemeDisplay from "./SchemeDisplay"
 
 import styled from "styled-components"
 
@@ -35,7 +35,7 @@ export default function SchemeList({ hexValue }) {
       <ul>{renderSchemes}</ul>
         
       <Route path={`${match.url}/:schemeId`}>
-        <ColorScheme schemes={schemes} hexValue={hexValue}/>
+        <SchemeDisplay schemes={schemes} hexValue={hexValue}/>
       </Route>
     </Container>
   );

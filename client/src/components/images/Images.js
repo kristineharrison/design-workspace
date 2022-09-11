@@ -10,6 +10,10 @@ export default function Images() {
     1: { id: 1, title: "Rounded Corners" },
     2: { id: 2, title: "Circle" },
     3: { id: 3, title: "Grayscale" },
+    4: { id: 4, title: "Opacity" },
+    5: { id: 5, title: "Blur" },
+    6: { id: 6, title: "Hue Rotation" },
+    7: { id: 7, title: "Drop Shadow" },
   });
   
   const match = useRouteMatch()

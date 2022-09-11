@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { useParams } from "react-router-dom"
 
-export default function ColorScheme({ hexValue, schemes }) {
+export default function SchemeDisplay({ hexValue, schemes }) {
   const [ monoData, setMonoData ] = useState(null)
   const [ monoLightData, setMonoLightData ] = useState(null)
   const [ monoDarkData, setMonoDarkData ] = useState(null)
