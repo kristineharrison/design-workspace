@@ -1,6 +1,8 @@
 import React from "react"
 import { useEffect, useState } from "react"
-
+import { Link } from "react-router-dom"
+import SchemeList from "./SchemeList"
+import ColorScheme from "./ColorScheme"
 
 import styled from "styled-components"
 import { Button, Input } from "../ui"
@@ -52,6 +54,7 @@ export default function ColorSwatch() {
   // if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
+ 
   return (
     <Container>
       <h2>Working with Hexadecimals</h2>
@@ -73,15 +76,11 @@ export default function ColorSwatch() {
       <div>
         
         <h2>Hex Value: #{hexValue}</h2>
-        {colorData.name.value}
-        <img src={colorData.image.named} alt={colorData.name.value} />
+        {/* {colorData.name.value}
+        <img src={colorData.image.named} alt={colorData.name.value} /> */}
 
-        <ul id="scheme-defs" className="hidden">
-          
-          <li><strong>Complementary color:</strong> on opposite side of the color wheel.</li>
-          <li><strong>Analogous Color:</strong> next to each other on the color wheel.</li>
-          <li><strong>Monochrome Color:</strong> variations of one color.</li>
-        </ul>
+       <SchemeList />
+       
       </div>
  
     </Container>
