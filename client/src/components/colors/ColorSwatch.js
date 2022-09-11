@@ -2,7 +2,6 @@ import React from "react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import SchemeList from "./SchemeList"
-import ColorScheme from "./ColorScheme"
 
 import styled from "styled-components"
 import { Button, Input } from "../ui"
@@ -29,7 +28,7 @@ export default function ColorSwatch() {
         );
       }
     });
-  }, []);
+  }, [hexValue]);
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -51,7 +50,7 @@ export default function ColorSwatch() {
   console.log(colorData)
 
   // Update status state
-  // if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
  
@@ -98,10 +97,3 @@ const Container = styled.section`
   flex-direction: column;
   align-items: flex-start;
 `;
-
-
-
-// .then(res => res.json())
-// .then(console.log)
-// .then((data) => setColorData(data))
-// .then(console.log("Color Data: ", colorData));

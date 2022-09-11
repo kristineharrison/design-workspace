@@ -4,7 +4,7 @@ import { Link, Route, useRouteMatch } from "react-router-dom"
 import ColorScheme from "./ColorScheme"
 
 import styled from "styled-components"
-import { Button, Input } from "../ui"
+import { Button } from "../ui"
 
 export default function SchemeList({ hexValue }) {
   const [ schemes, setSchemes ] = useState({
@@ -50,10 +50,3 @@ const Container = styled.section`
   flex-direction: column;
   align-items: flex-start;
 `;
-
-
-
-// .then(res => res.json())
-// .then(console.log)
-// .then((data) => setColorData(data))
-// .then(console.log("Color Data: ", colorData));
