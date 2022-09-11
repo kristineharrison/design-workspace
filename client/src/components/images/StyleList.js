@@ -1,31 +1,32 @@
-export default function StyleList({
-  newTitle,
-  handleClick,
-  setImagePlaceholder,
-  setDescriptionPlaceholder,
-  setTitlePlaceholder,
-  setCodePlaceholder,
-}) {
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+
+export default function StyleList({ styles }) {
+  
+  // List of style links
+  const renderStyles = Object.keys(styles).map((styleID) => (
+    <li key={styleID}>
+      <Link to={`/images/${styleID}`}>{styles[styleID].title}</Link>
+    </li>
+  ));
+
+
   return (
-    <div className="style-menu">
-      <ul>
-        {newTitle.map((titleObj) => {
-          return (
-            <li
-              onClick={(e) => {
-                setCodePlaceholder(false);
-                setTitlePlaceholder(false);
-                setImagePlaceholder(false);
-                setDescriptionPlaceholder(false);
-                handleClick(titleObj);
-              }}
-              key={titleObj.id}
-            >
-              {titleObj.title}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <Container>
+      <h2>Image Styles</h2>
+      <p>Put in own words</p>
+      
+      <ul>{renderStyles}</ul>
+    
+    </Container>
   );
 }
+
+const Container = styled.section`
+  width:  100%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;

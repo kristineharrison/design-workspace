@@ -5,9 +5,6 @@ import ColorSelect from "./ColorSelect"
 
 export default function Colors() {
   
-  
-  
-  
   return (
     <Container>
       <h1>Using CSS with Colors</h1>
@@ -15,8 +12,6 @@ export default function Colors() {
       <ColorSelect />
       <ColorSwatch />
     </Container>
-    
-
   );
 }
 

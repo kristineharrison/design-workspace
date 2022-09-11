@@ -47,8 +47,6 @@ export default function ColorSwatch() {
     setHexValue(hexValue)
   }
 
-  console.log(colorData)
-
   // Update status state
   if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
@@ -72,8 +70,7 @@ export default function ColorSwatch() {
         <Button id="hex-input-btn">Submit</Button>
       </form>
       
-      <div>
-        
+      <div>  
         <h3>{colorData.name.value}</h3>
         <img src={colorData.image.bare} alt={colorData.name.value} />
         <ul>
@@ -85,7 +82,6 @@ export default function ColorSwatch() {
        <SchemeList hexValue={hexValue}/>
 
       </div>
- 
     </Container>
   
   );

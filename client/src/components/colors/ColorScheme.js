@@ -15,8 +15,6 @@ export default function ColorScheme({ hexValue, schemes }) {
   const [ status, setStatus ] = useState("pending")
 
   const params = useParams()
-  console.log("Params: ", params)
-  console.log("Schemes: ", schemes)
 
   const fetchData = () => {
     const monoUrl = `https://www.thecolorapi.com/scheme?hex=${hexValue}&mode=monochrome&count=4`
@@ -68,7 +66,6 @@ export default function ColorScheme({ hexValue, schemes }) {
   }, [hexValue])
   
   const schemeName = schemes[params.schemeId].title
-  console.log("Id: ", schemeName)
 
   let schemeImg = ""
   let schemeText = ""

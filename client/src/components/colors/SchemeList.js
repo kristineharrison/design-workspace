@@ -1,10 +1,9 @@
-import React from "react"
-import { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Link, Route, useRouteMatch } from "react-router-dom"
+import uuid from "react-uuid"
 import ColorScheme from "./ColorScheme"
 
 import styled from "styled-components"
-import { Button } from "../ui"
 
 export default function SchemeList({ hexValue }) {
   const [ schemes, setSchemes ] = useState({
@@ -18,12 +17,11 @@ export default function SchemeList({ hexValue }) {
     8: { id: 8, title: "Quad" },
   })
 
-  const match = useRouteMatch();
-  console.log(match);
+  const match = useRouteMatch()
 
-  // List of color schemes
+  // List of color scheme links
   const renderSchemes = Object.keys(schemes).map((schemeId) => (
-    <li key={schemeId}>
+    <li key={uuid}>
       <Link to={`/colors/${schemeId}/${schemes[schemeId].title.toLowerCase()}`}>{schemes[schemeId].title}</Link>
     </li>
   ))
@@ -33,14 +31,13 @@ export default function SchemeList({ hexValue }) {
     <Container>
       <h2>Color Schemes</h2>
       <p>Color schemes are multi-color combinations chosen according to color-wheel relationsships. Put in own words</p>
-        <ul>{renderSchemes}</ul>
+      
+      <ul>{renderSchemes}</ul>
         
-        <Route path={`${match.url}/:schemeId`}>
-          <ColorScheme schemes={schemes} hexValue={hexValue}/>
-        </Route>
- 
+      <Route path={`${match.url}/:schemeId`}>
+        <ColorScheme schemes={schemes} hexValue={hexValue}/>
+      </Route>
     </Container>
-  
   );
 }
 const Container = styled.section`
