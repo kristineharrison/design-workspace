@@ -75,10 +75,14 @@ export default function ColorSwatch() {
       
       <div>
         
-        <h2>Hex Value: #{hexValue}</h2>
-        {/* {colorData.name.value}
-        <img src={colorData.image.named} alt={colorData.name.value} /> */}
-
+        <h3>{colorData.name.value}</h3>
+        <img src={colorData.image.bare} alt={colorData.name.value} />
+        <ul>
+          <li>Hex: #{hexValue}</li>
+          <li>RGB: {colorData.rgb.value}</li>
+          <li>CMYK: {colorData.cmyk.value}</li>
+          <li>HSL: {colorData.hsl.value}</li>
+        </ul>
        <SchemeList hexValue={hexValue}/>
 
       </div>

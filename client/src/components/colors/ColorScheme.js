@@ -62,8 +62,8 @@ export default function ColorScheme({ hexValue, schemes }) {
             </ul>
           </div> 
         break
-      case "Analogous":
-        console.log("Analogous")
+      case "Analogic":
+        console.log("Analogic")
         schemeImg = analogData.image.bare
         schemeText = 
           <div>
@@ -76,7 +76,7 @@ export default function ColorScheme({ hexValue, schemes }) {
             </ul>
           </div> 
         break
-      case "Complementary":
+      case "Complement":
         console.log(compData)
         schemeImg = compData.image.bare
         schemeText = 
@@ -102,7 +102,6 @@ export default function ColorScheme({ hexValue, schemes }) {
   return (
     <div>
       <h3>{schemes[params.schemeId].title}</h3>
-      <p>Color schemes are multi-color combinations chosen according to color-wheel relationsships. Put in own words</p>
       <img src={schemeImg} alt="Color scheme example" />
       {schemeText}
     </div>
