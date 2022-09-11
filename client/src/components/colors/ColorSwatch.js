@@ -33,7 +33,6 @@ export default function ColorSwatch() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    
     fetch(`https://www.thecolorapi.com/id?hex=${hexValue}`)
     .then((r) => {
       if (r.ok) {
@@ -46,6 +45,7 @@ export default function ColorSwatch() {
         )
       }
     })
+    setHexValue(hexValue)
   }
 
   console.log(colorData)
@@ -79,8 +79,8 @@ export default function ColorSwatch() {
         {/* {colorData.name.value}
         <img src={colorData.image.named} alt={colorData.name.value} /> */}
 
-       <SchemeList />
-       
+       <SchemeList hexValue={hexValue}/>
+
       </div>
  
     </Container>

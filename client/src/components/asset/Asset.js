@@ -18,7 +18,7 @@ export default function Asset({ handleUpdate }) {
     status: "pending",
   })
 
-  const history = useHistory();
+  // const history = useHistory();
   const params = useParams()
 
   // Fetch individual asset data and update status

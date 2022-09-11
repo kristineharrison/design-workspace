@@ -6,7 +6,7 @@ import ColorScheme from "./ColorScheme"
 import styled from "styled-components"
 import { Button, Input } from "../ui"
 
-export default function SchemeList() {
+export default function SchemeList({ hexValue }) {
   const [ schemes, setSchemes ] = useState({
     1: { id: 1, title: "Complementary" },
     2: { id: 2, title: "Analogous" },
@@ -18,7 +18,7 @@ export default function SchemeList() {
 
   const renderSchemes = Object.keys(schemes).map((schemeId) => (
     <li key={schemeId}>
-      <Link to={`/colors/${schemeId}`}>{schemes[schemeId].title}</Link>
+      <Link to={`/colors/${schemeId}/${schemes[schemeId].title.toLowerCase()}`}>{schemes[schemeId].title}</Link>
     </li>
   ))
 
@@ -28,7 +28,7 @@ export default function SchemeList() {
         <ul>{renderSchemes}</ul>
         
         <Route path={`${match.url}/:schemeId`}>
-          <ColorScheme schemes={schemes} />
+          <ColorScheme schemes={schemes} hexValue={hexValue}/>
         </Route>
  
     </Container>
