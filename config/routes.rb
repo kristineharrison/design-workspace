@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :projects
   resources :assets
   resources :users
+  resources :project_assets, only: [:update, :create]
 
+ 
   # Custom login
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

@@ -6,36 +6,16 @@ import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "../ui";
 
 export default function AssetCreateForm() {
-  // const [data, setData] = useState({
-  //   title: "",
-  //   source: "",
-  //   description: "",
-  //   tags: "",
-  // })
   const [title, setTitle] = useState("");
   const [source, setSource] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [errors, setErrors] = useState([]);
   const [imageData, setImageData] = useState(null)
-  const [items, setItems] = useState([])
-  const [value, setValue] = useState("")
-  const [isLoading, setIsLoading] = useState(true)
 
   const history = useHistory();
 
-  useEffect(() => {
-    async function getProjects() {
-      const response = await fetch("/projects");
-      const projectData = await response.json();
-      setItems(projectData.map((project) => ({ label: project.proname, pro_id: project.id }))
-      );
-      setIsLoading(false);
-      }
-    getProjects();
-   
-  }, []);
- console.log("Items after getProjects: ", items) 
+ 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData()
@@ -45,9 +25,6 @@ export default function AssetCreateForm() {
     formData.append('description', description)
     formData.append('tags', tags)
     formData.append('image_data', imageData)
-    formData.append('projects.id', value)
-    
-    console.log("Project.id: ", value)
 
     fetch("/assets", {
       method: "POST",
@@ -62,101 +39,80 @@ export default function AssetCreateForm() {
   }
 
   return (
-    <Wrapper>
-      <WrapperChild>
-        <h2>Create Asset</h2>
-        <p>Upload an image file.</p>
-        <form onSubmit={handleSubmit}>
-          <Upload>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageData(e.target.files[0])}
-            />
-          </Upload>
-          <FormField>
-            <Label htmlFor="title">Title</Label>
-            <Input
-              type="text"
-              id="title"
-              placeholder="Required"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="source">Source</Label>
-            <Input
-              type="text"
-              id="source"
-              placeholder="Required"
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              rows="3"
-              placeholder="Required"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="tags">Tags</Label>
-            <Input
-              type="text"
-              id="tags"
-              placeholder="Required"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="project">Select Project</Label>
-            <select
-              disabled={isLoading}
-              value={value}
-              onChange={(e) => setValue(e.currentTarget.value)} >
-              
-              {items.map(({ label, pro_id }) => (
-                <option key={uuid()} value={pro_id}>
-                  {label}
-                </option>
-              ))}
-              {console.log("Select: ", {value})}
-            </select>
-          </FormField>
-  
-          <FormField>
-            <div>
-              <Button color="primary" type="submit">
-              Submit Asset
-            </Button>
-            </div>
-          </FormField>
-          <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
-          </FormField>
-        </form>
-      </WrapperChild>
-    </Wrapper>
+    <Container>
+      <h2>Create Asset</h2>
+      <p>Upload an image file.</p>
+      <form onSubmit={handleSubmit}>
+        <Upload>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageData(e.target.files[0])}
+          />
+        </Upload>
+        <FormField>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            type="text"
+            id="title"
+            placeholder="Required"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </FormField>
+        <FormField>
+          <Label htmlFor="source">Source</Label>
+          <Input
+            type="text"
+            id="source"
+            placeholder="Required"
+            value={source}
+            onChange={(e) => setSource(e.target.value)}
+          />
+        </FormField>
+        <FormField>
+          <Label htmlFor="description">Description</Label>
+          <Textarea
+            id="description"
+            rows="3"
+            placeholder="Required"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </FormField>
+        <FormField>
+          <Label htmlFor="tags">Tags</Label>
+          <Input
+            type="text"
+            id="tags"
+            placeholder="Required"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+          />
+        </FormField>
+        
+        <FormField>
+          <div>
+            <Button color="primary" type="submit">
+            Submit Asset
+          </Button>
+          </div>
+        </FormField>
+        {/* <FormField>
+          {errors.map((err) => (
+            <Error key={err}>{err}</Error>
+          ))}
+        </FormField> */}
+      </form>   
+    </Container>
   );
 }
 
-const Wrapper = styled.section`
+const Container = styled.section`
   max-width: 600px;
   margin: 40px auto;
   padding: 16px;
   display: flex;
-`;
-
-const WrapperChild = styled.div`
-  flex: 1;
 `;
 
 const Upload = styled.div`

@@ -66,7 +66,6 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   }, [hexValue])
   
   const schemeName = schemes[params.schemeId].title
-
   let schemeImg = ""
   let schemeText = ""
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import uuid from "react-uuid"
 
 import AssetUpdateForm from "./AssetUpdateForm"
+import AddProject from "./AddProject"
 
 import styled from "styled-components"
 import { Button } from "../ui"
@@ -19,11 +20,11 @@ export default function Asset({ handleUpdate }) {
   })
 
   // const history = useHistory();
-  const params = useParams()
+  const { id } = useParams()
 
   // Fetch individual asset data and update status
   useEffect(() => {
-    fetch(`/assets/${params.id}`)
+    fetch(`/assets/${id}`)
     .then((r) => {
       if (r.ok) {
         r.json().then((asset) =>
@@ -35,7 +36,7 @@ export default function Asset({ handleUpdate }) {
         );
       }
     });
-  }, [params.id]);
+  }, [id]);
 
   // Update status state
   if (status === "pending") return <h1>Loading...</h1>;
@@ -68,6 +69,17 @@ export default function Asset({ handleUpdate }) {
   function handleClick() {
     setShowForm((showForm) => !showForm);
   }
+
+  function handleAddProject(newProject) {
+    setAsset({
+      error,
+      status,
+      data: {
+        ...asset,
+        projects: [...asset.projects, newProject],
+      }
+    })
+  }
   
   return (
     <Container>
@@ -99,6 +111,7 @@ export default function Asset({ handleUpdate }) {
         </div>
         )}
       </ProjectList>
+      <AddProject onAddProject={handleAddProject} assetId={asset.id} />
     </Container>
   );
 }
