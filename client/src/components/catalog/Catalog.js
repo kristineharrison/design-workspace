@@ -5,9 +5,8 @@ import styled from "styled-components"
 import { Button, ProjectBox } from "../ui"
 import AssetCard from "./AssetCard"
 
-export default function Catalog() {
-  const [projects, setProjects] = useState([])
-  const [assets, setAssets] = useState([])
+export default function Catalog({ assets, setAssets, projects, setProjects }) {
+  // const [projects, setProjects] = useState([])
 
   // Get project data
   useEffect(() => {

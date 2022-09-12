@@ -9,7 +9,7 @@ import AddProject from "./AddProject"
 import styled from "styled-components"
 import { Button } from "../ui"
 
-export default function Asset({ handleUpdate }) {
+export default function Asset({ handleDeleteAsset }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set asset state
@@ -43,28 +43,6 @@ export default function Asset({ handleUpdate }) {
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
 
-  // function handleDelete(id) {
-  //   fetch(`/assets/${id}`, {
-  //     method: "DELETE",
-  //   }).then((r) => {
-  //     if (r.ok) {
-  //       setAsset((assets) =>
-  //         assets.filter((asset) => asset.id !== id)
-  //       );
-  //     }
-  //     history.push("/catalog");
-  //   });
-  // }
-
-  // function handleDelete(id) {
-  //   fetch(`/assets/${params.id}`, {
-  //     method: "DELETE",
-  //   });
-  //   onAssetDelete(id);
-  //   // setAsset([]);
-  //   history.push("/catalog");
-  // }
-
   // Toggle update form on click
   function handleClick() {
     setShowForm((showForm) => !showForm);
@@ -93,14 +71,14 @@ export default function Asset({ handleUpdate }) {
       <p>{asset.tags}</p>
        
       <div className="update-button">
-        {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
+        <Button variant="outline" onClick={() => handleDeleteAsset(id)}>Delete</Button>
         <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button>
       </div>
-      {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleUpdate={handleUpdate} handleClick={handleClick}/> : null}  
+      {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null}  
       
       {/* Map over associated projects */}
       <h3>Projects</h3>
-      <ProjectList>
+      <ProjectCollection>
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
             <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
@@ -110,7 +88,7 @@ export default function Asset({ handleUpdate }) {
           <h2>Not in any projects</h2>
         </div>
         )}
-      </ProjectList>
+      </ProjectCollection>
       <AddProject onAddProject={handleAddProject} assetId={asset.id} />
     </Container>
   );
@@ -125,7 +103,7 @@ gap: 40px;
 overflow-x: auto;
 `;
 
-const ProjectList = styled.div`
+const ProjectCollection = styled.div`
 max-width: 500px;
 margin: 20px auto;
 display: flex;

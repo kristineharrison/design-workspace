@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, useHistory } from "react-router-dom"
 import NavBar from "./nav-bar"
 import Login from "./login"
 import User from "./user"
@@ -10,12 +10,13 @@ import ProjectCreateForm from "./project/ProjectCreateForm"
 import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
-import Typography from "./typography"
-
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([])
+  const [assets, setAssets] = useState([])
+
+  const history = useHistory()
 
   useEffect(() => {
     // auto-login
@@ -28,16 +29,42 @@ export default function App() {
 
   if (!user) return <Login onLogin={setUser} />;
 
+  function handleDeleteAsset(id) {
+    fetch(`/assets/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setAssets((assets) =>
+          assets.filter((asset) => asset.id !== id)
+        );
+      }
+    });
+    history.push("/catalog")
+  }
+
+  function handleDeleteProject(id) {
+    fetch(`/projects/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setProjects((projects) =>
+          projects.filter((project) => project.id !== id)
+        );
+      }
+    });
+    history.push("/catalog")
+  }
+
   return (
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
           <Route path="/assets/:id">
-            <Asset />
+            <Asset handleDeleteAsset={handleDeleteAsset}/>
           </Route>
           <Route path="/catalog">
-            <Catalog projects={projects} setProjects={setProjects}/>
+            <Catalog projects={projects} setProjects={setProjects} assets={assets} setAssets={setAssets}/>
           </Route>
           <Route path="/colors">
             <Colors />
@@ -55,10 +82,7 @@ export default function App() {
             <User user={user}/>
           </Route>
           <Route path="/projects/:id">
-            <Project project={projects} setProject={setProjects} />
-          </Route>
-          <Route path="/typography">
-            <Typography />
+            <Project handleDeleteProject={handleDeleteProject} />
           </Route>
           <Route exact path="/">
             <User />

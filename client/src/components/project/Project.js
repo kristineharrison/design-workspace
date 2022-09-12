@@ -10,7 +10,7 @@ import AssetCard from "../catalog/AssetCard"
 import styled from "styled-components"
 import { Button } from "../ui"
 
-export default function Project({ handleUpdate }) {
+export default function Project({ handleDeleteProject }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set project state
@@ -21,11 +21,11 @@ export default function Project({ handleUpdate }) {
   })
   
   const history = useHistory()
-  const params = useParams()
+  const { id } = useParams()
 
   // Fetch individual project data and update status
   useEffect(() => {
-    fetch(`/projects/${params.id}`)
+    fetch(`/projects/${id}`)
     .then((r) => {
       if (r.ok) {
         r.json().then((project) =>
@@ -37,7 +37,7 @@ export default function Project({ handleUpdate }) {
         );
       }
     });
-  }, [params.id]);
+  }, [id]);
 
   // Update status state
   if (status === "pending") return <h1>Loading...</h1>;
@@ -45,7 +45,7 @@ export default function Project({ handleUpdate }) {
 
   // Delete project and return to catalog
   function handleDelete(id) {
-    fetch(`/projects/${params.id}`, {
+    fetch(`/projects/${id}`, {
       method: "DELETE",
     });
     // onProjectDelete(id);
@@ -82,10 +82,10 @@ export default function Project({ handleUpdate }) {
       </div>
 
       <div className="update-button">
-        {/* <Button variant="outline" onClick={() => handleDelete(id)}>Delete</Button> */}
-        <Button variant="outline" onClick={() => handleClick(params.id)}>Update</Button>
+        <Button variant="outline" onClick={() => handleDeleteProject(id)}>Delete</Button>
+        <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
       </div>
-      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleUpdate={handleUpdate} handleClick={handleClick}/> : null} 
+      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
     </Container>
   );
 }
