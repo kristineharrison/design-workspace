@@ -11,7 +11,7 @@ export default function ProjectList({ user }) {
     <Container>
       {/* Map over associated projects */}
       <h3>Projects</h3>
-      {/* {console.log("User projects: ", {user})}
+      {console.log("User projects: ", {user})}
         <div>
           {user.projects.length > 0 ? (
             user.projects.map((project) => (
@@ -22,7 +22,7 @@ export default function ProjectList({ user }) {
             <h2>No projects</h2>
           </div>
      )}
-     </div> */}
+     </div>
 
   </Container>
     )

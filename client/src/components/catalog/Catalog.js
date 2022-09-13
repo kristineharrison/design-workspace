@@ -7,7 +7,7 @@ import AssetCard from "./AssetCard"
 import ProjectCard from "./ProjectCard"
 
 export default function Catalog({ assets, setAssets, projects, setProjects }) {
-  
+
   // Get project data
   useEffect(() => {
     fetch("/projects")

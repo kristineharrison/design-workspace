@@ -10,7 +10,7 @@ import ProjectCreateForm from "./project/ProjectCreateForm"
 import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
-
+import Unsplash from "./images/Unsplash"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -84,6 +84,9 @@ export default function App() {
           </Route>
           <Route path="/projects/:id">
             <Project handleDeleteProject={handleDeleteProject} />
+          </Route>
+          <Route path="/unsplash">
+            <Unsplash />
           </Route>
           <Route exact path="/">
             <User />

@@ -71,7 +71,7 @@ export default function Asset({ handleDeleteAsset  }) {
       <p>{asset.tags}</p>
        
       <div className="update-button">
-        <Button variant="outline" onClick={() => handleDeleteAsset(id)}>Delete</Button>
+        <Button variant="outline" onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
         {/* <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button> */}
       </div>
       {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null}  
@@ -82,6 +82,7 @@ export default function Asset({ handleDeleteAsset  }) {
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
             <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
+
           ))
         ) : (
         <div className="no-asset">

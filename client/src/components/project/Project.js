@@ -73,8 +73,8 @@ export default function Project({ handleDeleteProject }) {
       </div>
 
       <div className="update-button">
-        <Button variant="outline" onClick={() => handleDeleteProject(id)}>Delete</Button>
-        <Button variant="outline" onClick={() => handleClick(id)}>Update</Button>
+        <Button variant="outline" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
+        <Button variant="outline" onClick={() => handleClick(id)}>Update Project</Button>
       </div>
       {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
     </Container>
