@@ -24,12 +24,12 @@ export default function App() {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => setUser(user))
       }
-    });
-  }, []);
+    })
+  }, [])
 
-  if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <Login onLogin={setUser} />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
@@ -38,11 +38,11 @@ export default function App() {
       if (r.ok) {
         setAssets((assets) =>
           assets.filter((asset) => asset.id !== id)
-        );
+        )
       } else {
         r.json().then((err) =>
           setAssets({ data: null, error: err.error, status: "rejected" })
-        );
+        )
       }
       setErrors([])
       history.push("/catalog")
@@ -56,15 +56,15 @@ export default function App() {
       if (r.ok) {
         setProjects((projects) =>
           projects.filter((project) => project.id !== id)
-        );
+        )
       } else {
         r.json().then((err) =>
           setAssets({ data: null, error: err.error, status: "rejected" })
-        );
+        )
       }
       setErrors([])
       history.push("/catalog")
-    });
+    })
   }
   
  
@@ -106,5 +106,5 @@ export default function App() {
         </Switch>
       </main>
     </>
-  );
+  )
 }

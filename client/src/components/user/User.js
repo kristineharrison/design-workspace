@@ -1,20 +1,30 @@
 import React from "react"
-import styled from "styled-components"
 import Profile from "./Profile"
 import ProjectList from "./ProjectList"
+import styled from "styled-components"
+
 
 export default function User({ user, handleClick }) {
 
   return (
     <Container>
-      <Profile handleClick={handleClick} />
+      <Img src="https://source.unsplash.com/random/?beach" alt="Beach Image" />
+      <Profile />
       <ProjectList user={user} />
     </Container>
   )
-
 }
 
 const Container = styled.section`
-  max-width: 800px;
-  margin: 40px auto;`
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 60px auto;
+`
+
+const Img = styled.img`
+  height: 500px;
+  width: 800px;
+  object-fit: cover;
+`

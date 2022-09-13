@@ -1,83 +1,46 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import ProfileUpdateForm from "./ProfileUpdateForm";
-import { Button } from "../ui";
+import React from "react"
+import { useState, useEffect } from "react"
+import styled from "styled-components"
 
 export default function Profile()  {
-  const [profile, setProfile] = useState("");
-  const [showForm, setShowForm] = useState(false);
+  const [profile, setProfile] = useState("")
   
   useEffect(() => {
     fetch("/users")
       .then((r) => r.json())
-      .then(setProfile);
-  }, []);
-
-  function handleClick() {
-    setShowForm((showForm) => !showForm);
-  }
-
+      .then(setProfile)
+  }, [])
 
   return (
-    <Wrapper>
-        <>
-          {/* <img src={profile.avatar} alt="User Avatar"/> */}
-          <div>
-            
-            <h2>Hello, {profile.first_name}!</h2>
-            <h3>What project would you like to work on today?</h3>
-            
-            <br />
-              {/* <div className="update-button">
-                <Button variant="outline" onClick={handleClick}>Update</Button>
-              </div> */}
-              {showForm ? <ProfileUpdateForm profile={profile} setProfile={setProfile} handleClick={handleClick} /> : null}
-          </div>
-        </>
-    </Wrapper>
-  );
+    <Container>
+      <h1>Hello, {profile.first_name}!</h1>
+      <h2>What would you like to work on today?</h2>
+      <Center>
+        <ul>
+          <li><a href="/new-asset">Add a new asset</a></li>
+          <li><a href="/new-project">Start a new project</a></li>
+          <li><a href="/unsplash">Search for a photo</a></li>
+          <li><a href="/unsplash">Pick a new color scheme</a></li>
+          <li><a href="/unsplash">Learn about CSS image styles</a></li>
+        </ul>
+      </Center>
+    </Container>
+  )
 }
 
-const Wrapper = styled.section`  
-  max-width: 800px;
-  margin: 40px auto;
+const Container = styled.section`  
+  max-width: 80%;
   padding: 16px;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  // align-items: flex-start;
+  justify-content: center;
+`
+const Center = styled.div`
+  display: flex;
   justify-content: center;
 
-  button,
-  textarea {
-    width: 70%;
+  li {
+    font-size: 1.25rem;
   }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 400px;
-    img {
-      max-width: 200px;
-    }
-  }
-
-  img {
-    max-height: 300px;
-    padding: 20px 30px;
-  }
-  
-  div.update-button {
-    display:flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    gap: 10px;
-  }
-
-  div.no-profile {
-    display:flex;
-    align-items: center;
-    width: 50%;
-  }
-`;
+`
