@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import uuid from "react-uuid"
-
 import ProjectUpdateForm from "./ProjectUpdateForm"
 import AssetCard from "../catalog/AssetCard"
 

@@ -32,7 +32,7 @@ export default function AssetCreateForm() {
       }).then((r) => {
       if (r.ok) {
         r.json().then((asset) => {
-          history.push(`/assets/${asset.id}`)
+          history.push("/catalog")
         });
       } else {
         r.json().then((err) => setErrors(err.errors));

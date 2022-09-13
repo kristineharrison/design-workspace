@@ -1,6 +1,6 @@
 class AssetSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :title, :source, :description, :tags, :image_data, :projects
+  attributes :id, :title, :source, :description, :tags, :image_data, :image_url, :projects
   
   has_many :projects
 

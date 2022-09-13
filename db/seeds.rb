@@ -30,7 +30,8 @@ asset1 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user2.id
+  user_id: user2.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 asset2 = Asset.create(
@@ -38,7 +39,8 @@ asset2 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user2.id
+  user_id: user2.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 asset3 = Asset.create(
@@ -46,7 +48,8 @@ asset3 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user2.id
+  user_id: user2.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 asset4 = Asset.create(
@@ -54,7 +57,8 @@ asset4 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user2.id
+  user_id: user2.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 asset5 = Asset.create(
@@ -62,7 +66,8 @@ asset5 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user1.id
+  user_id: user1.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 asset6 = Asset.create(
@@ -70,7 +75,8 @@ asset6 = Asset.create(
   description: Faker::Hipster.paragraph,
   source: Faker::GreekPhilosophers.name,
   tags: "one two three",
-  user_id: user1.id
+  user_id: user1.id,
+  image_url: Faker::LoremFlickr.image
 )
 
 # CREATE Projects

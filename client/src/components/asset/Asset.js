@@ -58,11 +58,12 @@ export default function Asset({ handleDeleteAsset  }) {
       }
     })
   }
-  
+  console.log(asset)
   return (
     <Container>
       {/* Display asset data */}
-      <img src={asset.image_data} alt={asset.title}/>
+      {/* <img src={asset.image_data} alt={asset.title}/> */}
+      {asset.image_url ? <img src={asset.image_url} alt={asset.title}/> : <img src={asset.image_data} alt={asset.title}/>}
       <p>
         <span>{asset.title}</span><br />
         <cite>Source: {asset.source}</cite>
@@ -82,7 +83,6 @@ export default function Asset({ handleDeleteAsset  }) {
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
             <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
-
           ))
         ) : (
         <div className="no-asset">

@@ -8,7 +8,8 @@ export default function AssetCard({ asset }) {
   return (
     <Container>
       <AssetBox>
-          <img src={asset.image_data} alt={asset.title}/>
+          {/* <img src={asset.image_data} alt={asset.title}/> */}
+          {asset.image_url ? <img src={asset.image_url} alt={asset.title}/> : <img src={asset.image_data} alt={asset.title}/>}
           <p>
             <span>{asset.title}</span><br />
           </p> 
