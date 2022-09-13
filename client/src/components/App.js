@@ -16,6 +16,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([])
   const [assets, setAssets] = useState([])
+  const [error, setErrors] = useState(null)
 
   const history = useHistory()
 
@@ -38,9 +39,14 @@ export default function App() {
         setAssets((assets) =>
           assets.filter((asset) => asset.id !== id)
         );
+      } else {
+        r.json().then((err) =>
+          setAssets({ data: null, error: err.error, status: "rejected" })
+        );
       }
+      setErrors([])
+      history.push("/catalog")
     });
-    history.push("/catalog")
   }
 
   function handleDeleteProject(id) {
@@ -51,11 +57,17 @@ export default function App() {
         setProjects((projects) =>
           projects.filter((project) => project.id !== id)
         );
+      } else {
+        r.json().then((err) =>
+          setAssets({ data: null, error: err.error, status: "rejected" })
+        );
       }
+      setErrors([])
+      history.push("/catalog")
     });
-    history.push("/catalog")
   }
-
+  
+ 
   return (
     <>
       <NavBar user={user} setUser={setUser} />
