@@ -11,6 +11,7 @@ import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([])

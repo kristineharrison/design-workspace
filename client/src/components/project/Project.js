@@ -43,15 +43,6 @@ export default function Project({ handleDeleteProject }) {
   if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
-  // Delete project and return to catalog
-  function handleDelete(id) {
-    fetch(`/projects/${id}`, {
-      method: "DELETE",
-    });
-    // onProjectDelete(id);
-    history.push("/catalog");
-  }
-
   // Toggle update form on click
   function handleClick() {
     setShowForm((showForm) => !showForm)

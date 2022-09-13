@@ -28,7 +28,7 @@ export default function ColorSwatch() {
         );
       }
     });
-  }, [hexValue]);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -74,7 +74,7 @@ export default function ColorSwatch() {
         <h3>{colorData.name.value}</h3>
         <img src={colorData.image.bare} alt={colorData.name.value} />
         <ul>
-          <li>Hex: #{hexValue}</li>
+          <li>Hex: #{colorData.hex.value}</li>
           <li>RGB: {colorData.rgb.value}</li>
           <li>CMYK: {colorData.cmyk.value}</li>
           <li>HSL: {colorData.hsl.value}</li>

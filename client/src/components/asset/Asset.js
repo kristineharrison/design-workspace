@@ -9,7 +9,7 @@ import AddProject from "./AddProject"
 import styled from "styled-components"
 import { Button } from "../ui"
 
-export default function Asset({ handleDeleteAsset }) {
+export default function Asset({ handleDeleteAsset  }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set asset state
@@ -72,7 +72,7 @@ export default function Asset({ handleDeleteAsset }) {
        
       <div className="update-button">
         <Button variant="outline" onClick={() => handleDeleteAsset(id)}>Delete</Button>
-        <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button>
+        {/* <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button> */}
       </div>
       {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null}  
       
@@ -89,7 +89,7 @@ export default function Asset({ handleDeleteAsset }) {
         </div>
         )}
       </ProjectCollection>
-      <AddProject onAddProject={handleAddProject} assetId={asset.id} />
+      <AddProject onAddProject={handleAddProject} asset={asset} />
     </Container>
   );
 }

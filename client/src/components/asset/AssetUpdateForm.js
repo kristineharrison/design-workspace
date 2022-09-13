@@ -1,17 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { Button, FormField, Input, Label, Textarea } from "../ui";
+import { useParams } from "react-router-dom";
 
-export default function AssetUpdateForm({ asset, setAsset, handleClick })  {
+export default function AssetUpdateForm({ setAsset, handleClick })  {
   const [description, setDescription] = useState("");
   const [source, setSource] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("")
 
+  const { id } = useParams()
+  
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch(`/assets/${asset.id}`, {
+    fetch(`/assets/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +30,6 @@ export default function AssetUpdateForm({ asset, setAsset, handleClick })  {
     .then((data) => setAsset(data))
     
     handleClick();
-
 }
 
   return (

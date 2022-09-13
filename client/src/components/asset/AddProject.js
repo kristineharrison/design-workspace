@@ -5,7 +5,7 @@ import uuid from "react-uuid"
 import styled from "styled-components";
 import { Button, Error, FormField, Label} from "../ui";
 
-export default function AddProject({ assetId, onAddProject }) {
+export default function AddProject({ asset, onAddProject }) {
   const [value, setValue] = useState("Select Project")
   const [isLoading, setIsLoading] = useState(true)
   const [projectId, setProjectId] = useState("")
@@ -34,7 +34,7 @@ export default function AddProject({ assetId, onAddProject }) {
     e.preventDefault()
     const formData = {
       project_id: Number(value),
-      asset_id: assetId,
+      asset_id: asset.id,
     }
     fetch("/project_assets", {
       method: "POST",
@@ -44,10 +44,10 @@ export default function AddProject({ assetId, onAddProject }) {
       body: JSON.stringify(formData),
       }).then((r) => {
       if (r.ok) {
-        r.json().then((project) => {
+        r.json().then((newProject) => {
           setProjectId("")
           setErrors([])
-          onAddProject(project)
+          onAddProject(...asset.projects, newProject)
         })
       } else {
         r.json().then((err) => setErrors(err.errors))

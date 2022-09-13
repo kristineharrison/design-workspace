@@ -31,7 +31,9 @@ export default function AssetCreateForm() {
       body: formData,
       }).then((r) => {
       if (r.ok) {
-        history.push("/catalog");
+        r.json().then((asset) => {
+          history.push(`/assets/${asset.id}`)
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -103,7 +105,7 @@ export default function AssetCreateForm() {
             <Error key={err}>{err}</Error>
           ))}
         </FormField> */}
-      </form>   
+      </form>
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectBox, Button } from "../../ui";
+import { ProjectBox, Button } from "../ui";
 import styled from "styled-components";
 import { Link } from "react-router-dom"
 
@@ -8,7 +8,6 @@ export default function ProjectCard({ project }) {
   return (
     <Container>
       <ProjectBox>
-          <img src={project.image_data} alt={project.proname}/>
           <p>
             <span>{project.proname}</span><br />
           </p> 
