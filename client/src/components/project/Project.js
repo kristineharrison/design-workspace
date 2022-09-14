@@ -2,12 +2,11 @@ import React from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import uuid from "react-uuid"
 import ProjectUpdateForm from "./ProjectUpdateForm"
 import AssetCard from "../catalog/AssetCard"
-
+import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
-import { Button } from "../ui"
+import uuid from "react-uuid"
 
 export default function Project({ handleDeleteProject }) {
   // Set update form state, start with hidden
@@ -29,14 +28,14 @@ export default function Project({ handleDeleteProject }) {
       if (r.ok) {
         r.json().then((project) =>
           setProject({ data: project, error: null, status: "resolved" })
-        );
+        )
       } else {
         r.json().then((err) =>
           setProject({ data: null, error: err.error, status: "rejected" })
-        );
+        )
       }
-    });
-  }, [id]);
+    })
+  }, [id])
 
   // Update status state
   if (status === "pending") return <h1>Loading...</h1>;
@@ -49,42 +48,68 @@ export default function Project({ handleDeleteProject }) {
   
   return (
     <Container>
-      {/* Display project data */}
-      <h2>{project.proname}</h2>
-      <p>{project.prostatus}</p>
-      <p>{project.summary}</p>
-        
-      <div>
+      <TextBox>
+        <h1>{project.proname}</h1>
+        <p className="status">Status: {project.prostatus}</p>
+        <p>{project.summary}</p>
+      </TextBox>
+
+      <ButtonBox>
+        <Button variant="outline-secondary" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
+        <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button>
+      </ButtonBox>
+      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
+      
+      <Collection>
         {/* Display list of associated assets or option to add one if none */}
         {project.assets.length > 0 ? (
           project.assets.map((asset) => (
             <AssetCard key={uuid()} asset={asset} />
           ))
         ) : (
-        <div className="no-asset">
+        <div>
           <h2>No Assets Found</h2>
           <br />
-          <Button as={Link} to="/new-asset">
+          <Button variant="outline-secondary" as={Link} to="/new-asset">
             Upload a New Asset
           </Button>
         </div>
         )}
-      </div>
-
-      <div className="update-button">
-        <Button variant="outline" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
-        <Button variant="outline" onClick={() => handleClick(id)}>Update Project</Button>
-      </div>
-      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
+      </Collection>
     </Container>
-  );
+  )
 }
 
-const Container = styled.div`
-min-width: 200px;
-margin: 20px auto;
+const Container = styled.section`
+margin-top: 50px;
 display: flex;
 flex-direction: column;
-gap: 40px
-overflow-x: auto;
-`;
+align-items: center;
+justify-content: center;
+
+.status {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+`
+
+const Collection = styled.div`
+margin-top: 50px;
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
+`
+
+const TextBox = styled.div`
+display: flex;
+flex-direction: column;
+width: 60%;
+align-items: center;
+`
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  gap: 10px;
+`

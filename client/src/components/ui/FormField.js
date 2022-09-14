@@ -7,8 +7,11 @@ const FormField = styled.div`
 
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
+  justify-content: center;
 
+  div {
+    margin: 0 auto;
+  }
 `;
 
 export default FormField;

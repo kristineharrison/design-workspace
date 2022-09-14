@@ -1,5 +1,5 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 // import './nav.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ export default function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/">Workspace</Link>
+        <Link to="/user">Workspace</Link>
       </Logo>
       <Nav>
         <div style={{ display: 'flex', 

@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:proname, :prostatus, :summary)
+    params.permit(:proname, :prostatus, :summary, :id)
   end
 
   def find_project

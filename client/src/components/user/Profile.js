@@ -33,7 +33,6 @@ const Container = styled.section`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  // align-items: flex-start;
   justify-content: center;
 `
 const Center = styled.div`

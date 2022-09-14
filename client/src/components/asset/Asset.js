@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import uuid from "react-uuid"
-
 import AssetUpdateForm from "./AssetUpdateForm"
 import AddProject from "./AddProject"
-
+import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
-import { Button } from "../ui"
+
 
 export default function Asset({ handleDeleteAsset  }) {
   // Set update form state, start with hidden
@@ -58,35 +57,37 @@ export default function Asset({ handleDeleteAsset  }) {
       }
     })
   }
-  console.log(asset)
+ 
   return (
     <Container>
-      {/* Display asset data */}
-      {/* <img src={asset.image_data} alt={asset.title}/> */}
       {asset.image_url ? <img src={asset.image_url} alt={asset.title}/> : <img src={asset.image_data} alt={asset.title}/>}
-      <p>
-        <span>{asset.title}</span><br />
+      <TextBox>
+        <h1>{asset.title}</h1>
         <cite>Source: {asset.source}</cite>
-      </p> 
-      <p>{asset.description}</p>
-      <p>{asset.tags}</p>
+        <p className="desc">{asset.description}</p>
+        <div>
+          <p className="tags">Tags:  {asset.tags}</p>
+          
+        </div>
+        
+      </TextBox>
        
-      <div className="update-button">
-        <Button variant="outline" onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
-        {/* <Button variant="outline" onClick={() => handleClick(asset.id)}>Update</Button> */}
+      <div>
+        <Button variant="outline-secondary" onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
+        {/* <Button variant="outline-secondary" onClick={() => handleClick(asset.id)}>Update</Button> */}
       </div>
-      {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null}  
+      {/* {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null} */}
       
       {/* Map over associated projects */}
-      <h3>Projects</h3>
+      <h3>Appears in These Projects</h3>
       <ProjectCollection>
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
-            <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
+            <Button variant="outline-secondary" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
           ))
         ) : (
         <div className="no-asset">
-          <h2>Not in any projects</h2>
+          <h3>Not in any projects</h3>
         </div>
         )}
       </ProjectCollection>
@@ -96,12 +97,21 @@ export default function Asset({ handleDeleteAsset  }) {
 }
 
 const Container = styled.div`
-max-width: 500px;
-margin: 20px auto;
+margin-top: 40px;
 display: flex;
 flex-flow: column;
-gap: 40px;
-overflow-x: auto;
+align-items: center;
+justify-content: center;
+
+img {
+  height: 500px;
+  width: 800px;
+  object-fit: contain;
+}
+
+h3 {
+  margin-top: 30px;
+}
 `;
 
 const ProjectCollection = styled.div`
@@ -111,4 +121,17 @@ display: flex;
 flex-flow: row wrap;
 gap: 20px;
 overflow-x: auto;
+`;
+
+const TextBox = styled.div`
+margin-top: 30px;
+width: 500px;
+display: flex;
+flex-direction: column;
+overflow-x: auto;
+.tags {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 `;

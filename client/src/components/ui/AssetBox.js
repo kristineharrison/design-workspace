@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
-
 const AssetBox = styled.div`
-  width: 200px;
+  width: 250px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   
-  button {
-    width: 50%;
-  }
-
   span {
+    color: #075159;
     font-size: 1.2rem;
     font-weight: 600;
   }
   
   img {
     height: 150px;
+    width: 150px;
+    object-fit: contain;
   }
 
   div.update-button {

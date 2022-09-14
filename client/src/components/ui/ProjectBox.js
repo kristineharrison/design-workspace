@@ -1,23 +1,15 @@
 import styled from "styled-components";
 
-
-const AssetBox = styled.div`
-  width: 400px;
+const ProjectBox = styled.div`
+  width: 300px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 20px;
   
   button {
     width: 60%;
-  }
-
-  span {
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
-  img {
-    height: 100px;
   }
 
   div.update-button {
@@ -28,4 +20,4 @@ const AssetBox = styled.div`
   }
 `;
 
-export default AssetBox;
+export default ProjectBox;

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useHistory } from "react-router"
 import uuid from "react-uuid"
-
 import styled from "styled-components";
-import { Button, Error, FormField, Input, Label, Textarea } from "../ui";
+import Button from 'react-bootstrap/Button'
+import { Error, FormField, Input, Label, Textarea } from "../ui";
 
 export default function AssetCreateForm() {
   const [title, setTitle] = useState("");
@@ -95,7 +95,7 @@ export default function AssetCreateForm() {
         
         <FormField>
           <div>
-            <Button color="primary" type="submit">
+            <Button variant="outline-secondary" type="submit">
             Submit Asset
           </Button>
           </div>
@@ -115,6 +115,7 @@ const Container = styled.section`
   margin: 40px auto;
   padding: 16px;
   display: flex;
+  flex-direction: column;
 `;
 
 const Upload = styled.div`

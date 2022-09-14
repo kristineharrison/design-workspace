@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Button } from "../ui"
+import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
 import uuid from "react-uuid"
 
@@ -12,7 +12,11 @@ export default function ProjectList({ user }) {
       <List>
         {user.projects.length > 0 ? (
         user.projects.map((project) => (
-          <Button variant="outline" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
+          <Button variant="outline-secondary" 
+            as={ Link } 
+            to= {`/projects/${project.id}`} 
+            key={uuid()}>{project.proname}
+          </Button>
         ))
         ) : (
         <div className="no-asset">

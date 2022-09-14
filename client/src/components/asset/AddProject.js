@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router"
-import uuid from "react-uuid"
-
 import styled from "styled-components";
-import { Button, Error, FormField, Label} from "../ui";
+import { Error, FormField } from "../ui";
+import Button from 'react-bootstrap/Button'
+import uuid from "react-uuid"
 
 export default function AddProject({ asset, onAddProject }) {
   const [value, setValue] = useState("Select Project")
@@ -33,7 +33,7 @@ export default function AddProject({ asset, onAddProject }) {
   function handleSubmit(e) {
     e.preventDefault()
     const formData = {
-      project_id: Number(value),
+      project_id: value,
       asset_id: asset.id,
     }
     fetch("/project_assets", {
@@ -45,9 +45,10 @@ export default function AddProject({ asset, onAddProject }) {
       }).then((r) => {
       if (r.ok) {
         r.json().then((newProject) => {
+          console.log("After ",newProject)
           setProjectId("")
-          setErrors([])
           onAddProject(...asset.projects, newProject)
+          setErrors([])
         })
       } else {
         r.json().then((err) => setErrors(err.errors))
@@ -57,10 +58,9 @@ export default function AddProject({ asset, onAddProject }) {
 
   return (
     <Container>
-      <h2>Add to Project</h2>
+      <h3>Add to Project</h3>
       <form onSubmit={handleSubmit}>
         <FormField>
-          <Label htmlFor="project">Select Project</Label>
           <select
             disabled={isLoading}
             id="project"
@@ -72,37 +72,26 @@ export default function AddProject({ asset, onAddProject }) {
                   {label}
                 </option>
             ))}
-            {console.log("Select: ", {value})}
           </select>
         </FormField>
         <FormField>
           <div>
-            <Button color="primary" type="submit">
-            Submit
-          </Button>
+            <Button variant="outline-secondary" type="submit">
+              Submit
+            </Button>
           </div>
         </FormField>
-        {/* <FormField>
+        <FormField>
           {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))}
-        </FormField> */}
+        </FormField>
       </form>   
     </Container>
   );
 }
 
 const Container = styled.section`
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 16px;
   display: flex;
+  flex-direction: column;
 `;
-
-const Upload = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-`

@@ -1,30 +1,18 @@
-import React from "react";
-import { ProjectBox, Button } from "../ui";
-import styled from "styled-components";
+import React from "react"
 import { Link } from "react-router-dom"
+import { ProjectBox } from "../ui"
+import Button from 'react-bootstrap/Button'
+
 
 export default function ProjectCard({ project }) {
 
   return (
-    <Container>
-      <ProjectBox>
-          <p>
-            <span>{project.proname}</span><br />
-          </p> 
-          <p>{project.summary}</p>
-          <div className="update-button">
-            <Button as={ Link } to= {`/projects/${project.id}`}>View Project</Button>
-          </div>
-      </ProjectBox>
-    </Container>
-  );
+    <ProjectBox>
+      <h2>{project.proname}</h2>
+      <p>{project.summary}</p>
+      <Button variant="outline-secondary" as={ Link } to= {`/projects/${project.id}`}>
+        View Project
+      </Button>
+    </ProjectBox>
+  )
 }
-
-const Container = styled.div`
-min-width: 300px;
-margin: 20px auto;
-display: flex;
-flex-flow: row wrap;
-gap: 40px
-overflow-x: auto;
-`;
