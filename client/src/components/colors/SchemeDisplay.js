@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import styled from "styled-components"
 
 export default function SchemeDisplay({ hexValue, schemes }) {
   const [ monoData, setMonoData ] = useState(null)
@@ -11,7 +12,6 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   const [ compData, setCompData ] = useState(null)
   const [ triadData, setTriadData ] = useState(null)
   const [ quadData, setQuadData ] = useState(null)
-
   const [ status, setStatus ] = useState("pending")
 
   const params = useParams()
@@ -68,14 +68,14 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   const schemeName = schemes[params.schemeId].title
   let schemeImg = ""
   let schemeText = ""
-
+  let schemeDef = ""
   if (status === "resolved") {
     switch(schemeName) {
       case "Monochrome":
         schemeImg = monoData.image.bare
+        schemeDef = <p><strong>Monochrome Color:</strong> variations of one color.</p>
         schemeText = 
           <div>
-            <p><strong>Monochrome Color:</strong> variations of one color.</p>
             <ul>
               <li>{monoData.colors[0].name.value} • {monoData.colors[0].hex.value} • {monoData.colors[0].rgb.value}</li>
               <li>{monoData.colors[1].name.value} • {monoData.colors[1].hex.value} • {monoData.colors[1].rgb.value}</li>
@@ -87,9 +87,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Monochrome Dark":
         schemeImg = monoDarkData.image.bare
+        schemeDef = <p><strong>Monochrome Dark Color:</strong> variations of one color.</p>
         schemeText = 
           <div>
-            <p><strong>Monochrome Dark Color:</strong> variations of one color.</p>
             <ul>
               <li>{monoDarkData.colors[0].name.value} • {monoDarkData.colors[0].hex.value} • {monoDarkData.colors[0].rgb.value}</li>
               <li>{monoDarkData.colors[1].name.value} • {monoDarkData.colors[1].hex.value} • {monoDarkData.colors[1].rgb.value}</li>
@@ -101,9 +101,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Monochrome Light":
         schemeImg = monoLightData.image.bare
+        schemeDef = <p><strong>Monochrome Light Color:</strong> variations of one color.</p>
         schemeText = 
           <div>
-            <p><strong>Monochrome Light Color:</strong> variations of one color.</p>
             <ul>
               <li>{monoLightData.colors[0].name.value} • {monoLightData.colors[0].hex.value} • {monoLightData.colors[0].rgb.value}</li>
               <li>{monoLightData.colors[1].name.value} • {monoLightData.colors[1].hex.value} • {monoLightData.colors[1].rgb.value}</li>
@@ -116,9 +116,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
       case "Analogic":
         console.log("Analogic")
         schemeImg = analogData.image.bare
+        schemeDef = <p><strong>Analogic Color:</strong> next to each other on the color wheel.</p>
         schemeText = 
           <div>
-            <p><strong>Analogic Color:</strong> next to each other on the color wheel.</p>
             <ul>
               <li>{analogData.colors[0].name.value} • {analogData.colors[0].hex.value} • {analogData.colors[0].rgb.value}</li>
               <li>{analogData.colors[1].name.value} • {analogData.colors[1].hex.value} • {analogData.colors[1].rgb.value}</li>
@@ -130,9 +130,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Analogic Complement":
         schemeImg = analogCompData.image.bare
+        schemeDef = <p><strong>Analogic Complement Color:</strong> variations of one color.</p>
         schemeText = 
           <div>
-            <p><strong>Analogic Complement Color:</strong> variations of one color.</p>
             <ul>
               <li>{analogCompData.colors[0].name.value} • {analogCompData.colors[0].hex.value} • {analogCompData.colors[0].rgb.value}</li>
               <li>{analogCompData.colors[1].name.value} • {analogCompData.colors[1].hex.value} • {analogCompData.colors[1].rgb.value}</li>
@@ -144,22 +144,20 @@ export default function SchemeDisplay({ hexValue, schemes }) {
       
       case "Complement":
         schemeImg = compData.image.bare
+        schemeDef = <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
         schemeText = 
-          <div>
-            <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
             <ul>
-              <li>{compData.colors[0].name.value} • {compData.colors[0].hex.value} • {compData.colors[0].rgb.value}</li>
-              <li>{compData.colors[1].name.value} • {compData.colors[1].hex.value} • {compData.colors[1].rgb.value}</li>
-              <li>{compData.colors[2].name.value} • {compData.colors[2].hex.value} • {compData.colors[2].rgb.value}</li>
+              <li className="scheme-value">{compData.colors[0].name.value} • {compData.colors[0].hex.value} • {compData.colors[0].rgb.value}</li>
+              <li className="scheme-value">{compData.colors[1].name.value} • {compData.colors[1].hex.value} • {compData.colors[1].rgb.value}</li>
+              <li className="scheme-value">{compData.colors[2].name.value} • {compData.colors[2].hex.value} • {compData.colors[2].rgb.value}</li>
             </ul>
-          </div> 
         break
 
       case "Triad":
         schemeImg = triadData.image.bare
+        schemeDef = <p><strong>Triad color:</strong> on opposite side of the color wheel.</p>
         schemeText = 
           <div>
-            <p><strong>Triad color:</strong> on opposite side of the color wheel.</p>
             <ul>
               <li>{triadData.colors[0].name.value} • {triadData.colors[0].hex.value} • {triadData.colors[0].rgb.value}</li>
               <li>{triadData.colors[1].name.value} • {triadData.colors[1].hex.value} • {triadData.colors[1].rgb.value}</li>
@@ -172,9 +170,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Quad":
         schemeImg = quadData.image.bare
+        schemeDef = <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
         schemeText = 
           <div>
-            <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
             <ul>
               <li>{quadData.colors[0].name.value} • {quadData.colors[0].hex.value} • {quadData.colors[0].rgb.value}</li>
               <li>{quadData.colors[1].name.value} • {quadData.colors[1].hex.value} • {quadData.colors[1].rgb.value}</li>
@@ -193,14 +191,49 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   }
 
   // Update status state
-  if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "pending") return <h1>Loading...</h1>
   // if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
   return (
-    <div>
+    <Container>
       <h3>{schemes[params.schemeId].title}</h3>
-      <img src={schemeImg} alt="Color scheme example" />
-      {schemeText}
-    </div>
-  );
+      {schemeDef}
+      <SchemeBox>
+        <img src={schemeImg} alt="Color scheme example" />
+       {schemeText}
+      </SchemeBox>
+      
+      
+      
+      
+      
+    </Container>
+  )
 }
+
+const Container = styled.section`
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+ 
+
+`
+const SchemeBox = styled.section`
+  display: flex;
+  flex-direction: row;
+  
+  ul {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  img {
+    height: 250px;
+  }
+   
+`

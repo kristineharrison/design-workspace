@@ -48,12 +48,8 @@ export default function Asset({ handleDeleteAsset  }) {
   }
 
   function handleAddProject(newProject) {
-    setAsset({
-      error,
-      status,
-      data: {
-        ...asset,
-        projects: [...asset.projects, newProject],
+    setAsset({ error, status, data: {
+        ...asset, projects: [...asset.projects, newProject],
       }
     })
   }

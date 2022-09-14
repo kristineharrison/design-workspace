@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Link, Route, useRouteMatch } from "react-router-dom"
 import uuid from "react-uuid"
 import SchemeDisplay from "./SchemeDisplay"
-
 import styled from "styled-components"
 
 export default function SchemeList({ hexValue }) {
@@ -30,10 +29,12 @@ export default function SchemeList({ hexValue }) {
   return (
     <Container>
       <h2>Color Schemes</h2>
-      <p>Color schemes are multi-color combinations chosen according to color-wheel relationsships. Put in own words</p>
+      <TextBox>
+        Color schemes are multi-color combinations chosen according to color-wheel relationships.
+
+        <ul className="schemes">{renderSchemes}</ul>
+      </TextBox>
       
-      <ul>{renderSchemes}</ul>
-        
       <Route path={`${match.url}/:schemeId`}>
         <SchemeDisplay schemes={schemes} hexValue={hexValue}/>
       </Route>
@@ -41,9 +42,28 @@ export default function SchemeList({ hexValue }) {
   );
 }
 const Container = styled.section`
-  width:  100%;
-  margin: 40px auto;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-`;
+  align-items: center;
+
+  ul.schemes {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  li {
+    font-size: 1.25rem;
+  }
+
+`
+
+const TextBox = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

@@ -47,7 +47,9 @@ export default function AddProject({ asset, onAddProject }) {
         r.json().then((newProject) => {
           console.log("After ",newProject)
           setProjectId("")
-          onAddProject(...asset.projects, newProject)
+          // have to get the rest of the project attributes 
+          onAddProject(newProject)
+          console.log("add project newproject: ", newProject)
           setErrors([])
         })
       } else {

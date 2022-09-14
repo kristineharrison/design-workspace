@@ -7,8 +7,15 @@ export default function Colors() {
   
   return (
     <Container>
-      <h1>Using CSS with Colors</h1>
-      <p>Why you want to use CSS to apply color transformations, etc.</p>
+      <h1>Digital Color</h1>
+      <TextBox>
+        <p>Colors you view on a screen are displayed combining red, green and blue light.
+        CSS uses color values to specify a color; specifically by color names, hexadecimal values, 
+        RGB value, or HSL value. CMYK is not used to display digital color.</p>
+        <p>CSS is typically used to set font color, background element color, borders and other
+        decorative elements.</p>
+      </TextBox>
+      
       <ColorSelect />
       <ColorSwatch />
     </Container>
@@ -16,17 +23,15 @@ export default function Colors() {
 }
 
 const Container = styled.section`
-  max-width: 90%;
-  margin: 40px auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TextBox = styled.div`
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`;
-
-// const Intro = styled.article`
-//   max-width: 60%;
-//   margin: 40px auto;
-//   // display: flex;
-//   // flex-direction: column;
-//   // align-items: flex-start;
-// `;
+`

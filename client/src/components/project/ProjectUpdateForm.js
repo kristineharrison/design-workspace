@@ -4,9 +4,10 @@ import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 
 export default function ProjectUpdateForm({ project, setProject, handleClick })  {
-  const[proname, setProName] = useState("")
-  const[prostatus, setProStatus] = useState("")
-  const[summary, setSummary] = useState("")
+  const [proname, setProName] = useState("")
+  const [prostatus, setProStatus] = useState("")
+  const [summary, setSummary] = useState("")
+  const [error, setErrors] = useState(null)
 
   // Update project
   function handleSubmit(e) {
@@ -26,8 +27,9 @@ export default function ProjectUpdateForm({ project, setProject, handleClick }) 
     })
     .then((resp) => resp.json())
     .then((data) => setProject(data));
+    setErrors([])
     handleClick()
-}
+  }
 
   return (
     <Container>
