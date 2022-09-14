@@ -11,22 +11,37 @@ export default function StyleList({ styles }) {
     </li>
   ));
 
-
   return (
     <Container>
       <h2>Image Styles</h2>
-      <p>Put in own words</p>
-      
-      <ul>{renderStyles}</ul>
-    
+      <TextBox>
+        <ul className="schemes">{renderStyles}</ul>
+      </TextBox>
     </Container>
   );
 }
 
 const Container = styled.section`
-  width:  100%;
-  margin: 40px auto;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-`;
+  align-items: center;
+
+  ul.schemes {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  li {
+    font-size: 1.25rem;
+  }
+`
+const TextBox = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

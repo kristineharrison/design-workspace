@@ -18,7 +18,7 @@ export default function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/user">Workspace</Link>
+        <Link to="/profile">Workspace</Link>
       </Logo>
       <Nav>
         <div style={{ display: 'flex', 

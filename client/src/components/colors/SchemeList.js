@@ -58,9 +58,7 @@ const Container = styled.section`
   li {
     font-size: 1.25rem;
   }
-
 `
-
 const TextBox = styled.div`
   width: 70%;
   display: flex;

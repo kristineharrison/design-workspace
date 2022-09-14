@@ -1,12 +1,10 @@
 // .src/components/MovieShow.js
 import React from "react";
 import { useParams } from "react-router-dom";
-
 import "./styles.css"
 import styled from "styled-components";
 
 export default function StyleDisplay({ styles }) {
-  // call useParams to access the `params` from the url
   const params = useParams();
 
   const styleName = styles[params.styleId].title
@@ -19,9 +17,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
         <div>
           Use the border-radius property to create rounded images.
-          <p className="code">
+          <div className="code-container">
+            <p className="code">
             {`img { border-radius: 10px; }`}
           </p>
+          </div>
        </div>
       break
 
@@ -30,9 +30,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
         <div>
           Use the border-radius property to create a circle or oval image.
-          <p className="code">
-            {`img { border-radius: 50% }`}
-          </p>
+          <div className="code-container">
+            <p className="code">
+              {`img { border-radius: 50% }`}
+            </p>
+          </div>
         </div>
       break
 
@@ -41,9 +43,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
       <div>
         Change a color image to black and white.
-        <p className="code">
-          {`img { filter: grayscale(100%); }`}
-        </p>
+        <div className="code-container">
+          <p className="code">
+            {`img { filter: grayscale(100%); }`}
+          </p>
+        </div>
       </div>
     break
 
@@ -52,9 +56,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
       <div>
         The opacity property can take a value from 0.0-1.0, with 1 being the default. The lower the value, the more transparent the image.
-        <p className="code">
-          {`img { opacity: 0.5; }`}
-        </p>
+        <div className="code-container">
+          <p className="code">
+            {`img { opacity: 0.5; }`}
+          </p>
+        </div>
       </div>
     break
 
@@ -63,9 +69,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
       <div>
         Apply a blur effect to an image.
-        <p className="code">
-          {`img { filter: blur(3px); }`}
-        </p>
+        <div className="code-container">
+          <p className="code">
+            {`img { filter: blur(3px); }`}
+          </p>
+        </div>
       </div>
     break
 
@@ -74,9 +82,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
       <div>
         Apply a hue rotation to an image.
-        <p className="code">
-          {`img { filter: hue-rotate(90deg); }`}
-        </p>
+        <div className="code-container">
+          <p className="code">
+            {`img { filter: hue-rotate(90deg); }`}
+          </p>
+        </div>
       </div>
     break
 
@@ -85,9 +95,11 @@ export default function StyleDisplay({ styles }) {
       styleText= 
       <div>
         Apply a drop shadow effect to an image.
-        <p className="code">
+        <div className="code-container">
+          <p className="code">
           {`img {filter: drop-shadow(8px 8px 10px gray); }`}
-        </p>
+          </p>
+        </div>
       </div>
     break
 
@@ -100,17 +112,54 @@ export default function StyleDisplay({ styles }) {
     <Container>
       <h3>{styles[params.styleId].title}</h3>
       <div>
-        <img src={"/images/examples/roses.jpg"} alt="Roses" width="300px" className={styleClass}/>
+        <img src={"/images/examples/roses.jpg"} alt="Roses" className={styleClass}/>
       </div>
-      {styleText}
+      <TextBox>
+        {styleText}
+      </TextBox>
 
     </Container>
   );
 }
 
 const Container = styled.section`
-  max-width: 90%;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-`;
+  align-items: center;
+
+  img {
+    height: 400px;
+  }
+`
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: center;
+  max-width: 500px;
+
+  .code-container {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: black;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .code {
+    color: rgb(0, 208, 255);
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 900;
+    text-align: center;
+  }
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`
+

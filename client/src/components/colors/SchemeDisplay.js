@@ -202,11 +202,6 @@ export default function SchemeDisplay({ hexValue, schemes }) {
         <img src={schemeImg} alt="Color scheme example" />
        {schemeText}
       </SchemeBox>
-      
-      
-      
-      
-      
     </Container>
   )
 }
@@ -216,11 +211,8 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-
- 
-
 `
-const SchemeBox = styled.section`
+const SchemeBox = styled.div`
   display: flex;
   flex-direction: row;
   
@@ -235,5 +227,4 @@ const SchemeBox = styled.section`
   img {
     height: 250px;
   }
-   
 `
