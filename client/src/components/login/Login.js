@@ -9,8 +9,8 @@ export default function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <Wrapper>
-      {/* <img src={`./images/rainbow.jpeg`} alt="Rainbow" /> */}
+    <Container>
+      
       <Logo>Workspace</Logo>
       {showLogin ? (
         <>
@@ -35,7 +35,7 @@ export default function Login({ onLogin }) {
           </p>
         </>
       )}
-    </Wrapper>
+    </Container>
   );
 }
 
@@ -47,7 +47,7 @@ const Logo = styled.h1`
   margin: 8px 0 16px;
 `;
 
-const Wrapper = styled.section`
+const Container = styled.section`
   max-width: 400px;
   margin: 40px auto;
   padding: 16px;

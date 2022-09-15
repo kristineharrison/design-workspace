@@ -1,10 +1,7 @@
 import React from "react";
-// import 'bootstrap/dist/css/bootstrap.css';
-// import './nav.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../ui";
 
 export default function NavBar({ user, setUser }) {
   function handleLogoutClick() {

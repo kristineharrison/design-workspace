@@ -4,12 +4,16 @@ import styled from "styled-components"
 
 export default function Profile()  {
   const [profile, setProfile] = useState("")
+  const [status, setStatus] = useState("pending")
   
   useEffect(() => {
     fetch("/users")
       .then((r) => r.json())
       .then(setProfile)
+      .then(setStatus("resolved"))
   }, [])
+
+  if (status === "pending") return <h1>Loading...</h1>
 
   return (
     <Container>

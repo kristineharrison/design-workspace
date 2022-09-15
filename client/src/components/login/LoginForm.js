@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Error, Input, FormField, Label } from "../ui";
 
 export default function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isLoading, setLoading] = useState("pending")
 
+  const history = useHistory()
+  
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/login", {
@@ -21,6 +25,7 @@ export default function LoginForm({ onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    history.push("/profile")
   }
 
   return (

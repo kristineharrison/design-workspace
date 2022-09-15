@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import ProjectUpdateForm from "./ProjectUpdateForm"
@@ -18,7 +18,6 @@ export default function Project({ handleDeleteProject }) {
     status: "pending",
   })
   
-  const history = useHistory()
   const { id } = useParams()
 
   // Fetch individual project data and update status
@@ -56,7 +55,7 @@ export default function Project({ handleDeleteProject }) {
 
       <ButtonBox>
         <Button variant="outline-secondary" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
-        <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button>
+        {/* <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button> */}
       </ButtonBox>
       {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
       

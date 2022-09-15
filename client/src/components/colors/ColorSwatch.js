@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import { Input } from "../ui"
 
 export default function ColorSwatch() {
-  const [ hexValue, setHexValue ] = useState("E53F16")
+  const [ hexValue, setHexValue ] = useState("")
   const [ { data: colorData, error, status }, setColorData ] = useState({
     colorData: null,
     error: null,
@@ -15,7 +15,7 @@ export default function ColorSwatch() {
 
   // Fetch initial color data and update status
   useEffect(() => {
-    fetch(`https://www.thecolorapi.com/id?hex=${hexValue}`)
+    fetch(`https://www.thecolorapi.com/id?hex=E53F16`)
     .then((r) => {
       if (r.ok) {
         r.json().then((colorData) =>
@@ -58,12 +58,12 @@ export default function ColorSwatch() {
         <label>Enter a Hex Number:</label>
         <Input 
           type="text" 
-          name="hex" placeholder="e.g. FFAA88 - no #"
+          name="hex" placeholder="no #"
           pattern="[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" 
           title="Please enter valid Hex code without #" 
           value={hexValue}
           onChange={(e) => setHexValue(e.target.value)}/>
-        <Button variant="outline-secondary" id="hex-input-btn">Submit</Button>
+        <Button variant="outline-secondary" id="hex-input-btn" type="submit">Submit</Button>
       </form>
       <h3>{colorData.name.value}</h3>
       <img src={colorData.image.bare} alt={colorData.name.value} />

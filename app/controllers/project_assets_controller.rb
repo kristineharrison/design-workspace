@@ -3,7 +3,7 @@ class ProjectAssetsController < ApplicationController
   # POST /project_assets
   def create
     projectasset = ProjectAsset.create!(projectasset_params)
-    render json: projectasset.project_id, status: :created
+    render json: projectasset.project, status: :created
   end
 
   # PATCH /project_assets/:id

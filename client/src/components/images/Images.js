@@ -34,9 +34,8 @@ export default function Images() {
       <StyleList styles={styles}  /> 
 
       <Route path={`${match.url}/:styleId`}>
-        <StyleDisplay styles={styles} />
-      </Route>
-      
+        <StyleDisplay styles={styles} setStyles={setStyles}/>
+      </Route> 
     </Container>
   );
 }

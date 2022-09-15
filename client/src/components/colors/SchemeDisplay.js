@@ -45,8 +45,6 @@ export default function SchemeDisplay({ hexValue, schemes }) {
         const allCompData = allData[5].data
         const allTriadData = allData[6].data
         const allQuadData = allData[7].data
-
-        console.log("All Data: ", allData)
         
         setMonoData(allMonoData)
         setMonoDarkData(allMonoDarkData)
@@ -73,7 +71,8 @@ export default function SchemeDisplay({ hexValue, schemes }) {
     switch(schemeName) {
       case "Monochrome":
         schemeImg = monoData.image.bare
-        schemeDef = <p><strong>Monochrome Color:</strong> variations of one color.</p>
+        schemeDef = <p>Monochromatic color schemes are easy to create because they use only one color. 
+          Use different tones from the same angle on the color wheel (the same hue).</p>
         schemeText = 
           <div>
             <ul>
@@ -87,7 +86,8 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Monochrome Dark":
         schemeImg = monoDarkData.image.bare
-        schemeDef = <p><strong>Monochrome Dark Color:</strong> variations of one color.</p>
+        schemeDef = <p>Monochromatic color schemes are easy to create because they use only one color. 
+        Use different tones from the same angle on the color wheel (the same hue).</p>
         schemeText = 
           <div>
             <ul>
@@ -101,7 +101,8 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Monochrome Light":
         schemeImg = monoLightData.image.bare
-        schemeDef = <p><strong>Monochrome Light Color:</strong> variations of one color.</p>
+        schemeDef = <p>Monochromatic color schemes are easy to create because they use only one color. 
+        Use different tones from the same angle on the color wheel (the same hue).</p>
         schemeText = 
           <div>
             <ul>
@@ -116,7 +117,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
       case "Analogic":
         console.log("Analogic")
         schemeImg = analogData.image.bare
-        schemeDef = <p><strong>Analogic Color:</strong> next to each other on the color wheel.</p>
+        schemeDef = <p>Analogous color schemes are created by using colors that are next to each other on the color wheel.</p>
         schemeText = 
           <div>
             <ul>
@@ -130,7 +131,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Analogic Complement":
         schemeImg = analogCompData.image.bare
-        schemeDef = <p><strong>Analogic Complement Color:</strong> variations of one color.</p>
+        schemeDef = <p>Analogous color schemes are created by using colors that are next to each other on the color wheel.</p>
         schemeText = 
           <div>
             <ul>
@@ -144,7 +145,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
       
       case "Complement":
         schemeImg = compData.image.bare
-        schemeDef = <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
+        schemeDef = <p>Complementary schemes are created by combining colors from opposite sides of the color wheel.</p>
         schemeText = 
             <ul>
               <li className="scheme-value">{compData.colors[0].name.value} • {compData.colors[0].hex.value} • {compData.colors[0].rgb.value}</li>
@@ -155,7 +156,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Triad":
         schemeImg = triadData.image.bare
-        schemeDef = <p><strong>Triad color:</strong> on opposite side of the color wheel.</p>
+        schemeDef = <p>Made up of hues equally spaced around color wheel.</p>
         schemeText = 
           <div>
             <ul>
@@ -170,7 +171,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
 
       case "Quad":
         schemeImg = quadData.image.bare
-        schemeDef = <p><strong>Complement color:</strong> on opposite side of the color wheel.</p>
+        schemeDef = <p>Made up of hues equally spaced around color wheel.</p>
         schemeText = 
           <div>
             <ul>
@@ -197,7 +198,9 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   return (
     <Container>
       <h3>{schemes[params.schemeId].title}</h3>
-      {schemeDef}
+      <TextBox>
+        {schemeDef}
+      </TextBox>
       <SchemeBox>
         <img src={schemeImg} alt="Color scheme example" />
        {schemeText}
@@ -211,6 +214,9 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+const TextBox = styled.div`
+  width: 70%;
 `
 const SchemeBox = styled.div`
   display: flex;

@@ -1,11 +1,11 @@
 // .src/components/MovieShow.js
 import React from "react";
 import { useParams } from "react-router-dom";
-import "./styles.css"
 import styled from "styled-components";
+import "./styles.css"
 
 export default function StyleDisplay({ styles }) {
-  const params = useParams();
+  const params = useParams()
 
   const styleName = styles[params.styleId].title
   let styleClass= ""
@@ -117,7 +117,6 @@ export default function StyleDisplay({ styles }) {
       <TextBox>
         {styleText}
       </TextBox>
-
     </Container>
   );
 }

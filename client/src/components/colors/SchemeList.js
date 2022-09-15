@@ -31,7 +31,7 @@ export default function SchemeList({ hexValue }) {
       <h2>Color Schemes</h2>
       <TextBox>
         Color schemes are multi-color combinations chosen according to color-wheel relationships.
-
+        The purpose of a color scheme is to create an aesthetic feeling of style and appeal.
         <ul className="schemes">{renderSchemes}</ul>
       </TextBox>
       

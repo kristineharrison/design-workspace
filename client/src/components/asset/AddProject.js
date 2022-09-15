@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router"
 import styled from "styled-components";
 import { Error, FormField } from "../ui";
 import Button from 'react-bootstrap/Button'
@@ -11,8 +10,6 @@ export default function AddProject({ asset, onAddProject }) {
   const [projectId, setProjectId] = useState("")
   const [projects, setProjects] = useState([])
   const [errors, setErrors] = useState([]);
- 
-  const history = useHistory()
 
   useEffect(() => {
     let unmounted = false
@@ -44,17 +41,17 @@ export default function AddProject({ asset, onAddProject }) {
       body: JSON.stringify(formData),
       }).then((r) => {
       if (r.ok) {
-        r.json().then((newProject) => {
-          console.log("After ",newProject)
-          setProjectId("")
-          // have to get the rest of the project attributes 
-          onAddProject(newProject)
-          console.log("add project newproject: ", newProject)
+        r.json().then((newProjectId) => {
+          setProjectId(newProjectId)
           setErrors([])
+          console.log("Project Id from AddProject: ", newProjectId)
+          onAddProject(newProjectId)
+          setProjects([])
         })
       } else {
         r.json().then((err) => setErrors(err.errors))
       }
+      
     })
   }
 

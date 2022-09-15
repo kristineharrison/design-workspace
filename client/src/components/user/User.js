@@ -8,7 +8,7 @@ export default function User({ user, handleClick }) {
 
   return (
     <Container>
-      <Img src="https://source.unsplash.com/random/?beach" alt="Beach Image" />
+      <Img src={"/images/profile-beach.jpg"} alt="Beach Image" />
       <Profile />
       <ProjectList user={user} />
     </Container>

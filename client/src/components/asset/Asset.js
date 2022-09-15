@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import uuid from "react-uuid"
 import AssetUpdateForm from "./AssetUpdateForm"
@@ -18,7 +18,7 @@ export default function Asset({ handleDeleteAsset  }) {
     status: "pending",
   })
 
-  // const history = useHistory();
+  const history = useHistory();
   const { id } = useParams()
 
   // Fetch individual asset data and update status
@@ -47,11 +47,12 @@ export default function Asset({ handleDeleteAsset  }) {
     setShowForm((showForm) => !showForm);
   }
 
-  function handleAddProject(newProject) {
+  function handleAddProject(newProjectId) {
     setAsset({ error, status, data: {
-        ...asset, projects: [...asset.projects, newProject],
+        ...asset, projects: [...asset.projects, newProjectId],
       }
     })
+    // history.push("/catalog")
   }
  
   return (
@@ -83,7 +84,7 @@ export default function Asset({ handleDeleteAsset  }) {
           ))
         ) : (
         <div className="no-asset">
-          <h3>Not in any projects</h3>
+          <p>Not in any projects</p>
         </div>
         )}
       </ProjectCollection>

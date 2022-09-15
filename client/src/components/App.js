@@ -11,12 +11,14 @@ import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 import Unsplash from "./images/Unsplash"
+import Loading from "./login/Loading"
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([])
   const [assets, setAssets] = useState([])
   const [error, setErrors] = useState(null)
+  const [status, setStatus] = useState()
 
   const history = useHistory()
 
@@ -28,8 +30,9 @@ export default function App() {
       }
     })
   }, [])
-
+  
   if (!user) return <Login onLogin={setUser} />
+  // if (!user) return <Loading />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
@@ -41,7 +44,8 @@ export default function App() {
         )
       } else {
         r.json().then((err) =>
-          setAssets({ data: null, error: err.error, status: "rejected" })
+          setAssets(null),
+          setStatus("rejected")
         )
       }
       setErrors([])
@@ -66,7 +70,8 @@ export default function App() {
       history.push("/catalog")
     })
   }
-  
+  if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "rejected") return <h1>Error: {error.error}</h1>;
  
   return (
     <>
@@ -75,6 +80,9 @@ export default function App() {
         <Switch>
           <Route path="/assets/:id">
             <Asset handleDeleteAsset={handleDeleteAsset}/>
+          </Route>
+          <Route path="/assets">
+            <Catalog/>
           </Route>
           <Route path="/catalog">
             <Catalog projects={projects} setProjects={setProjects} assets={assets} setAssets={setAssets}/>
@@ -96,6 +104,9 @@ export default function App() {
           </Route>
           <Route path="/projects/:id">
             <Project handleDeleteProject={handleDeleteProject} />
+          </Route>
+          <Route path="/projects">
+            <Catalog />
           </Route>
           <Route path="/unsplash">
             <Unsplash />
