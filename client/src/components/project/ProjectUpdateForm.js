@@ -3,7 +3,7 @@ import { FormField, Input, Label, Textarea } from "../ui"
 import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 
-export default function ProjectUpdateForm({ project, setProject, handleClick })  {
+export default function ProjectUpdateForm({ project, handleClick, handleUpdate })  {
   const [proname, setProName] = useState("")
   const [prostatus, setProStatus] = useState("")
   const [summary, setSummary] = useState("")
@@ -12,23 +12,20 @@ export default function ProjectUpdateForm({ project, setProject, handleClick }) 
   // Update project
   function handleSubmit(e) {
     e.preventDefault()
-    const formData = {
-      proname: proname,
-      prostatus: prostatus,
-      summary: summary
-    }
-    console.log(formData)
     fetch(`/projects/${project.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        proname: proname,
+        prostatus: prostatus,
+        summary: summary
+      }),
     })
     .then((resp) => resp.json())
-    .then((data) => setProject(data));
-    setErrors([])
-    handleClick()
+    .then(handleUpdate);
+    handleClick();
   }
 
   return (

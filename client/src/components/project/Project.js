@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
 import uuid from "react-uuid"
 
-export default function Project({ handleDeleteProject }) {
+export default function Project({ handleDeleteProject, user }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set project state
@@ -44,6 +44,11 @@ export default function Project({ handleDeleteProject }) {
   function handleClick() {
     setShowForm((showForm) => !showForm)
   }
+
+  function handleUpdate(updated) {
+    const updatedProject = project.id === updated.id ? updated : project;
+    setProject({ data: updatedProject, error: null, status: "resolved"})
+  }
   
   return (
     <Container>
@@ -51,14 +56,15 @@ export default function Project({ handleDeleteProject }) {
         <h1>{project.proname}</h1>
         <p className="status">Status: {project.prostatus}</p>
         <p>{project.summary}</p>
+        <p className="tags">Owner: {user.username}</p>
       </TextBox>
 
       <ButtonBox>
         <Button variant="outline-secondary" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
-        {/* <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button> */}
+        <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button>
       </ButtonBox>
-      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick}/> : null} 
-      
+      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick} handleUpdate={handleUpdate}/> : null} 
+      {console.log(project.proname)}
       <Collection>
         {/* Display list of associated assets or option to add one if none */}
         {project.assets.length > 0 ? (
@@ -104,8 +110,12 @@ display: flex;
 flex-direction: column;
 width: 60%;
 align-items: center;
-`
 
+.tags {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+`
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: row;

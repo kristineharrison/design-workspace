@@ -4,7 +4,7 @@ import ProjectList from "./ProjectList"
 import styled from "styled-components"
 
 
-export default function User({ user, handleClick }) {
+export default function User({ user }) {
 
   return (
     <Container>

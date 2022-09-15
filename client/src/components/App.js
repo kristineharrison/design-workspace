@@ -11,7 +11,6 @@ import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 import Unsplash from "./images/Unsplash"
-import Loading from "./login/Loading"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -79,7 +78,7 @@ export default function App() {
       <main>
         <Switch>
           <Route path="/assets/:id">
-            <Asset handleDeleteAsset={handleDeleteAsset}/>
+            <Asset handleDeleteAsset={handleDeleteAsset} user={user}/>
           </Route>
           <Route path="/assets">
             <Catalog/>
@@ -103,7 +102,7 @@ export default function App() {
             <User user={user}/>
           </Route>
           <Route path="/projects/:id">
-            <Project handleDeleteProject={handleDeleteProject} />
+            <Project handleDeleteProject={handleDeleteProject} user={user} />
           </Route>
           <Route path="/projects">
             <Catalog />

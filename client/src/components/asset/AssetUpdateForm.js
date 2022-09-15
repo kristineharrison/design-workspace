@@ -1,39 +1,37 @@
-import React from "react";
-import { useState } from "react";
-import { Button, FormField, Input, Label, Textarea } from "../ui";
-import { useParams } from "react-router-dom";
+import React from "react"
+import { useState } from "react"
+import styled from "styled-components"
+import { FormField, Input, Label, Textarea } from "../ui"
+import Button from "react-bootstrap/esm/Button"
 
-export default function AssetUpdateForm({ setAsset, handleClick })  {
-  const [description, setDescription] = useState("");
-  const [source, setSource] = useState("");
-  const [title, setTitle] = useState("");
+export default function AssetUpdateForm({ asset, handleClick, handleUpdate })  {
+  const [description, setDescription] = useState("")
+  const [source, setSource] = useState("")
+  const [title, setTitle] = useState("")
   const [tags, setTags] = useState("")
-
-  const { id } = useParams()
   
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    fetch(`/assets/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        description: description,
-        source: source,
-        title: title,
-        tags: tags
-      }),
-    })
-    .then((resp) => resp.json())
-    .then((data) => setAsset(data))
-    
-    handleClick();
+// Update asset
+function handleSubmit(e) {
+  e.preventDefault()
+  fetch(`/assets/${asset.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: title,
+      source: source,
+      description: description,
+      tags: tags
+    }),
+  })
+  .then((resp) => resp.json())
+  .then(handleUpdate);
+  handleClick();
 }
 
   return (
-    <div>
+    <Container>
         <form onSubmit={handleSubmit}>
         <FormField>
             <Label htmlFor="title">Update Title</Label>
@@ -76,11 +74,15 @@ export default function AssetUpdateForm({ setAsset, handleClick })  {
             />
           </FormField>
           <FormField>
-              <Button color="primary" type="submit">
+              <Button variant="outline-secondary" type="submit">
                 Submit
               </Button>
           </FormField>
         </form>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+width: 50%;
+`

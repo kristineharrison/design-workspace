@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
 
 
-export default function Asset({ handleDeleteAsset  }) {
+export default function Asset({ handleDeleteAsset, user  }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set asset state
@@ -41,7 +41,6 @@ export default function Asset({ handleDeleteAsset  }) {
   if (status === "pending") return <h1>Loading...</h1>;
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
-
   // Toggle update form on click
   function handleClick() {
     setShowForm((showForm) => !showForm);
@@ -52,7 +51,11 @@ export default function Asset({ handleDeleteAsset  }) {
         ...asset, projects: [...asset.projects, newProjectId],
       }
     })
-    // history.push("/catalog")
+  }
+
+  function handleUpdate(updated) {
+    const updatedAsset = asset.id === updated.id ? updated : asset;
+    setAsset({ data: updatedAsset, error: null, status: "resolved"})
   }
  
   return (
@@ -63,17 +66,16 @@ export default function Asset({ handleDeleteAsset  }) {
         <cite>Source: {asset.source}</cite>
         <p className="desc">{asset.description}</p>
         <div>
-          <p className="tags">Tags:  {asset.tags}</p>
-          
-        </div>
-        
+          <p className="tags">Tags: {asset.tags} <br />
+          Owner: {user.username}</p>
+        </div>   
       </TextBox>
        
-      <div>
+      <ButtonBox>
         <Button variant="outline-secondary" onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
-        {/* <Button variant="outline-secondary" onClick={() => handleClick(asset.id)}>Update</Button> */}
-      </div>
-      {/* {showForm ? <AssetUpdateForm asset={asset} setAsset={setAsset} handleClick={handleClick}/> : null} */}
+        <Button variant="outline-secondary" onClick={() => handleClick(asset.id)}>Update Asset</Button>
+      </ButtonBox>
+      {showForm ? <AssetUpdateForm asset={asset} handleClick={handleClick} handleUpdate={handleUpdate}/> : null}
       
       {/* Map over associated projects */}
       <h3>Appears in These Projects</h3>
@@ -109,7 +111,7 @@ img {
 h3 {
   margin-top: 30px;
 }
-`;
+`
 
 const ProjectCollection = styled.div`
 max-width: 500px;
@@ -118,7 +120,7 @@ display: flex;
 flex-flow: row wrap;
 gap: 20px;
 overflow-x: auto;
-`;
+`
 
 const TextBox = styled.div`
 margin-top: 30px;
@@ -130,5 +132,11 @@ overflow-x: auto;
   font-weight: 500;
   text-transform: uppercase;
 }
+`
 
-`;
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  gap: 10px;
+`
