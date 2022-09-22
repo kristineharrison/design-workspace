@@ -43,7 +43,7 @@ export default function AssetCreateForm() {
   return (
     <Container>
       <h2>Create Asset</h2>
-      <p>Upload an image file.</p>
+      <p>Upload an image file. JPG, PNG, SVG accepted file formats.</p>
       <form onSubmit={handleSubmit}>
         <Upload>
           <input

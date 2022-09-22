@@ -12,6 +12,9 @@ export default function Login({ onLogin }) {
     <Container>
       
       <Logo>Workspace</Logo>
+      <h3>Productivity Tool for Projects &amp; Assets</h3>
+
+      <LoginContainer>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
@@ -21,6 +24,7 @@ export default function Login({ onLogin }) {
             <Button color="secondary" onClick={() => setShowLogin(false)}>
               Sign Up
             </Button>
+            <small>Demo username: test pass: howdy</small>
           </p>
         </>
       ) : (
@@ -35,6 +39,7 @@ export default function Login({ onLogin }) {
           </p>
         </>
       )}
+      </LoginContainer>
     </Container>
   );
 }
@@ -64,3 +69,7 @@ const Divider = styled.hr`
   border-bottom: 1px solid #ccc;
   margin: 16px 0;
 `;
+
+const LoginContainer = styled.div`
+  margin-top: 80px;
+  `

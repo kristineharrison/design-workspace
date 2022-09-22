@@ -11,6 +11,7 @@ import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 import Unsplash from "./images/Unsplash"
+import Loading from "./login/Loading"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -30,8 +31,8 @@ export default function App() {
     })
   }, [])
   
-  if (!user) return <Login onLogin={setUser} />
-  // if (!user) return <Loading />
+  // if (!user) return <Login onLogin={setUser} />
+  if (!user) return <Loading />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
