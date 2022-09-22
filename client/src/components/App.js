@@ -31,8 +31,8 @@ export default function App() {
     })
   }, [])
   
-  // if (!user) return <Login onLogin={setUser} />
-  if (!user) return <Loading />
+  if (!user) return <Login onLogin={setUser} />
+  // if (!user) return <Loading />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
