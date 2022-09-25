@@ -61,7 +61,7 @@ export default function Unsplash() {
       <h2>Unsplash Photo Search</h2>
       <TextBox>
         Unsplash is a source for beautiful, free images and photos that you can download and use for any project. 
-        Search over 3 million high-resolution images and add to your workspace catalog.
+        Search over 3 million high-resolution images and add to your Workspace catalog.
       </TextBox>
       
       <div className="container-fluid">

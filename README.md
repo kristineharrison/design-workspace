@@ -1,17 +1,17 @@
-# Flatiron Phase 5 Capstone Project
+# WORKSPACE - Flatiron Phase 5 Capstone Project
 
 Workspace - a productivity app to help wrangle all the various assets related to design projects. It is built using a React frontend and a Ruby on Rails backend utilizing a Postgres database. I mainly used React Styled Components for CSS, with a little Bootstrap 5 thrown in for fun. And navigation.
 
-• React.js frontend
-  • Styled-Components for main CSS styling
-  • Bootstrap 5 for navigation
-  • Axios and Fetch for third-party API handling
+* React.js frontend
+  * Styled-Components for main CSS styling
+  * Bootstrap 5 for navigation
+  * Axios and Fetch for third-party API handling
 
-• Ruby on Rails backend
-  • Active Record
-  • Active Storage for uploading and storing images
-  • BCrypt for password handling
-  • Postgresql@14 database
+* Ruby on Rails backend
+  * Active Record
+  * Active Storage for uploading and storing images
+  * BCrypt for password handling
+  * Postgresql@14 database
 
 Having worked in the design field for many years, I know firsthand how frustrating it can be to keep track of the various pieces needed for one project, let alone multiple projects. A dedicated workspace would be very helpful. 
 
