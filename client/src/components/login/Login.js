@@ -12,7 +12,7 @@ export default function Login({ onLogin }) {
     <Container>
       
       <Logo>Workspace</Logo>
-      <h3>Productivity Tool for Projects &amp; Assets</h3>
+      <p><em>Productivity app to manage design projects &amp; related image assets</em></p>
 
       <LoginContainer>
       {showLogin ? (
@@ -24,7 +24,6 @@ export default function Login({ onLogin }) {
             <Button color="secondary" onClick={() => setShowLogin(false)}>
               Sign Up
             </Button>
-            <small>Demo username: test pass: howdy</small>
           </p>
         </>
       ) : (
