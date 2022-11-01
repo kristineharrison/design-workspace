@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
 
 
-export default function Asset({ handleDeleteAsset, user  }) {
+export default function Asset({ handleDeleteAsset, user }) {
   // Set update form state, start with hidden
   const [showForm, setShowForm] = useState(false)
   // Set asset state
@@ -60,29 +60,44 @@ export default function Asset({ handleDeleteAsset, user  }) {
  
   return (
     <Container>
-      {asset.image_url ? <img src={asset.image_url} alt={asset.title}/> : <img src={asset.image_data} alt={asset.title}/>}
+      {asset.image_url ? <img src={asset.image_url} alt={asset.title} />
+        : <img src={asset.image_data} alt={asset.title} />}
       <TextBox>
         <h1>{asset.title}</h1>
         <cite>Source: {asset.source}</cite>
         <p className="desc">{asset.description}</p>
         <div>
-          <p className="tags">Tags: {asset.tags} <br />
-          Owner: {user.username}</p>
+          <p className="tags">
+            Tags: {asset.tags} <br />
+            Owner: {user.username}
+          </p>
         </div>   
       </TextBox>
        
       <ButtonBox>
-        <Button variant="outline-secondary" onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
-        <Button variant="outline-secondary" onClick={() => handleClick(asset.id)}>Update Asset</Button>
+        <Button variant="outline-secondary"
+          onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
+        <Button variant="outline-secondary"
+          onClick={() => handleClick(asset.id)}>Update Asset</Button>
       </ButtonBox>
-      {showForm ? <AssetUpdateForm asset={asset} handleClick={handleClick} handleUpdate={handleUpdate}/> : null}
+
+      {showForm ?
+        <AssetUpdateForm asset={asset}
+          handleClick={handleClick}
+          handleUpdate={handleUpdate} />
+        : null}
       
       {/* Map over associated projects */}
       <h3>Appears in These Projects</h3>
       <ProjectCollection>
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
-            <Button variant="outline-secondary" as={ Link } to= {`/projects/${project.id}`} key={uuid()}>{project.proname}</Button>
+            <Button
+              variant="outline-secondary"
+              as={Link}
+              to={`/projects/${project.id}`}
+              key={uuid()}>{project.proname}
+            </Button>
           ))
         ) : (
         <div className="no-asset">

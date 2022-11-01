@@ -60,11 +60,20 @@ export default function Project({ handleDeleteProject, user }) {
       </TextBox>
 
       <ButtonBox>
-        <Button variant="outline-secondary" onClick={() => handleDeleteProject(id)}>Delete Project</Button>
-        <Button variant="outline-secondary" onClick={() => handleClick(id)}>Update Project</Button>
+        <Button variant="outline-secondary"
+          onClick={() => handleDeleteProject(id)}>Delete Project</Button>
+        <Button variant="outline-secondary"
+          onClick={() => handleClick(id)}>Update Project</Button>
       </ButtonBox>
-      {showForm ? <ProjectUpdateForm project={project} setProject={setProject} handleClick={handleClick} handleUpdate={handleUpdate}/> : null} 
-      {console.log(project.proname)}
+      {showForm ?
+        <ProjectUpdateForm
+          project={project}
+          setProject={setProject}
+          handleClick={handleClick}
+          handleUpdate={handleUpdate} />
+        : null} 
+    
+      <h3>Associated Assets</h3>
       <Collection>
         {/* Display list of associated assets or option to add one if none */}
         {project.assets.length > 0 ? (
@@ -96,10 +105,13 @@ justify-content: center;
   font-weight: 700;
   text-transform: uppercase;
 }
-`
 
+h3 {
+  margin-top: 30px;
+}
+`
 const Collection = styled.div`
-margin-top: 50px;
+margin-top: 20px;
 display: flex;
 flex-flow: row wrap;
 justify-content: center;
