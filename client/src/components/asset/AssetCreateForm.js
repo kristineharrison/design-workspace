@@ -77,7 +77,6 @@ export default function AssetCreateForm() {
           <Textarea
             id="description"
             rows="3"
-            placeholder="Required"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -87,7 +86,6 @@ export default function AssetCreateForm() {
           <Input
             type="text"
             id="tags"
-            placeholder="Required"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
           />
@@ -100,11 +98,11 @@ export default function AssetCreateForm() {
           </Button>
           </div>
         </FormField>
-        {/* <FormField>
+        <FormField>
           {errors.map((err) => (
             <Error key={err}>{err}</Error>
           ))}
-        </FormField> */}
+        </FormField>
       </form>
     </Container>
   );

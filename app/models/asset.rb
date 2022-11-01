@@ -5,5 +5,5 @@ class Asset < ApplicationRecord
  
   has_one_attached :image_data
 
-  validates :title, presence: true
+  validates :title, :source, presence: true
 end
