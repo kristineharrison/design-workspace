@@ -3,5 +3,6 @@ class Project < ApplicationRecord
   has_many :project_assets, dependent: :destroy
   has_many :assets, through: :project_assets
 
-  # validates :proname, presence: true, uniqueness: true
+  validates :proname, :prostatus, :summary, presence: true
+  validates :proname, uniqueness: true
 end
