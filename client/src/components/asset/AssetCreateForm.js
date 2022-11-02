@@ -1,19 +1,18 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router"
-import uuid from "react-uuid"
-import styled from "styled-components";
+import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 import { Error, FormField, Input, Label, Textarea } from "../ui";
 
 export default function AssetCreateForm() {
-  const [title, setTitle] = useState("");
-  const [source, setSource] = useState("");
-  const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [title, setTitle] = useState("")
+  const [source, setSource] = useState("")
+  const [description, setDescription] = useState("")
+  const [tags, setTags] = useState("")
+  const [errors, setErrors] = useState([])
   const [imageData, setImageData] = useState(null)
 
-  const history = useHistory();
+  const history = useHistory()
 
  
   function handleSubmit(e) {
@@ -29,15 +28,15 @@ export default function AssetCreateForm() {
     fetch("/assets", {
       method: "POST",
       body: formData,
-      }).then((r) => {
+    }).then((r) => {
       if (r.ok) {
         r.json().then((asset) => {
           history.push("/catalog")
-        });
+        })
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err.errors))
       }
-    });
+    })
   }
 
   return (
@@ -105,7 +104,7 @@ export default function AssetCreateForm() {
         </FormField>
       </form>
     </Container>
-  );
+  )
 }
 
 const Container = styled.section`
@@ -114,7 +113,7 @@ const Container = styled.section`
   padding: 16px;
   display: flex;
   flex-direction: column;
-`;
+`
 
 const Upload = styled.div`
   display: flex;

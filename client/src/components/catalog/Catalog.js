@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Route } from "react-router-dom"
 import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 import AssetCard from "./AssetCard"
@@ -8,26 +8,40 @@ import ProjectCard from "./ProjectCard"
 
 export default function Catalog({ assets, setAssets, projects, setProjects }) {
   const [ status, setStatus ] = useState("pending")
-
+  const [ errors, setErrors ] = useState(null)
+  
   // Get project data
   useEffect(() => {
     fetch("/projects")
-      .then((r) => r.json())
-      .then((projects) =>
-        setProjects(projects),
-        setStatus("resolved"));
-  }, []);
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((projects) =>
+            setProjects(projects),
+            setStatus("resolved")
+          )
+        } else {
+          r.json().then((err) => setErrors(err.errors), setStatus("rejected"))
+        }
+      })
+  }, [])
 
   // Get asset data
   useEffect(() => {
     fetch("/assets")
-      .then((r) => r.json())
-      .then((assets) =>
-        setAssets(assets),
-        setStatus("resolved"));
-  }, []);
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((assets) =>
+            setAssets(assets),
+            setStatus("resolved")
+          )
+        } else {
+          r.json().then((err) => setErrors(err.errors), setStatus("rejected"))
+        }
+      })
+  }, [])
 
-  if (status === "pending") return <h1>Loading...</h1>;
+  if (status === "pending") return <h2>Loading...</h2>
+  if (status === "rejected") return <h2>Error: {errors.error}</h2>
 
   return (
     <Container>
@@ -85,11 +99,11 @@ const Container = styled.section`
     flex-direction: column;
     align-items: center;
   }
-`;
+`
 
 const Collection = styled.div`
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 24px;
   justify-content: center;
-`;
+`

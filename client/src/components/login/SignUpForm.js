@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { Button, Error, Input, FormField, Label } from "../ui";
+import React, { useState } from "react"
+import { Button, Error, Input, FormField, Label } from "../ui"
 
 export default function SignUpForm({ onLogin }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [errors, setErrors] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleSubmit(e) {
-    e.preventDefault();
-    setErrors([]);
-    setIsLoading(true);
+    e.preventDefault()
+    setErrors([])
+    setIsLoading(true)
     fetch("/signup", {
       method: "POST",
       headers: {
@@ -30,11 +30,11 @@ export default function SignUpForm({ onLogin }) {
   
       }),
     }).then((r) => {
-      setIsLoading(false);
+      setIsLoading(false)
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => onLogin(user))
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err.errors))
       }
     });
   }

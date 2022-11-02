@@ -18,7 +18,6 @@ export default function App() {
   const [projects, setProjects] = useState([])
   const [assets, setAssets] = useState([])
   const [error, setErrors] = useState(null)
-  const [status, setStatus] = useState()
 
   const history = useHistory()
 
@@ -44,8 +43,7 @@ export default function App() {
         )
       } else {
         r.json().then((err) =>
-          setAssets(null),
-          setStatus("rejected")
+          setAssets({ data: null, error: err.error })
         )
       }
       setErrors([])
@@ -63,15 +61,13 @@ export default function App() {
         )
       } else {
         r.json().then((err) =>
-          setAssets({ data: null, error: err.error, status: "rejected" })
+          setProjects({ data: null, error: err.error })
         )
       }
       setErrors([])
       history.push("/catalog")
     })
   }
-  if (status === "pending") return <h1>Loading...</h1>;
-  if (status === "rejected") return <h1>Error: {error.error}</h1>;
  
   return (
     <>

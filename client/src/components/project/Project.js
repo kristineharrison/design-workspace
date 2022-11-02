@@ -37,8 +37,8 @@ export default function Project({ handleDeleteProject, user }) {
   }, [id])
 
   // Update status state
-  if (status === "pending") return <h1>Loading...</h1>;
-  if (status === "rejected") return <h1>Error: {error.error}</h1>;
+  if (status === "pending") return <h4>Loading...</h4>;
+  if (status === "rejected") return <h4>Error: {error.error}</h4>;
 
   // Toggle update form on click
   function handleClick() {

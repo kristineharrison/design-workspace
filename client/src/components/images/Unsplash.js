@@ -8,27 +8,36 @@ export default function Unsplash() {
   const [img, setImg] = useState("cat")
   const [res, setRes] = useState([])
   const [errors, setErrors] = useState([])
+  const [ status, setStatus ] = useState("pending")
 
   const history = useHistory()
 
+  // Settings for retrieving Unsplash images using API key
   const fetchRequest = async () => {
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=20`
+      `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=8`
     );
-    const res = await data.json();
-    const result = res.results;
-    setRes(result);
+    const res = await data.json()
+    const result = res.results
+    setRes(result)
+    setStatus("resolved")
   };
  
+  // Get initial search request
   useEffect(() => {
-    fetchRequest();
+    fetchRequest()
   }, []);
 
   const Submit = () => {
-    fetchRequest();
-    setImg("");
-  };
+    fetchRequest()
+    setImg("")
+  }
 
+  // Update status state
+  if (status === "pending") return <h4>Loading...</h4>;
+  if (status === "rejected") return <h4>Error: {errors.error}</h4>;
+
+  // Add new image to catalog
   function addPhoto(asset) {
     const formData = {
       title: asset.alt_description,
@@ -38,7 +47,7 @@ export default function Unsplash() {
       tags: "Unsplash",
       image_data: null,
     }
-    console.log("formData: ", formData)
+    
     fetch("/assets", {
       method: "POST",
       headers: {
@@ -60,8 +69,9 @@ export default function Unsplash() {
     <Container>
       <h2>Unsplash Photo Search</h2>
       <TextBox>
-        Unsplash is a source for beautiful, free images and photos that you can download and use for any project. 
-        Search over 3 million high-resolution images and add to your Workspace catalog.
+        <a href="http://www.unsplash.com" target="_blank">Unsplash</a> is a source for beautiful, free images and photos that you
+        can download and use for any project. Search over 3 million high-resolution
+        images and add to your <strong>WORKSPACE</strong> catalog.
       </TextBox>
       
       <div className="container-fluid">
@@ -109,9 +119,6 @@ const Container = styled.section`
 
 const TextBox = styled.div`
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 30px;
 `
 const Img = styled.div`

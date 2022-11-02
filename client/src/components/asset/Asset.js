@@ -18,7 +18,7 @@ export default function Asset({ handleDeleteAsset, user }) {
     status: "pending",
   })
 
-  const history = useHistory();
+  const history = useHistory()
   const { id } = useParams()
 
   // Fetch individual asset data and update status
@@ -28,22 +28,22 @@ export default function Asset({ handleDeleteAsset, user }) {
       if (r.ok) {
         r.json().then((asset) =>
           setAsset({ data: asset, error: null, status: "resolved" })
-        );
+        )
       } else {
         r.json().then((err) =>
           setAsset({ data: null, error: err.error, status: "rejected" })
-        );
+        )
       }
-    });
-  }, [id]);
+    })
+  }, [id])
 
   // Update status state
-  if (status === "pending") return <h1>Loading...</h1>;
-  if (status === "rejected") return <h1>Error: {error.error}</h1>;
+  if (status === "pending") return <h4>Loading...</h4>
+  if (status === "rejected") return <h4>Error: {error.error}</h4>
 
   // Toggle update form on click
   function handleClick() {
-    setShowForm((showForm) => !showForm);
+    setShowForm((showForm) => !showForm)
   }
 
   function handleAddProject(newProjectId) {
@@ -54,7 +54,7 @@ export default function Asset({ handleDeleteAsset, user }) {
   }
 
   function handleUpdate(updated) {
-    const updatedAsset = asset.id === updated.id ? updated : asset;
+    const updatedAsset = asset.id === updated.id ? updated : asset
     setAsset({ data: updatedAsset, error: null, status: "resolved"})
   }
  
@@ -88,7 +88,7 @@ export default function Asset({ handleDeleteAsset, user }) {
         : null}
       
       {/* Map over associated projects */}
-      <h3>Appears in These Projects</h3>
+      <h3>Associated Projects</h3>
       <ProjectCollection>
         {asset.projects.length > 0 ? (
           asset.projects.map((project) => (
@@ -107,7 +107,7 @@ export default function Asset({ handleDeleteAsset, user }) {
       </ProjectCollection>
       <AddProject onAddProject={handleAddProject} asset={asset} />
     </Container>
-  );
+  )
 }
 
 const Container = styled.div`
