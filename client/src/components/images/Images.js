@@ -1,8 +1,8 @@
-import React, { useState }from "react";
-import { Route, useRouteMatch } from "react-router-dom";
-import styled from "styled-components";
-import StyleList from "./StyleList";
-import StyleDisplay from "./StyleDisplay";
+import React, { useState }from "react"
+import { Route, useRouteMatch } from "react-router-dom"
+import styled from "styled-components"
+import StyleList from "./StyleList"
+import StyleDisplay from "./StyleDisplay"
 
 
 export default function Images() {
@@ -17,7 +17,6 @@ export default function Images() {
   });
   
   const match = useRouteMatch()
-  console.log("Match: ", match)
 
   return (
     <Container>
@@ -37,7 +36,7 @@ export default function Images() {
         <StyleDisplay styles={styles} setStyles={setStyles}/>
       </Route> 
     </Container>
-  );
+  )
 }
 
 const Container = styled.section`
@@ -45,7 +44,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 const TextBox = styled.div`
   width: 70%;
