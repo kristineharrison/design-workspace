@@ -37,7 +37,7 @@ export default function Unsplash() {
   if (status === "pending") return <h4>Loading...</h4>;
   if (status === "rejected") return <h4>Error: {errors.error}</h4>;
 
-  // Add new image to catalog
+  // Add Unsplash image to catalog
   function addPhoto(asset) {
     const formData = {
       title: asset.alt_description,
@@ -99,10 +99,9 @@ export default function Unsplash() {
                   src={asset.urls.small}
                   alt="asset.alt_description"
                 />
-                
                 <Button variant="outline-secondary" onClick={() => addPhoto(asset)}>Add</Button>
               </Img>
-            );
+            )
           })}
         </PhotoCollection>
       </div>

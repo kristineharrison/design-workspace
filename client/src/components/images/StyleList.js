@@ -7,9 +7,12 @@ export default function StyleList({ styles }) {
   // List of style links
   const renderStyles = Object.keys(styles).map((styleID) => (
     <li key={styleID}>
-      <Link to={`/images/${styleID}/${styles[styleID].title.toLowerCase()}`}>{styles[styleID].title}</Link>
+      <Link
+        to={`/images/${styleID}/${styles[styleID].title.toLowerCase()}`}>
+        {styles[styleID].title}
+      </Link>
     </li>
-  ));
+  ))
 
   return (
     <Container>
@@ -18,7 +21,7 @@ export default function StyleList({ styles }) {
         <ul className="schemes">{renderStyles}</ul>
       </TextBox>
     </Container>
-  );
+  )
 }
 
 const Container = styled.section`
@@ -28,7 +31,7 @@ const Container = styled.section`
   align-items: center;
 
   ul.schemes {
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -36,11 +39,11 @@ const Container = styled.section`
   }
 
   li {
-    font-size: 1.25rem;
+    font-size: 1.2 rem;
   }
 `
 const TextBox = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

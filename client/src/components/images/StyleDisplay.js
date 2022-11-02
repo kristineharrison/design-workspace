@@ -104,7 +104,11 @@ export default function StyleDisplay({ styles }) {
     break
 
     default:
-      console.log("no match")
+      styleClass= ""
+      styleText= 
+      <div>
+        Image with no class applied.
+      </div>
       break
   }
 
