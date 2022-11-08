@@ -13,22 +13,23 @@ export default function ColorSwatch() {
     status: "pending",
   })
 
-  // Fetch initial color data and update status
+  // Fetch initial color data from The Color API and update status
   useEffect(() => {
     fetch(`https://www.thecolorapi.com/id?hex=E53F16`)
     .then((r) => {
       if (r.ok) {
         r.json().then((colorData) =>
           setColorData({ data: colorData, error: null, status: "resolved" })
-        );
+        )
       } else {
         r.json().then((err) =>
           setColorData({ data: null, error: err.error, status: "rejected" })
-        );
+        )
       }
-    });
-  }, []);
+    })
+  }, [])
 
+  // Fetch color data from The Color API upon hexadecimal value submit
   function handleSubmit(e) {
     e.preventDefault()
     fetch(`https://www.thecolorapi.com/id?hex=${hexValue}`)
@@ -50,7 +51,7 @@ export default function ColorSwatch() {
   if (status === "pending") return <h1>Loading...</h1>
   if (status === "rejected") return <h1>Error: {error.error}</h1>
 
- 
+
   return (
     <Container>
       <h2>Working with Hexadecimals</h2>
