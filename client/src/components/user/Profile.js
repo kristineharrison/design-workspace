@@ -24,8 +24,8 @@ export default function Profile()  {
           <li><a href="/new-asset">Add a new asset</a></li>
           <li><a href="/new-project">Start a new project</a></li>
           <li><a href="/unsplash">Search for a photo</a></li>
-          <li><a href="/unsplash">Pick a new color scheme</a></li>
-          <li><a href="/unsplash">Learn about CSS image styles</a></li>
+          <li><a href="/colors">Pick a new color scheme</a></li>
+          <li><a href="/images">Learn about CSS image styles</a></li>
         </ul>
       </Center>
     </Container>
