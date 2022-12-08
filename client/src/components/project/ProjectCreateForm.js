@@ -11,6 +11,7 @@ export default function ProjectCreateForm() {
   const [ errors, setErrors ] = useState([])
   const history = useHistory()
   
+  // Create new project
   function handleSubmit(e) {
     e.preventDefault()
     fetch("/projects", {
