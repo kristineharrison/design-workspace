@@ -59,6 +59,19 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  li {
+    font-size: 1.25rem;
+  }
+
+  .container {
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
 `
 
 export default GlobalStyle;

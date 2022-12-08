@@ -6,23 +6,15 @@ import styled from "styled-components"
 export default function User({ user }) {
 
   return (
-    <Container>
+    <div className="container">
       <Img src={"/images/profile-beach.jpg"} alt="Beach Image" />
       <Profile />
       <ProjectList user={user} />
-    </Container>
+    </div>
   )
 }
 
 // Styled-Components CSS
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  margin: 60px auto;
-`
-
 const Img = styled.img`
   height: 350px;
   width: 600px;

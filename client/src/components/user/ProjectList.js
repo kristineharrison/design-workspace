@@ -5,9 +5,9 @@ import styled from "styled-components"
 import uuid from "react-uuid"
 
 export default function ProjectList({ user }) {
-  // Map over associated projects
+  // Map over associated projects; return list of button links of available projects or return "No projects" if none available
   return(
-    <Container>
+    <div className="container">
       <h3>Check out a project?</h3>
       <List>
         {user.projects.length > 0 ? (
@@ -25,14 +25,11 @@ export default function ProjectList({ user }) {
         )
       }
       </List>  
-    </Container>
+    </div>
   )
 }
 
-const Container = styled.div`
-display: flex;
-flex-direction: column;
-`
+// Style-Components CSS
 const List = styled.div`
 display: flex;
 flex-flow: row wrap;
