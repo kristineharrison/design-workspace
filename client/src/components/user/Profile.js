@@ -1,6 +1,5 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import styled from "styled-components"
 
 export default function Profile()  {
   const [profile, setProfile] = useState("")

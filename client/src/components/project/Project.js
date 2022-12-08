@@ -51,20 +51,24 @@ export default function Project({ handleDeleteProject, user }) {
   }
   
   return (
-    <Container>
+    <div className="container">
+      {/* Project info */}
       <TextBox>
         <h1>{project.proname}</h1>
         <p className="status">Status: {project.prostatus}</p>
         <p>{project.summary}</p>
         <p className="tags">Owner: {user.username}</p>
       </TextBox>
-
+    
+      {/* Delete Project or Update Project buttons */}
       <ButtonBox>
         <Button variant="outline-secondary"
           onClick={() => handleDeleteProject(id)}>Delete Project</Button>
         <Button variant="outline-secondary"
           onClick={() => handleClick(id)}>Update Project</Button>
       </ButtonBox>
+      
+      {/* Update Project Form Toggle */}
       {showForm ?
         <ProjectUpdateForm
           project={project}
@@ -90,38 +94,22 @@ export default function Project({ handleDeleteProject, user }) {
         </div>
         )}
       </Collection>
-    </Container>
+    </div>
   )
 }
 
-const Container = styled.section`
-margin-top: 50px;
+// Styled-Components CSS
+const TextBox = styled.div`
 display: flex;
 flex-direction: column;
-align-items: center;
-justify-content: center;
+justify-content: flex-start;
+align-items: flex-start;
+width: 80%;
 
 .status {
   font-weight: 700;
   text-transform: uppercase;
 }
-
-h3 {
-  margin-top: 30px;
-}
-`
-const Collection = styled.div`
-margin-top: 20px;
-display: flex;
-flex-flow: row wrap;
-justify-content: center;
-`
-
-const TextBox = styled.div`
-display: flex;
-flex-direction: column;
-width: 60%;
-align-items: center;
 
 .tags {
   font-weight: 500;
@@ -131,6 +119,12 @@ align-items: center;
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   gap: 10px;
+`
+const Collection = styled.div`
+margin-top: 20px;
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
 `

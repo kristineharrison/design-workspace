@@ -4,14 +4,12 @@ const FormField = styled.div`
   &:not(:last-child) {
     margin-bottom: 12px;
   }
-
+  
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   justify-content: center;
-
-  div {
-    margin: 0 auto;
-  }
+  margin-bottom: 80px;
+  width: 450px;
 `;
 
 export default FormField;

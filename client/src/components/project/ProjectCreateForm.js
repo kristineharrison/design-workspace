@@ -1,7 +1,6 @@
 import React from "react"
 import { useState } from "react"
 import { useHistory } from "react-router"
-import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 import { Error, FormField, Input, Label, Textarea } from "../ui"
 
@@ -34,8 +33,8 @@ export default function ProjectCreateForm() {
   }
 
   return (
-    <Container>
-      <h2>Create Project</h2>
+    <div className="container">
+      <h2>Create New Project</h2>
       
       <form onSubmit={handleSubmit}>
         <FormField>
@@ -81,14 +80,6 @@ export default function ProjectCreateForm() {
           ))}
         </FormField>
       </form>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.section`
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-`

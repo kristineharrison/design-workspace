@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import { FormField, Input, Label, Textarea } from "../ui"
-import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 
 export default function ProjectUpdateForm({ project, handleClick, handleUpdate })  {
   const [proname, setProName] = useState("")
   const [prostatus, setProStatus] = useState("")
   const [summary, setSummary] = useState("")
-  const [error, setErrors] = useState(null)
 
   // Update project
   function handleSubmit(e) {
@@ -29,7 +27,7 @@ export default function ProjectUpdateForm({ project, handleClick, handleUpdate }
   }
 
   return (
-    <Container>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <FormField>
           <Label htmlFor="name">Name</Label>
@@ -67,11 +65,6 @@ export default function ProjectUpdateForm({ project, handleClick, handleUpdate }
             </Button>
         </FormField>
        </form>
-    </Container>
+    </div>
   )
 }
-
-const Container = styled.section`
-width: 400px;
-
-`
