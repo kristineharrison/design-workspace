@@ -32,6 +32,7 @@ export default function Profile()  {
   )
 }
 
+// Styled-Components CSS
 const Container = styled.section`  
   max-width: 80%;
   padding: 16px;

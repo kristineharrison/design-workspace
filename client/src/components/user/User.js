@@ -3,7 +3,6 @@ import Profile from "./Profile"
 import ProjectList from "./ProjectList"
 import styled from "styled-components"
 
-
 export default function User({ user }) {
 
   return (
@@ -15,6 +14,7 @@ export default function User({ user }) {
   )
 }
 
+// Styled-Components CSS
 const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ const Container = styled.section`
 `
 
 const Img = styled.img`
-  height: 500px;
-  width: 800px;
+  height: 350px;
+  width: 600px;
   object-fit: cover;
 `
