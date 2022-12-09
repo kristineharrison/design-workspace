@@ -20,7 +20,7 @@ export default function SchemeList({ hexValue }) {
 
   // List of color scheme links
   const renderSchemes = Object.keys(schemes).map((schemeId) => (
-    <li key={uuid}>
+    <li key={uuid()}>
       <Link
         to={`/colors/${schemeId}/${schemes[schemeId].title.toLowerCase()}`}>
         {schemes[schemeId].title}
@@ -29,42 +29,36 @@ export default function SchemeList({ hexValue }) {
   ))
 
   return (
-    <Container>
-      <h2>Color Schemes</h2>
+    <>
       <TextBox>
-        Color schemes are multi-color combinations chosen according to color-wheel
-        relationships.The purpose of a color scheme is to create an aesthetic
-        feeling of style and appeal.
-        <ul className="schemes">{renderSchemes}</ul>
+        <h3>Color Schemes</h3>
+        <ul>{renderSchemes}</ul>
       </TextBox>
       
       <Route path={`${match.url}/:schemeId`}>
         <SchemeDisplay schemes={schemes} hexValue={hexValue}/>
       </Route>
-    </Container>
+    </>
   )
 }
-const Container = styled.section`
-  margin-top: 40px;
+
+// Styled-Components CSS
+const TextBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  ul.schemes {
-    margin-top: 20px;
+  ul {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-flow: column;
+    align-items: center;
+    line-height: 1.7em;
+    margin: 0;
+    padding: 0;
   }
 
   li {
-    font-size: 1.2 rem;
+    font-size: 1.2em;
   }
-`
-const TextBox = styled.div`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `

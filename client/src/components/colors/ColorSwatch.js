@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import { Input } from "../ui"
 
 export default function ColorSwatch() {
-  const [ hexValue, setHexValue ] = useState("")
+  const [ hexValue, setHexValue ] = useState("3E8156")
   const [ { data: colorData, error, status }, setColorData ] = useState({
     colorData: null,
     error: null,
@@ -15,7 +15,7 @@ export default function ColorSwatch() {
 
   // Fetch initial color data from The Color API and update status
   useEffect(() => {
-    fetch(`https://www.thecolorapi.com/id?hex=E53F16`)
+    fetch(`https://www.thecolorapi.com/id?hex=3e8156`)
     .then((r) => {
       if (r.ok) {
         r.json().then((colorData) =>
@@ -53,40 +53,55 @@ export default function ColorSwatch() {
 
 
   return (
-    <Container>
+    <div className="container">
       <h2>Working with Hexadecimals</h2>
-      <form id="input-form" onSubmit={handleSubmit}>
-        <label>Enter a Hex Number:</label>
-        <Input 
-          type="text" 
-          name="hex" placeholder="no #"
-          pattern="[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" 
-          title="Please enter valid Hex code without #" 
-          value={hexValue}
-          onChange={(e) => setHexValue(e.target.value)}/>
-        <Button variant="outline-secondary" id="hex-input-btn" type="submit">Submit</Button>
-      </form>
-      <h3>{colorData.name.value}</h3>
-      <img src={colorData.image.bare} alt={colorData.name.value} />
-      <ul>
-        <li><span>Hex: </span>{colorData.hex.value}</li>
-        <li><span>RGB: </span>{colorData.rgb.value}</li>
-        <li><span>CMYK: </span>{colorData.cmyk.value}</li>
-        <li><span>HSL: </span>{colorData.hsl.value}</li>
-      </ul>
-      <SchemeList hexValue={hexValue}/>
-    </Container>
+      <ColorForm>
+        <form id="input-form" onSubmit={handleSubmit}>
+          <label>Enter a Hex Number:</label>
+          <Input 
+            type="text" 
+            name="hex" placeholder="no #"
+            pattern="[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" 
+            title="Please enter valid Hex code without #" 
+            value={hexValue}
+            onChange={(e) => setHexValue(e.target.value)}/>
+          <Button variant="outline-secondary" id="hex-input-btn" type="submit">Submit</Button>
+        </form>
+      </ColorForm>
+      <SmallContainer>
+        <Swatch>
+          {/* Show submitted hex color swatch and info */}
+          <h3>{colorData.name.value}</h3>
+          <img src={colorData.image.bare} alt={colorData.name.value} />
+          <ul>
+            <li><span>Hex: </span>{colorData.hex.value}</li>
+            <li><span>RGB: </span>{colorData.rgb.value}</li>
+            <li><span>CMYK: </span>{colorData.cmyk.value}</li>
+            <li><span>HSL: </span>{colorData.hsl.value}</li>
+          </ul>
+        </Swatch>
+        <SchemeList hexValue={hexValue}/>
+      </SmallContainer>
+      <TextBox>
+        <p><strong>Color schemes</strong> are multi-color combinations chosen according to color-wheel
+        relationships. The purpose of a color scheme is to create an aesthetic
+        feeling of style and appeal.</p>
+        <ul>
+          <li><strong>Complementary</strong> schemes are created by combining colors from opposite sides of the color wheel.</li>
+          <li><strong>Analogous</strong> color schemes are created by using colors that are next to each other on the color wheel.</li>
+          <li><strong>Monochromatic</strong> color schemes are easy to create because they use only one color. 
+            Use different tones from the same angle on the color wheel (the same hue).</li>
+          <li><strong>Triad</strong> and <strong>Quad</strong> are made up of hues equally spaced around color wheel.</li>
+        </ul>
+      </TextBox>
+    </div>
   )
 }
-const Container = styled.section`
-  width:  100%;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
+// Styled-Components CSS
+const ColorForm = styled.div`
   label {
-    font-size: 1.5rem;
+    font-size: 1.4em;
     font-weight: 500;
   }
 
@@ -100,6 +115,14 @@ const Container = styled.section`
       width: 75px;
     }
   }
+`
+const SmallContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  width: 85%;
 
   img {
     height: 200px;
@@ -110,4 +133,25 @@ const Container = styled.section`
     text-transform: uppercase;
     font-weight: 600;
   }
+
+  li {
+    font-size: .8em;
+  }
+`
+
+const TextBox = styled.div`
+  width: 75%;
+  margin-top: 20px;
+
+  li {
+    font-size: .85em;
+    list-style: circle;
+  }
+`
+
+const Swatch = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-color: blue;
 `

@@ -6,7 +6,7 @@ import ColorSelect from "./ColorSelect"
 export default function Colors() {
   
   return (
-    <Container>
+    <div className="container">
       <h1>Digital Color</h1>
       <TextBox>
         <p>Colors you view on a screen are displayed combining red, green and
@@ -18,20 +18,11 @@ export default function Colors() {
       </TextBox>
       <ColorSelect />
       <ColorSwatch />
-    </Container>
+    </div>
   )
 }
 
-const Container = styled.section`
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
+//Styled-Components CSS
 const TextBox = styled.div`
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `
