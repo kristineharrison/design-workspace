@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import styled from "styled-components";
-import { Error, FormField } from "../ui";
+import styled from "styled-components"
+import { Error } from "../ui"
 import Button from 'react-bootstrap/Button'
 import uuid from "react-uuid"
 
@@ -9,13 +9,14 @@ export default function AddProject({ asset, onAddProject }) {
   const [isLoading, setIsLoading] = useState(true)
   const [projectId, setProjectId] = useState("")
   const [projects, setProjects] = useState([])
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([])
 
+  // Get existing projects for dropdown
   useEffect(() => {
     let unmounted = false
     async function getProjects() {
-      const response = await fetch("/projects");
-      const projectData = await response.json();
+      const response = await fetch("/projects")
+      const projectData = await response.json()
       if (!unmounted) {
         setProjects(projectData.map((project) => ({ label: project.proname, pro_id: project.id }))
       );}
@@ -27,6 +28,7 @@ export default function AddProject({ asset, onAddProject }) {
     }
   }, []);
 
+  // Add project to asset
   function handleSubmit(e) {
     e.preventDefault()
     const formData = {
@@ -56,10 +58,10 @@ export default function AddProject({ asset, onAddProject }) {
   }
 
   return (
-    <Container>
+    <DropDownContainer>
       <h3>Add to Project</h3>
       <form onSubmit={handleSubmit}>
-        <FormField>
+        <div>
           <select
             disabled={isLoading}
             id="project"
@@ -72,25 +74,28 @@ export default function AddProject({ asset, onAddProject }) {
                 </option>
             ))}
           </select>
-        </FormField>
-        <FormField>
-          <div>
-            <Button variant="outline-secondary" type="submit">
-              Submit
-            </Button>
-          </div>
-        </FormField>
-        <FormField>
-          {errors.map((err) => (
-            <Error key={err}>{err}</Error>
-          ))}
-        </FormField>
+        </div>
+        <div>
+          <Button variant="outline-secondary" type="submit">
+            Submit
+          </Button>
+        </div>
+        {errors.map((err) => (
+          <Error key={err}>{err}</Error>
+        ))}
       </form>   
-    </Container>
+    </DropDownContainer>
   );
 }
 
-const Container = styled.section`
+const DropDownContainer = styled.section`
   display: flex;
   flex-direction: column;
+
+  div select {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 6px;
+    color: #808080;
+  }
 `;

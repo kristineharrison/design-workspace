@@ -1,6 +1,5 @@
 import React from "react"
 import { useState } from "react"
-import styled from "styled-components"
 import { FormField, Input, Label, Textarea } from "../ui"
 import Button from "react-bootstrap/esm/Button"
 
@@ -31,7 +30,7 @@ function handleSubmit(e) {
 }
 
   return (
-    <Container>
+    <div>
         <form onSubmit={handleSubmit}>
         <FormField>
             <Label htmlFor="title">Update Title</Label>
@@ -79,10 +78,6 @@ function handleSubmit(e) {
               </Button>
           </FormField>
         </form>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-width: 50%;
-`

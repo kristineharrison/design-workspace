@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router"
-import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 import { Error, FormField, Input, Label, Textarea } from "../ui";
 
@@ -14,7 +13,7 @@ export default function AssetCreateForm() {
 
   const history = useHistory()
 
- 
+  // Upload a new asset
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData()
@@ -40,17 +39,17 @@ export default function AssetCreateForm() {
   }
 
   return (
-    <Container>
-      <h2>Create Asset</h2>
+    <div className="container">
+      <h2>Create a New Asset</h2>
       <p>Upload an image file. JPG, PNG, SVG accepted file formats.</p>
       <form onSubmit={handleSubmit}>
-        <Upload>
+        <FormField>
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setImageData(e.target.files[0])}
           />
-        </Upload>
+        </FormField>
         <FormField>
           <Label htmlFor="title">Title</Label>
           <Input
@@ -103,22 +102,6 @@ export default function AssetCreateForm() {
           ))}
         </FormField>
       </form>
-    </Container>
+    </div>
   )
 }
-
-const Container = styled.section`
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-`
-
-const Upload = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-`

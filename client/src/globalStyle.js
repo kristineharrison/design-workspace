@@ -71,6 +71,12 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     margin-top: 30px;
   }
+
+  .asset {
+  height: 500px;
+  width: 800px;
+  object-fit: contain;
+  }
 `
 
 export default GlobalStyle;

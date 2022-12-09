@@ -46,6 +46,7 @@ export default function Asset({ handleDeleteAsset, user }) {
     setShowForm((showForm) => !showForm)
   }
 
+  // Add to existing project
   function handleAddProject(newProjectId) {
     setAsset({ error, status, data: {
         ...asset, projects: [...asset.projects, newProjectId],
@@ -53,15 +54,18 @@ export default function Asset({ handleDeleteAsset, user }) {
     })
   }
 
+  // Update asset info
   function handleUpdate(updated) {
     const updatedAsset = asset.id === updated.id ? updated : asset
     setAsset({ data: updatedAsset, error: null, status: "resolved"})
   }
  
   return (
-    <Container>
-      {asset.image_url ? <img src={asset.image_url} alt={asset.title} />
-        : <img src={asset.image_data} alt={asset.title} />}
+    <div className="container">
+      {asset.image_url ? <img src={asset.image_url} alt={asset.title} className="asset" />
+        : <img src={asset.image_data} alt={asset.title} className="asset"/>}
+      
+      {/* Asset info */}
       <TextBox>
         <h1>{asset.title}</h1>
         <cite>Source: {asset.source}</cite>
@@ -74,6 +78,7 @@ export default function Asset({ handleDeleteAsset, user }) {
         </div>   
       </TextBox>
        
+      {/* Delete Asset or Update Asset buttons */}
       <ButtonBox>
         <Button variant="outline-secondary"
           onClick={() => handleDeleteAsset(id)}>Delete Asset</Button>
@@ -81,65 +86,43 @@ export default function Asset({ handleDeleteAsset, user }) {
           onClick={() => handleClick(asset.id)}>Update Asset</Button>
       </ButtonBox>
 
+      {/* Update Asset Form Toggle */}
       {showForm ?
         <AssetUpdateForm asset={asset}
           handleClick={handleClick}
           handleUpdate={handleUpdate} />
         : null}
       
-      {/* Map over associated projects */}
-      <h3>Associated Projects</h3>
-      <ProjectCollection>
-        {asset.projects.length > 0 ? (
-          asset.projects.map((project) => (
-            <Button
-              variant="outline-secondary"
-              as={Link}
-              to={`/projects/${project.id}`}
-              key={uuid()}>{project.proname}
-            </Button>
-          ))
-        ) : (
-        <div className="no-asset">
-          <p>Not in any projects</p>
-        </div>
-        )}
-      </ProjectCollection>
-      <AddProject onAddProject={handleAddProject} asset={asset} />
-    </Container>
+      <SmallContainer>
+        {/* Display list of associated project or "Not in any projects" if none */}
+        
+        <ProjectCollection>
+          <h3>Associated Projects</h3>
+          {asset.projects.length > 0 ? (
+            asset.projects.map((project) => (
+              <Button
+                variant="outline-secondary"
+                as={Link}
+                to={`/projects/${project.id}`}
+                key={uuid()}>{project.proname}
+              </Button>
+            ))
+          ) : (
+          <div className="no-asset">
+            <p>Not in any projects</p>
+          </div>
+          )}
+        </ProjectCollection>
+        <AddProject onAddProject={handleAddProject} asset={asset} />
+      </SmallContainer>   
+    </div>
   )
 }
 
-const Container = styled.div`
-margin-top: 40px;
-display: flex;
-flex-flow: column;
-align-items: center;
-justify-content: center;
-
-img {
-  height: 500px;
-  width: 800px;
-  object-fit: contain;
-}
-
-h3 {
-  margin-top: 30px;
-}
-`
-
-const ProjectCollection = styled.div`
-max-width: 500px;
-margin: 20px auto;
-display: flex;
-flex-flow: row wrap;
-gap: 20px;
-overflow-x: auto;
-`
-
+// Style-Components CSS
 const TextBox = styled.div`
 margin-top: 30px;
-width: 500px;
+width: 75%;
 display: flex;
 flex-direction: column;
 overflow-x: auto;
@@ -148,10 +131,24 @@ overflow-x: auto;
   text-transform: uppercase;
 }
 `
-
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   gap: 10px;
+`
+
+const SmallContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  width: 65%;
+`
+const ProjectCollection = styled.div`
+display: flex;
+flex-flow: column;
+gap: 10px;
+overflow-x: auto;
+min-width: 50%;
 `
