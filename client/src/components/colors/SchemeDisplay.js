@@ -16,7 +16,8 @@ export default function SchemeDisplay({ hexValue, schemes }) {
   const [status, setStatus] = useState("pending")
 
   const params = useParams()
-
+  
+  // Get color scheme data from The Color Api
   const fetchData = () => {
     const monoUrl = `https://www.thecolorapi.com/scheme?hex=${hexValue}&mode=monochrome&count=4`
     const monoDarkUrl = `https://www.thecolorapi.com/scheme?hex=${hexValue}&mode=monochrome-dark&count=4`
@@ -64,6 +65,7 @@ export default function SchemeDisplay({ hexValue, schemes }) {
     fetchData()
   }, [hexValue])
  
+  // Display selected color scheme and info
   const schemeName = schemes[params.schemeId].title
   let schemeImg = ""
   let schemeText = ""
@@ -173,7 +175,6 @@ export default function SchemeDisplay({ hexValue, schemes }) {
         <div>
           {schemeText}
         </div>
-        
       </Example>
     </SchemeBox>
   )
@@ -184,7 +185,6 @@ const SchemeBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 `
 const Example = styled.div`
   display: flex;
@@ -192,7 +192,6 @@ const Example = styled.div`
   min-width: 300px;
   
   ul {
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
