@@ -47,14 +47,15 @@ export default function Catalog({ assets, setAssets, projects, setProjects }) {
     <Container>
         <div>
           <h1>PROJECTS</h1>
-        </div>
+      </div>
+        {/* Display all available user projects and if none "No Projects Found" */}
         <Collection>
           {projects.length > 0 ? (
             projects.map((project) => (
               <ProjectCard key={`project-${project.id}`} project={project}/>
               ))
             ) : (
-            <div className="no-asset">
+            <div className="no-items">
               <h2>No Projects Found </h2>
               <Button variant="outline-secondary" as={Link} to="/new-project">
                 Start a New Project
@@ -66,14 +67,15 @@ export default function Catalog({ assets, setAssets, projects, setProjects }) {
         <div>
           <hr />
           <h1>ASSETS</h1>
-        </div>
+      </div>
+        {/* Display all available user assets and if none "No Assets Found" */}
         <Collection>
           {assets.length > 0 ? (
             assets.map((asset) => (
               <AssetCard key={`asset-${asset.id}`} asset={asset}/>
             ))
             ) : (
-            <div className="no-asset">
+            <div className="no-items">
               <h2>No Assets Found</h2>
               <br />
               <Button variant="outline-secondary" as={Link} to="/new-asset">
@@ -94,7 +96,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: flex-start;
 
-  div.no-asset {
+  div.no-items {
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -104,6 +106,5 @@ const Container = styled.section`
 const Collection = styled.div`
   display: flex;
   flex-flow: row wrap;
-  // margin-bottom: 15px;
   justify-content: center;
 `
