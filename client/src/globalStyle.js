@@ -23,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     color: #075159;
   }
 
+  h1 {
+    margin-top: 20px;
+  }
+
   button {
     cursor: pointer;
     font-size: 1rem;

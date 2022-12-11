@@ -1,4 +1,3 @@
-// .src/components/MovieShow.js
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -113,7 +112,7 @@ export default function StyleDisplay({ styles }) {
   }
 
   return (
-    <Container>
+    <div className="container">
       <h3>{styles[params.styleId].title}</h3>
       <div>
         <img src={"/images/examples/roses.jpg"} alt="Roses" className={styleClass}/>
@@ -121,30 +120,21 @@ export default function StyleDisplay({ styles }) {
       <TextBox>
         {styleText}
       </TextBox>
-    </Container>
+    </div>
   );
 }
 
-const Container = styled.section`
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  img {
-    height: 400px;
-  }
-`
+// Styled-Components CSS
 const TextBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 20px;
   justify-content: center;
-  max-width: 500px;
+  max-width: 600px;
 
   .code-container {
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     background-color: black;
     border-radius: 10px;
     text-align: center;
@@ -156,13 +146,6 @@ const TextBox = styled.div`
     font-family: "Courier New", Courier, monospace;
     font-weight: 900;
     text-align: center;
-  }
-  
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 `
 

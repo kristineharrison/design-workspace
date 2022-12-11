@@ -15,36 +15,19 @@ export default function StyleList({ styles }) {
   ))
 
   return (
-    <Container>
+    <div className="container">
       <h2>Image Styles</h2>
-      <TextBox>
-        <ul className="schemes">{renderStyles}</ul>
-      </TextBox>
-    </Container>
+      <List>{renderStyles}</List>
+    </div>
   )
 }
 
-const Container = styled.section`
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  ul.schemes {
-    margin-top: 10px;
+// Styled-Components CSS
+const List = styled.ul`
+  margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     gap: 20px;
-  }
-
-  li {
-    font-size: 1.2 rem;
-  }
-`
-const TextBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 60%;
 `

@@ -19,8 +19,8 @@ export default function Images() {
   const match = useRouteMatch()
 
   return (
-    <Container>
-      <h2>Using CSS with Images</h2>
+    <div className="container">
+      <h1>Using CSS with Images</h1>
       <TextBox>
         <p>Styling images using CSS may seem more time consuming than editing an
         image in Photoshop, but there are many advantages to being able to
@@ -35,20 +35,14 @@ export default function Images() {
       <Route path={`${match.url}/:styleId`}>
         <StyleDisplay styles={styles} setStyles={setStyles}/>
       </Route> 
-    </Container>
+    </div>
   )
 }
 
-const Container = styled.section`
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
+// Styled-Components CSS
 const TextBox = styled.div`
-  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 75%;
 `
