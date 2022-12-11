@@ -10,6 +10,7 @@ export default function StyleDisplay({ styles }) {
   let styleClass= ""
   let styleText= ""
 
+  // CSS style to apply to example image based on style name clicked
   switch(styleName) {
     case "Rounded Corners":
       styleClass= "rounded"

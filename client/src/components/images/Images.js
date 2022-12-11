@@ -6,6 +6,7 @@ import StyleDisplay from "./StyleDisplay"
 
 
 export default function Images() {
+  // Set Routes ID and titles for style links
   const [styles, setStyles] = useState({
     1: { id: 1, title: "Rounded Corners" },
     2: { id: 2, title: "Circle" },
@@ -29,9 +30,11 @@ export default function Images() {
         interact with the webpage. It also makes applying different effects to
         multiple images at once extremely easy by using class names.</p>
       </TextBox>
-     
-      <StyleList styles={styles}  /> 
-
+      
+      {/* List of CSS image styles to apply */}
+      <StyleList styles={styles} />
+      
+      {/* Routes to display CSS image styles from style list */}
       <Route path={`${match.url}/:styleId`}>
         <StyleDisplay styles={styles} setStyles={setStyles}/>
       </Route> 
