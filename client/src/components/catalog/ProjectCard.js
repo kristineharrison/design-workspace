@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { ProjectBox } from "../ui"
 import Button from 'react-bootstrap/Button'
 import styled from "styled-components"
 
@@ -9,19 +8,26 @@ export default function ProjectCard({ project }) {
   return (
     <ProjectBox>
       <h2>{project.proname}</h2>
-      <TextBox>
-        <p>{project.prostatus}</p>
-      </TextBox>
+      <p><span>{project.prostatus}</span></p>
       
       <Button variant="outline-secondary" as={ Link } to= {`/projects/${project.id}`}>
-        View Project
+        VIEW PROJECT
       </Button>
     </ProjectBox>
   )
 }
 
-const TextBox = styled.div`
-font-weight: 500;
-text-transform: uppercase;
+// Styled-Components CSS
+const ProjectBox = styled.div`
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // margin: 20px;
 
+  span {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
 `

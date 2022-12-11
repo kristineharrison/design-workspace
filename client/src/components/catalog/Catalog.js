@@ -104,6 +104,6 @@ const Container = styled.section`
 const Collection = styled.div`
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 24px;
+  // margin-bottom: 15px;
   justify-content: center;
 `
