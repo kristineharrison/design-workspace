@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react"
-import { Link, Route } from "react-router-dom"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
 import AssetCard from "./AssetCard"

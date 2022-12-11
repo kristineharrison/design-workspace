@@ -7,6 +7,7 @@ export default function AssetCard({ asset }) {
 
   return (
     <AssetBox> 
+      {/* Display uploaded image or linked image from Unsplash */}
       {asset.image_url ? <img src={asset.image_url} alt={asset.title}/> : <img src={asset.image_data} alt={asset.title}/>}
       <p><span>{asset.title}</span><br /></p> 
       <Button variant="outline-secondary" as={ Link } to= {`/assets/${asset.id}`}>
