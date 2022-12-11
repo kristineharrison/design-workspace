@@ -11,6 +11,7 @@ export default function SignUpForm({ onLogin }) {
   const [errors, setErrors] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
+  // Create a user
   function handleSubmit(e) {
     e.preventDefault()
     setErrors([])
@@ -116,5 +117,5 @@ export default function SignUpForm({ onLogin }) {
         ))}
       </FormField>
     </form>
-  );
+  )
 }

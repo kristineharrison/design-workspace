@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Button, Error, Input, FormField, Label } from "../ui";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import { Button, Error, Input, FormField, Label } from "../ui"
 
 export default function LoginForm({ onLogin }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setLoading] = useState("pending")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [errors, setErrors] = useState([])
 
   const history = useHistory()
   
+  // Submit username and password and if valid route to use profile page
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/login", {
@@ -20,9 +20,9 @@ export default function LoginForm({ onLogin }) {
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => onLogin(user))
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err.errors))
       }
     });
     history.push("/profile")
@@ -61,5 +61,5 @@ export default function LoginForm({ onLogin }) {
         ))}
       </FormField>
     </form>
-  );
+  )
 }

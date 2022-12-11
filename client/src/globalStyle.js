@@ -68,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .container {
-    // background-color: red;
+    background-color: red;
     display: flex;
     flex-direction: column;
     align-items: center;
