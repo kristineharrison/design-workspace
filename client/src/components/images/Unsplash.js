@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Button from 'react-bootstrap/Button'
+import uuid from "react-uuid"
 
 
 export default function Unsplash() {
@@ -16,17 +17,17 @@ export default function Unsplash() {
   const fetchRequest = async () => {
     const data = await fetch(
       `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=8`
-    );
+    )
     const res = await data.json()
     const result = res.results
     setRes(result)
     setStatus("resolved")
-  };
+  }
  
   // Get initial search request
   useEffect(() => {
     fetchRequest()
-  }, []);
+  }, [])
 
   const Submit = () => {
     fetchRequest()
@@ -34,10 +35,10 @@ export default function Unsplash() {
   }
 
   // Update status state
-  if (status === "pending") return <h4>Loading...</h4>;
-  if (status === "rejected") return <h4>Error: {errors.error}</h4>;
+  if (status === "pending") return <h4>Loading...</h4>
+  if (status === "rejected") return <h4>Error: {errors.error}</h4>
 
-  // Add Unsplash image to catalog
+  // Add Unsplash image to user catalog
   function addPhoto(asset) {
     const formData = {
       title: asset.alt_description,
@@ -66,12 +67,10 @@ export default function Unsplash() {
   }
 
   return (
-    <Container>
+    <div className="container">
       <h2>Unsplash Photo Search</h2>
       <TextBox>
-        <a href="http://www.unsplash.com" target="_blank">Unsplash</a> is a source for beautiful, free images and photos that you
-        can download and use for any project. Search over 3 million high-resolution
-        images and add to your <strong>WORKSPACE</strong> catalog.
+        <a href="http://www.unsplash.com" target="_blank">Unsplash</a> is a source for beautiful, free images and photos that you can download and use for any project. Search over 3 million high-resolution images and add to your <strong>WORKSPACE</strong> catalog.
       </TextBox>
       
       <div className="container-fluid">
@@ -93,9 +92,8 @@ export default function Unsplash() {
         <PhotoCollection>
           {res.map((asset) => {
             return (
-              <Img>
+              <Img key={uuid()}>
                 <img
-                  key={asset.id}
                   src={asset.urls.small}
                   alt="asset.alt_description"
                 />
@@ -105,19 +103,13 @@ export default function Unsplash() {
           })}
         </PhotoCollection>
       </div>
-    </Container>
+    </div>
   )
 }
 
-const Container = styled.section`
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
+// Styled-Components CSS
 const TextBox = styled.div`
-  width: 70%;
+  width: 75%;
   margin-bottom: 30px;
 `
 const Img = styled.div`
@@ -145,9 +137,9 @@ const SearchBox = styled.div`
   justify-content: center;
 `
 const PhotoCollection = styled.section`
-  margin-top: 20px;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: 20px;
-  justify-content: flex-start;
+  margin-top: 20px;
 `
