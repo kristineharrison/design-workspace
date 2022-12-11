@@ -13,7 +13,7 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <Wrapper>
+    <Header>
       <Logo>
         <Link to="/profile">Workspace</Link>
       </Logo>
@@ -23,8 +23,8 @@ export default function NavBar({ user, setUser }) {
                     width: 700, 
                     padding: 30,
                     gap: 10
-                  }}>
-        
+        }}>
+          {/* Dropdown Nav */}
           <Dropdown>
             <Dropdown.Toggle variant="outline-secondary">
               Catalog
@@ -74,11 +74,11 @@ export default function NavBar({ user, setUser }) {
           </Dropdown>
         </div>
       </Nav>
-    </Wrapper>
+    </Header>
   );
 }
 
-const Wrapper = styled.header`
+const Header= styled.header`
   display: flex;
   justify-content: flex-between;
   align-items: center;
@@ -91,7 +91,6 @@ const Logo = styled.h1`
   font-size: 2.75rem;
   margin: 0;
   line-height: 1;
-  
 
   a {
     color: inherit;
@@ -104,4 +103,8 @@ const Nav = styled.nav`
   gap: 10px;
   position: absolute;
   right: 30px;
+
+  a:active {
+    background-color: #075159;
+  }
 `;
