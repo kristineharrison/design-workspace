@@ -6,7 +6,7 @@ import SignUpForm from "./SignUpForm"
 import { Button } from "../ui"
 
 export default function Login({ onLogin }) {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(true)
 
   return (
     <Container>

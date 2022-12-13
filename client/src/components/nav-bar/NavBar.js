@@ -7,9 +7,9 @@ export default function NavBar({ user, setUser }) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        setUser(null)
       }
-    });
+    })
   }
 
   return (
@@ -75,7 +75,7 @@ export default function NavBar({ user, setUser }) {
         </div>
       </Nav>
     </Header>
-  );
+  )
 }
 
 const Header= styled.header`
@@ -83,7 +83,7 @@ const Header= styled.header`
   justify-content: flex-between;
   align-items: center;
   padding: 8px;
-`;
+`
 
 const Logo = styled.h1`
   font-family: 'Rubik Mono One', sans-serif;
@@ -96,7 +96,7 @@ const Logo = styled.h1`
     color: inherit;
     text-decoration: none;
   }
-`;
+`
 
 const Nav = styled.nav`
   display: flex;
@@ -107,4 +107,4 @@ const Nav = styled.nav`
   a:active {
     background-color: #075159;
   }
-`;
+`

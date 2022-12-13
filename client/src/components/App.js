@@ -12,7 +12,6 @@ import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
 import Unsplash from "./images/Unsplash"
-import Loading from "./login/Loading"
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -21,18 +20,21 @@ export default function App() {
   const [error, setErrors] = useState(null)
 
   const history = useHistory()
-
+  
   useEffect(() => {
-    // auto-login
+    // Auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user))
       }
     })
   }, [])
-  
-  if (!user) return <Login onLogin={setUser} />
-  // if (!user) return <Loading />
+
+  // Check if user is authorized and if not return to login
+  // if (!user) return <Login onLogin={setUser} />
+
+  // if (user === null) return null
+  if (user === null) return <Login onLogin={setUser} />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
