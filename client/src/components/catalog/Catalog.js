@@ -106,5 +106,5 @@ const Container = styled.section`
 const Collection = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
 `

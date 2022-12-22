@@ -10,6 +10,7 @@ export default function ProjectCard({ project }) {
       {/* Display individual project info */}
       <h2>{project.proname}</h2>
       <p><span>{project.prostatus}</span></p>
+      <p>{project.summary}</p>
       <Button variant="outline-secondary" as={ Link } to= {`/projects/${project.id}`}>
         VIEW PROJECT
       </Button>

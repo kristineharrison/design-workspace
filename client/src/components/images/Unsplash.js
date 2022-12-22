@@ -16,7 +16,7 @@ export default function Unsplash() {
   // Settings for retrieving Unsplash images using API key
   const fetchRequest = async () => {
     const data = await fetch(
-      `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=8`
+      `https://api.unsplash.com/search/photos?page=1&query=${img}&client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&per_page=20`
     )
     const res = await data.json()
     const result = res.results

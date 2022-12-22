@@ -11,13 +11,14 @@ import ProjectCreateForm from "./project/ProjectCreateForm"
 import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
+import Loading from "./login/Loading"
 import Unsplash from "./images/Unsplash"
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([])
   const [assets, setAssets] = useState([])
-  const [error, setErrors] = useState(null)
+  const [error, setError] = useState(null)
 
   const history = useHistory()
   
@@ -29,12 +30,10 @@ export default function App() {
       }
     })
   }, [])
-
+  
   // Check if user is authorized and if not return to login
-  // if (!user) return <Login onLogin={setUser} />
-
-  // if (user === null) return null
-  if (user === null) return <Login onLogin={setUser} />
+  if (!user) return <Login onLogin={setUser} />
+  // if (!user) return <Loading />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
@@ -49,7 +48,7 @@ export default function App() {
           setAssets({ data: null, error: err.error })
         )
       }
-      setErrors([])
+      setError([])
       history.push("/catalog")
     });
   }
@@ -67,7 +66,7 @@ export default function App() {
           setProjects({ data: null, error: err.error })
         )
       }
-      setErrors([])
+      setError([])
       history.push("/catalog")
     })
   }
@@ -75,7 +74,7 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} setError={setError} />
       <main>
         <Switch>
           <Route path="/assets/:id">
