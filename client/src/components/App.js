@@ -11,7 +11,6 @@ import ProjectCreateForm from "./project/ProjectCreateForm"
 import Catalog from "./catalog"
 import Images from "./images"
 import Colors from "./colors"
-import Loading from "./login/Loading"
 import Unsplash from "./images/Unsplash"
 
 export default function App() {
@@ -33,7 +32,6 @@ export default function App() {
   
   // Check if user is authorized and if not return to login
   if (!user) return <Login onLogin={setUser} />
-  // if (!user) return <Loading />
 
   function handleDeleteAsset(id) {
     fetch(`/assets/${id}`, {
